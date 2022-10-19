@@ -7,23 +7,23 @@
 
 import Foundation
 
-/** An enumerator type describing all possible OpenFoodFacts sites that exist
+/**
+An enumerator type describing all possible OpenFoodFacts product types that are supported
  
 Values:
- - food - for food products
+ - food - for food pzroducts
     - petFood - for petfood products
     - beauty - for beauty products
     - product - for any other product (not food, petfood, beauty)
 */
-enum OFFProductType: String {
+public enum OFFProductType: String {
     case food
     case petFood
     case beauty
     case product
     
     /// A a human readable description of the current value for Product Type.
-    /// - Returns:  String
-    func description() -> String {
+    var description: String {
         switch self {
         case .food:
             return "Food product"

@@ -7,34 +7,78 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB620E6A28FD483500D144A7 /* FSNMURLPingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E5B28FD478B00D144A7 /* FSNMURLPingTests.swift */; };
+		AB620E6C28FD570600D144A7 /* FSNMUrlStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6B28FD570600D144A7 /* FSNMUrlStatsTests.swift */; };
+		AB620E7028FD58A900D144A7 /* FSNMUrlProductsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6F28FD58A900D144A7 /* FSNMUrlProductsTests.swift */; };
+		AB620E7228FD598B00D144A7 /* FSNMUrlTagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7128FD598B00D144A7 /* FSNMUrlTagsTests.swift */; };
+		AB620E7428FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7328FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift */; };
+		AB620E7628FD5EBC00D144A7 /* FSNMURLKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7528FD5EBC00D144A7 /* FSNMURLKeysTests.swift */; };
+		AB620E7828FD631B00D144A7 /* FSNMURLTagVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7728FD631B00D144A7 /* FSNMURLTagVersions.swift */; };
+		AB620E7E28FD7D3900D144A7 /* FSNMURLDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7D28FD7D3900D144A7 /* FSNMURLDelete.swift */; };
 		AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */; };
-		AB93C67828F85D1D00336E71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67728F85D1D00336E71 /* ContentView.swift */; };
+		AB93C67828F85D1D00336E71 /* FSNMTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */; };
 		AB93C67A28F85D1E00336E71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67928F85D1E00336E71 /* Assets.xcassets */; };
 		AB93C67D28F85D1E00336E71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67C28F85D1E00336E71 /* Preview Assets.xcassets */; };
-		AB93C68428F85D4200336E71 /* OFFURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68328F85D4200336E71 /* OFFURL.swift */; };
+		AB93C68428F85D4200336E71 /* URL Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68328F85D4200336E71 /* URL Extension.swift */; };
 		AB93C68628F85EB800336E71 /* OFFBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68528F85EB800336E71 /* OFFBarcode.swift */; };
 		AB93C68828F85ECC00336E71 /* OFFProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68728F85ECC00336E71 /* OFFProductType.swift */; };
 		AB93C68A28F86C5700336E71 /* OFFFolksonomyGetProductJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68928F86C5700336E71 /* OFFFolksonomyGetProductJson.swift */; };
 		AB93C68C28F8788800336E71 /* OFFRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68B28F8788800336E71 /* OFFRequest.swift */; };
-		AB93C68E28F8790600336E71 /* OFFFetchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68D28F8790600336E71 /* OFFFetchStatus.swift */; };
+		AB93C68E28F8790600336E71 /* FSNMFetchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68D28F8790600336E71 /* FSNMFetchStatus.swift */; };
+		ABE50A9728FE955700049C02 /* PostAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9628FE955700049C02 /* PostAPITest.swift */; };
+		ABE50A9928FF140400049C02 /* FSNMPingAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */; };
+		ABE50A9B28FFDD5D00049C02 /* FSNMPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9A28FFDD5D00049C02 /* FSNMPing.swift */; };
+		ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */; };
+		ABE50AA128FFEBF000049C02 /* FSNMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AA028FFEBF000049C02 /* FSNMView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AB620E6528FD482E00D144A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB93C66A28F85D1D00336E71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB93C67128F85D1D00336E71;
+			remoteInfo = OFFFolksonomy;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		AB620E5B28FD478B00D144A7 /* FSNMURLPingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLPingTests.swift; sourceTree = "<group>"; };
+		AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OFFFolksonomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB620E6B28FD570600D144A7 /* FSNMUrlStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMUrlStatsTests.swift; sourceTree = "<group>"; };
+		AB620E6F28FD58A900D144A7 /* FSNMUrlProductsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMUrlProductsTests.swift; sourceTree = "<group>"; };
+		AB620E7128FD598B00D144A7 /* FSNMUrlTagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMUrlTagsTests.swift; sourceTree = "<group>"; };
+		AB620E7328FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLTagsForKeyTests.swift; sourceTree = "<group>"; };
+		AB620E7528FD5EBC00D144A7 /* FSNMURLKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLKeysTests.swift; sourceTree = "<group>"; };
+		AB620E7728FD631B00D144A7 /* FSNMURLTagVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLTagVersions.swift; sourceTree = "<group>"; };
+		AB620E7D28FD7D3900D144A7 /* FSNMURLDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLDelete.swift; sourceTree = "<group>"; };
 		AB93C67228F85D1D00336E71 /* OFFFolksonomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OFFFolksonomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFFFolksonomyApp.swift; sourceTree = "<group>"; };
-		AB93C67728F85D1D00336E71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMTagsView.swift; sourceTree = "<group>"; };
 		AB93C67928F85D1E00336E71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB93C67C28F85D1E00336E71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AB93C68328F85D4200336E71 /* OFFURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFURL.swift; sourceTree = "<group>"; };
+		AB93C68328F85D4200336E71 /* URL Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL Extension.swift"; sourceTree = "<group>"; };
 		AB93C68528F85EB800336E71 /* OFFBarcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFBarcode.swift; sourceTree = "<group>"; };
 		AB93C68728F85ECC00336E71 /* OFFProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFProductType.swift; sourceTree = "<group>"; };
 		AB93C68928F86C5700336E71 /* OFFFolksonomyGetProductJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFFolksonomyGetProductJson.swift; sourceTree = "<group>"; };
 		AB93C68B28F8788800336E71 /* OFFRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFRequest.swift; sourceTree = "<group>"; };
-		AB93C68D28F8790600336E71 /* OFFFetchStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFFetchStatus.swift; sourceTree = "<group>"; };
+		AB93C68D28F8790600336E71 /* FSNMFetchStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMFetchStatus.swift; sourceTree = "<group>"; };
 		AB93C68F28F941B400336E71 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ABE50A9628FE955700049C02 /* PostAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPITest.swift; sourceTree = "<group>"; };
+		ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingAPITest.swift; sourceTree = "<group>"; };
+		ABE50A9A28FFDD5D00049C02 /* FSNMPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPing.swift; sourceTree = "<group>"; };
+		ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingView.swift; sourceTree = "<group>"; };
+		ABE50AA028FFEBF000049C02 /* FSNMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AB620E5E28FD482E00D144A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB93C66F28F85D1D00336E71 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,11 +89,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB620E6228FD482E00D144A7 /* OFFFolksonomyTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB620E6E28FD577500D144A7 /* FSNMURL */,
+				AB620E6D28FD576D00D144A7 /* Network */,
+			);
+			path = OFFFolksonomyTests;
+			sourceTree = "<group>";
+		};
+		AB620E6D28FD576D00D144A7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				ABE50A9628FE955700049C02 /* PostAPITest.swift */,
+				ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AB620E6E28FD577500D144A7 /* FSNMURL */ = {
+			isa = PBXGroup;
+			children = (
+				AB620E5B28FD478B00D144A7 /* FSNMURLPingTests.swift */,
+				AB620E6B28FD570600D144A7 /* FSNMUrlStatsTests.swift */,
+				AB620E6F28FD58A900D144A7 /* FSNMUrlProductsTests.swift */,
+				AB620E7128FD598B00D144A7 /* FSNMUrlTagsTests.swift */,
+				AB620E7328FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift */,
+				AB620E7528FD5EBC00D144A7 /* FSNMURLKeysTests.swift */,
+				AB620E7728FD631B00D144A7 /* FSNMURLTagVersions.swift */,
+				AB620E7D28FD7D3900D144A7 /* FSNMURLDelete.swift */,
+			);
+			path = FSNMURL;
+			sourceTree = "<group>";
+		};
 		AB93C66928F85D1D00336E71 = {
 			isa = PBXGroup;
 			children = (
 				AB93C68F28F941B400336E71 /* README.md */,
 				AB93C67428F85D1D00336E71 /* OFFFolksonomy */,
+				AB620E6228FD482E00D144A7 /* OFFFolksonomyTests */,
 				AB93C67328F85D1D00336E71 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				AB93C67228F85D1D00336E71 /* OFFFolksonomy.app */,
+				AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,13 +145,13 @@
 			isa = PBXGroup;
 			children = (
 				AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */,
-				AB93C67728F85D1D00336E71 /* ContentView.swift */,
-				AB93C68328F85D4200336E71 /* OFFURL.swift */,
+				ABE50A9F28FFEBCE00049C02 /* Demo */,
+				AB93C68328F85D4200336E71 /* URL Extension.swift */,
 				AB93C68728F85ECC00336E71 /* OFFProductType.swift */,
 				AB93C68528F85EB800336E71 /* OFFBarcode.swift */,
-				AB93C68928F86C5700336E71 /* OFFFolksonomyGetProductJson.swift */,
 				AB93C68B28F8788800336E71 /* OFFRequest.swift */,
-				AB93C68D28F8790600336E71 /* OFFFetchStatus.swift */,
+				ABE50A9C28FFE1E900049C02 /* Folkosonomy */,
+				AB93C68D28F8790600336E71 /* FSNMFetchStatus.swift */,
 				AB93C67928F85D1E00336E71 /* Assets.xcassets */,
 				AB93C67B28F85D1E00336E71 /* Preview Content */,
 			);
@@ -87,9 +166,46 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		ABE50A9C28FFE1E900049C02 /* Folkosonomy */ = {
+			isa = PBXGroup;
+			children = (
+				AB93C68928F86C5700336E71 /* OFFFolksonomyGetProductJson.swift */,
+				ABE50A9A28FFDD5D00049C02 /* FSNMPing.swift */,
+			);
+			path = Folkosonomy;
+			sourceTree = "<group>";
+		};
+		ABE50A9F28FFEBCE00049C02 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				ABE50AA028FFEBF000049C02 /* FSNMView.swift */,
+				AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */,
+				ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AB620E6028FD482E00D144A7 /* OFFFolksonomyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB620E6728FD482E00D144A7 /* Build configuration list for PBXNativeTarget "OFFFolksonomyTests" */;
+			buildPhases = (
+				AB620E5D28FD482E00D144A7 /* Sources */,
+				AB620E5E28FD482E00D144A7 /* Frameworks */,
+				AB620E5F28FD482E00D144A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB620E6628FD482E00D144A7 /* PBXTargetDependency */,
+			);
+			name = OFFFolksonomyTests;
+			productName = OFFFolksonomyTests;
+			productReference = AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AB93C67128F85D1D00336E71 /* OFFFolksonomy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB93C68028F85D1E00336E71 /* Build configuration list for PBXNativeTarget "OFFFolksonomy" */;
@@ -117,6 +233,10 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					AB620E6028FD482E00D144A7 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = AB93C67128F85D1D00336E71;
+					};
 					AB93C67128F85D1D00336E71 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -136,11 +256,19 @@
 			projectRoot = "";
 			targets = (
 				AB93C67128F85D1D00336E71 /* OFFFolksonomy */,
+				AB620E6028FD482E00D144A7 /* OFFFolksonomyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AB620E5F28FD482E00D144A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB93C67028F85D1D00336E71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,16 +281,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AB620E5D28FD482E00D144A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB620E7E28FD7D3900D144A7 /* FSNMURLDelete.swift in Sources */,
+				AB620E7428FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift in Sources */,
+				AB620E7028FD58A900D144A7 /* FSNMUrlProductsTests.swift in Sources */,
+				AB620E7228FD598B00D144A7 /* FSNMUrlTagsTests.swift in Sources */,
+				AB620E7628FD5EBC00D144A7 /* FSNMURLKeysTests.swift in Sources */,
+				AB620E7828FD631B00D144A7 /* FSNMURLTagVersions.swift in Sources */,
+				ABE50A9728FE955700049C02 /* PostAPITest.swift in Sources */,
+				AB620E6A28FD483500D144A7 /* FSNMURLPingTests.swift in Sources */,
+				ABE50A9928FF140400049C02 /* FSNMPingAPITest.swift in Sources */,
+				AB620E6C28FD570600D144A7 /* FSNMUrlStatsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB93C66E28F85D1D00336E71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE50AA128FFEBF000049C02 /* FSNMView.swift in Sources */,
 				AB93C68828F85ECC00336E71 /* OFFProductType.swift in Sources */,
 				AB93C68C28F8788800336E71 /* OFFRequest.swift in Sources */,
-				AB93C68E28F8790600336E71 /* OFFFetchStatus.swift in Sources */,
-				AB93C68428F85D4200336E71 /* OFFURL.swift in Sources */,
-				AB93C67828F85D1D00336E71 /* ContentView.swift in Sources */,
+				ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */,
+				AB93C68E28F8790600336E71 /* FSNMFetchStatus.swift in Sources */,
+				AB93C68428F85D4200336E71 /* URL Extension.swift in Sources */,
+				AB93C67828F85D1D00336E71 /* FSNMTagsView.swift in Sources */,
 				AB93C68A28F86C5700336E71 /* OFFFolksonomyGetProductJson.swift in Sources */,
+				ABE50A9B28FFDD5D00049C02 /* FSNMPing.swift in Sources */,
 				AB93C68628F85EB800336E71 /* OFFBarcode.swift in Sources */,
 				AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */,
 			);
@@ -170,7 +318,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AB620E6628FD482E00D144A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB93C67128F85D1D00336E71 /* OFFFolksonomy */;
+			targetProxy = AB620E6528FD482E00D144A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		AB620E6828FD482E00D144A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4FXMVWJ7V;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sivas.hoveringabove.OFFFolksonomyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OFFFolksonomy.app/OFFFolksonomy";
+			};
+			name = Debug;
+		};
+		AB620E6928FD482E00D144A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q4FXMVWJ7V;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sivas.hoveringabove.OFFFolksonomyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OFFFolksonomy.app/OFFFolksonomy";
+			};
+			name = Release;
+		};
 		AB93C67E28F85D1E00336E71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -346,6 +538,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AB620E6728FD482E00D144A7 /* Build configuration list for PBXNativeTarget "OFFFolksonomyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB620E6828FD482E00D144A7 /* Debug */,
+				AB620E6928FD482E00D144A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AB93C66D28F85D1D00336E71 /* Build configuration list for PBXProject "OFFFolksonomy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

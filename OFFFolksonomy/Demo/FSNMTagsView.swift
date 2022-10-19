@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-//var properties: [OFFFolksonomyGetProductPropertyJson] = []
-
-class ContentViewModel: ObservableObject {
+class FSNMTagsViewModel: ObservableObject {
     @Published var properties: [OFFFolksonomyGetProductPropertyJson]
     
-    init(status: OFFFetchStatus? = nil) {
+    init(status: FSNMFetchStatus? = nil) {
         self.properties = []
     }
     
@@ -21,22 +19,24 @@ class ContentViewModel: ObservableObject {
         // get the remote data
         let fetchResult = OFFRequest().fetchFolksonomyProperties(for: barcode)
         switch fetchResult {
-        case .loadingFailed(let string):
+        case .failed(let string):
             print(string)
         case .success(let data):
-            for element in data {
-                self.properties.append(element)
+            if let validData = data as? [OFFFolksonomyGetProductPropertyJson] {
+                for element in validData {
+                    self.properties.append(element)
+                }
+                self.properties = validData
+                print(self.properties)
+            } else {
+                print("no validData")
             }
-            self.properties = data
-            print(self.properties)
-        case .initialized:
-            print("Not yet")
         }
     }
 }
-struct ContentView: View {
+struct FSNMTagsView: View {
         
-    @StateObject var model = ContentViewModel()
+    @StateObject var model = FSNMTagsViewModel()
         
     // Show the properties
     var body: some View {
@@ -49,15 +49,14 @@ struct ContentView: View {
             }
         }
         .padding()
-        // load the properties. If the properties are downloaded they should be displayed
         .onAppear {
-            model.update(barcode: OFFBarcode(barcode: "3760091720114"))
+            model.update(barcode: OFFBarcode(barcode: "3760091720115"))
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct FSNMTagsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        FSNMTagsView()
     }
 }

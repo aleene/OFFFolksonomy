@@ -1,8 +1,8 @@
 //
-//  BarcodeType.swift
+//  OFFBarcopde.swift
 //  OFFFolksonomy
 //
-//  Created by Arnaud Leene on 13/10/2022.
+//  Created by aleene 13/10/2022
 //
 
 import Foundation
@@ -26,6 +26,7 @@ enum OFFBarcode {
         }
     }
 
+    /// The barcode string for a specific barcode length
     var string: String {
         switch self {
         case .ean13(let s):
