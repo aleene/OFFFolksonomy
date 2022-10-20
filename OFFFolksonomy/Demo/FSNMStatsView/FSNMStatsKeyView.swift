@@ -1,17 +1,18 @@
 //
-//  FSNMStatsView.swift
+//  FSNMStatsKeyView.swift
 //  OFFFolksonomy
 //
-//  Created by Arnaud Leene on 19/10/2022.
+//  Created by Arnaud Leene on 20/10/2022.
 //
 
 import SwiftUI
 
-class FSNMStatsViewModel: ObservableObject {
+class FSNMStatsKeyViewModel: ObservableObject {
     @Published var productStats: [FSNMAPI.ProductStats]
     @Published var error: String?
     private var fsnmAPI = FSNMAPI(urlSession: URLSession.shared)
-
+    @Published var key = "ingredients:garlic"
+    
     init() {
         self.productStats = []
     }
@@ -19,7 +20,7 @@ class FSNMStatsViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        fsnmAPI.fetchStats(with: "ingredients:garlic" ) { (result) in
+        fsnmAPI.fetchStats(with: key) { (result) in
             
             switch result {
             case .success(let productStats):
@@ -33,12 +34,15 @@ class FSNMStatsViewModel: ObservableObject {
     }
 }
 
-struct FSNMStatsView: View {
+struct FSNMStatsKeyView: View {
     
-    @StateObject var model = FSNMStatsViewModel()
+    @StateObject var model = FSNMStatsKeyViewModel()
 
     var body: some View {
-        List(model.productStats) {  stats in
+        Text("The StatsAPI retrieves a list of products for a specific key.")
+        Text("The example below uses the key \(model.key)")
+        List(model.productStats) { stats in
+            Section {
             HStack {
                 Text("product: ")
                 Text(stats.product ?? "nil")
@@ -55,6 +59,7 @@ struct FSNMStatsView: View {
                 Text("editors: ")
                 Text("\(stats.editors!)")
             }
+            }
         }
         .onAppear {
             model.update()
@@ -63,8 +68,8 @@ struct FSNMStatsView: View {
     }
 }
 
-struct FSNMStatsView_Previews: PreviewProvider {
+struct FSNMStatsKeyView_Previews: PreviewProvider {
     static var previews: some View {
-        FSNMStatsView()
+        FSNMStatsKeyView()
     }
 }

@@ -10,11 +10,10 @@ import SwiftUI
 struct FSNMView: View {
     var body: some View {
         List {
-            Text("Demonstration of all API's available for Folksonomy.")
             NavigationLink(destination: FSNMPingView() ) {
                 Text("Ping API")
             }
-            NavigationLink(destination: FSNMStatsView() ) {
+            NavigationLink(destination: FSNMStatsOverView() ) {
                 Text("Stats API")
             }
             NavigationLink(destination: FSNMProductsView() ) {
@@ -24,10 +23,13 @@ struct FSNMView: View {
             NavigationLink(destination: FSNMProductTagVersionsView() ) {
                 Text("Product Tag Versions API")
             }
-            NavigationLink(destination: FSNMKeysView() ) {
+            NavigationLink(destination: FSNMKeysOverView() ) {
                 Text("Keys API")
             }
             Text("Delete API ")
+            Text("Put API ")
+            Text("Post API ")
+            Text("Auth API ")
         }
         .navigationTitle("Folkosonomy API's")
     }

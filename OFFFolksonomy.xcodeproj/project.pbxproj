@@ -31,7 +31,7 @@
 		ABE5102729003FBF00706F7D /* FSNMPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101C29003FBF00706F7D /* FSNMPing.swift */; };
 		ABE5102829003FBF00706F7D /* FSNMStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101D29003FBF00706F7D /* FSNMStats.swift */; };
 		ABE5102A29003FBF00706F7D /* FSNMURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102029003FBF00706F7D /* FSNMURLExtension.swift */; };
-		ABE5102B29003FBF00706F7D /* OFFRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102129003FBF00706F7D /* OFFRequest.swift */; };
+		ABE5102B29003FBF00706F7D /* OFF.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102129003FBF00706F7D /* OFF.swift */; };
 		ABE5102C29003FBF00706F7D /* OFFProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102229003FBF00706F7D /* OFFProductType.swift */; };
 		ABE5102D29003FBF00706F7D /* OFFBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102329003FBF00706F7D /* OFFBarcode.swift */; };
 		ABE5102F290041C900706F7D /* FSNMKeysAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102E290041C900706F7D /* FSNMKeysAPITest.swift */; };
@@ -45,6 +45,9 @@
 		ABE510402901298F00706F7D /* FSNMPingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103F2901298F00706F7D /* FSNMPingTest.swift */; };
 		ABE510422901326800706F7D /* FSNMStatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510412901326800706F7D /* FSNMStatsTest.swift */; };
 		ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101A29003FBF00706F7D /* FSNMKeys.swift */; };
+		ABE510472901675F00706F7D /* FSNMStatsKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510462901675F00706F7D /* FSNMStatsKeyView.swift */; };
+		ABE51049290169C800706F7D /* FSNMStatsKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE51048290169C800706F7D /* FSNMStatsKeyValueView.swift */; };
+		ABE5104C29017A0E00706F7D /* FSNMKeysOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5104B29017A0E00706F7D /* FSNMKeysOverView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +89,7 @@
 		ABE5101C29003FBF00706F7D /* FSNMPing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMPing.swift; sourceTree = "<group>"; };
 		ABE5101D29003FBF00706F7D /* FSNMStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMStats.swift; sourceTree = "<group>"; };
 		ABE5102029003FBF00706F7D /* FSNMURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMURLExtension.swift; sourceTree = "<group>"; };
-		ABE5102129003FBF00706F7D /* OFFRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFRequest.swift; sourceTree = "<group>"; };
+		ABE5102129003FBF00706F7D /* OFF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFF.swift; sourceTree = "<group>"; };
 		ABE5102229003FBF00706F7D /* OFFProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFProductType.swift; sourceTree = "<group>"; };
 		ABE5102329003FBF00706F7D /* OFFBarcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFBarcode.swift; sourceTree = "<group>"; };
 		ABE5102E290041C900706F7D /* FSNMKeysAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMKeysAPITest.swift; sourceTree = "<group>"; };
@@ -99,6 +102,9 @@
 		ABE5103C2900706B00706F7D /* FSNMProductTagHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagHierarchy.swift; sourceTree = "<group>"; };
 		ABE5103F2901298F00706F7D /* FSNMPingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingTest.swift; sourceTree = "<group>"; };
 		ABE510412901326800706F7D /* FSNMStatsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsTest.swift; sourceTree = "<group>"; };
+		ABE510462901675F00706F7D /* FSNMStatsKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsKeyView.swift; sourceTree = "<group>"; };
+		ABE51048290169C800706F7D /* FSNMStatsKeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsKeyValueView.swift; sourceTree = "<group>"; };
+		ABE5104B29017A0E00706F7D /* FSNMKeysOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMKeysOverView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,9 +208,9 @@
 				ABE50AA028FFEBF000049C02 /* FSNMView.swift */,
 				AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */,
 				ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */,
-				ABE50AA62900187600049C02 /* FSNMStatsView.swift */,
+				ABE510452901674500706F7D /* FSNMStatsView */,
 				ABE50AAC29003D3C00049C02 /* FSNMProductsView.swift */,
-				ABE51030290042F100706F7D /* FSNMKeysView.swift */,
+				ABE5104A290173DA00706F7D /* FSNMKeysView */,
 				ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */,
 			);
 			path = Demo;
@@ -237,7 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE5102029003FBF00706F7D /* FSNMURLExtension.swift */,
-				ABE5102129003FBF00706F7D /* OFFRequest.swift */,
+				ABE5102129003FBF00706F7D /* OFF.swift */,
 				ABE5102229003FBF00706F7D /* OFFProductType.swift */,
 				ABE5102329003FBF00706F7D /* OFFBarcode.swift */,
 				ABE5103629005A1600706F7D /* OFFURLExtension.swift */,
@@ -252,6 +258,25 @@
 				ABE510412901326800706F7D /* FSNMStatsTest.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		ABE510452901674500706F7D /* FSNMStatsView */ = {
+			isa = PBXGroup;
+			children = (
+				ABE50AA62900187600049C02 /* FSNMStatsView.swift */,
+				ABE510462901675F00706F7D /* FSNMStatsKeyView.swift */,
+				ABE51048290169C800706F7D /* FSNMStatsKeyValueView.swift */,
+			);
+			path = FSNMStatsView;
+			sourceTree = "<group>";
+		};
+		ABE5104A290173DA00706F7D /* FSNMKeysView */ = {
+			isa = PBXGroup;
+			children = (
+				ABE51030290042F100706F7D /* FSNMKeysView.swift */,
+				ABE5104B29017A0E00706F7D /* FSNMKeysOverView.swift */,
+			);
+			path = FSNMKeysView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,14 +407,17 @@
 				ABE5103929005F4700706F7D /* FSNMProductTagVersionsView.swift in Sources */,
 				ABE5102729003FBF00706F7D /* FSNMPing.swift in Sources */,
 				ABE5102C29003FBF00706F7D /* OFFProductType.swift in Sources */,
+				ABE5104C29017A0E00706F7D /* FSNMKeysOverView.swift in Sources */,
 				ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */,
 				ABE510332900441200706F7D /* FSNMProductTagVersions.swift in Sources */,
 				ABE5102429003FBF00706F7D /* FSNMProducts.swift in Sources */,
+				ABE510472901675F00706F7D /* FSNMStatsKeyView.swift in Sources */,
 				ABE5103D2900706B00706F7D /* FSNMProductTagHierarchy.swift in Sources */,
 				ABE5102D29003FBF00706F7D /* OFFBarcode.swift in Sources */,
 				ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */,
 				ABE5102629003FBF00706F7D /* FSNMProductTags.swift in Sources */,
-				ABE5102B29003FBF00706F7D /* OFFRequest.swift in Sources */,
+				ABE5102B29003FBF00706F7D /* OFF.swift in Sources */,
+				ABE51049290169C800706F7D /* FSNMStatsKeyValueView.swift in Sources */,
 				AB93C67828F85D1D00336E71 /* FSNMTagsView.swift in Sources */,
 				ABE5102829003FBF00706F7D /* FSNMStats.swift in Sources */,
 				ABE5103729005A1600706F7D /* OFFURLExtension.swift in Sources */,
