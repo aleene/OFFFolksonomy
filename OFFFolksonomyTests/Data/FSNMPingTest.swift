@@ -10,19 +10,20 @@ import XCTest
 
 class FSNMPingTest: XCTestCase {
 
-    func decodingTest() {
-        let ping = "pong"
-        let jsonString = """
-                         {
-                            "ping": "\(ping)",
-                         }
-                         """
-        let data = jsonString.data(using: .utf8)
-        
+    var expectation: XCTestExpectation!
+
+    override func setUpWithError() throws {
+        expectation = expectation(description: "Expectation")
+    }
+
+    func testSuccessfullDecoding() throws {
+        let ping = FSNMAPI.Ping(ping: "pong")
+        let data = try? JSONEncoder().encode(ping)
+
         OFF.decode(data: data, type:FSNMAPI.Ping.self) { (result) in
             switch result {
             case .success(let decodedPing):
-                XCTAssertEqual(ping, decodedPing.ping!)
+                XCTAssertEqual(ping.ping, decodedPing.ping!)
             case .failure(let error):
                 if let error = error as? APIResponseError {
                     XCTFail("FSNMPingTest:testSuccessfulDecoding:Error: \(error)")
@@ -32,4 +33,30 @@ class FSNMPingTest: XCTestCase {
             }
         }
     }
+    
+    func testUnsuccesfulDecoding() throws {
+        let ping = "pong"
+        let jsonString = ["pong": "\(ping)"]
+        let data = try? JSONEncoder().encode(jsonString)
+
+        OFF.decode(data: data, type:FSNMAPI.Ping.self) { (result) in
+            switch result {
+            case .success(let decodedPing):
+                if let validDecodedPing = decodedPing.ping {
+                    XCTAssertEqual(ping, validDecodedPing)
+                } else {
+                    // If the data can not be decode I get an empty Ping() back
+                    self.expectation?.fulfill()
+                }
+            case .failure(let error):
+                if let error = error as? APIResponseError {
+                    XCTFail("FSNMPingTest:testUnsuccesfulDecoding:Error: \(error)")
+                } else {
+                    XCTFail("FSNMPingTest:testUnsuccesfulDecoding:Incorrect error received.")
+                }
+            }
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }

@@ -19,12 +19,13 @@ class FSNMPingViewModel: ObservableObject {
     func update() {
         // get the remote data
         fsnmAPI.fetchPing() { (result) in
-            
-            switch result {
-            case .success(let post):
-                self.ping.ping = post.ping ?? "ping has nil value"
-            case .failure(let error):
-                self.ping.ping = "\(error)"
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let post):
+                    self.ping.ping = post.ping ?? "ping has nil value"
+                case .failure(let error):
+                    self.ping.ping = "\(error)"
+                }
             }
         }
     }
@@ -36,13 +37,14 @@ struct FSNMPingView: View {
 
     var body: some View {
         VStack {
-            Text(model.ping.ping!)
+            Text("The Ping API allows to check whether the folksonomy server is reachable.")
+            Text("ping: \(model.ping.ping!)")
                 .onAppear {
                     model.update()
             }
             .navigationTitle("PingAPI")
         }
-
+        .padding()
     }
 }
 

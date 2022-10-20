@@ -10,6 +10,7 @@ import SwiftUI
 struct FSNMView: View {
     var body: some View {
         List {
+            Text("Demonstration of all API's available for Folksonomy.")
             NavigationLink(destination: FSNMPingView() ) {
                 Text("Ping API")
             }

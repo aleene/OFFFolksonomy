@@ -10,7 +10,13 @@ import XCTest
 
 class FSNMStatsTest: XCTestCase {
 
-    func successfulDecodingTest() {
+    var expectation: XCTestExpectation!
+
+    override func setUpWithError() throws {
+        expectation = expectation(description: "Expectation")
+    }
+
+    func testSuccessfulDecoding() throws {
         let productStats0 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
         let productsStats1 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
         let array = [productStats0, productsStats1]
@@ -20,53 +26,83 @@ class FSNMStatsTest: XCTestCase {
         OFF.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
             switch result {
             case .success(let decodedProductStats):
-                XCTAssertEqual(array, decodedProductStats, "FSNMPingTest:testSuccessfulResponse:Works OK.")
+                if array == decodedProductStats {
+                    self.expectation?.fulfill()
+                } else {
+                    XCTFail("FSNMPingTest:successfulDecodingTest:Not equal.")
+                }
             case .failure(let error):
                 if let error = error as? APIResponseError {
-                    XCTFail("FSNMPingTest:testSuccessfulDecoding:Error: \(error)")
+                    XCTFail("FSNMPingTest:successfulDecodingTest:Error: \(error)")
                 } else {
-                    XCTFail("FSNMPingTest:testSuccessfulDecoding:Incorrect error received.")
+                    XCTFail("FSNMPingTest:successfulDecodingTest:Incorrect error received.")
                 }
             }
         }
+        wait(for: [expectation], timeout: 1.0)
     }
 
-    func unsuccessfulDecodingTest() {
-        let productStats0 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
-        let productsStats1 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
-        let array = [productStats0, productsStats1]
+    func testValueChangedDecoding() throws {
            
-        // need to figure out to use encoding
-        let jsonString = """
-                       [
-                            {
-                                "product8": "0011110805805",
-                                "keys": 1,
-                                "last_edit": "2022-10-11T18:01:21.65963",
-                                "editors": 1
-                            },
-                            {
-                                "product7": "0011110814395",
-                                "keys": 1,
-                                "last_edit": "2022-10-11T18:01:50.208173",
-                                "editors": 1
-                            }
-                       ]
-                       """
-        let data = jsonString.data(using: .utf8)
+        var productStats0 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
+        let productsStats1 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
+        var array = [productStats0, productsStats1]
+   
+        let data = try? JSONEncoder().encode(array)
+
+        productStats0.product = "changed code"
+        array = [productStats0, productsStats1]
         
         OFF.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
             switch result {
             case .success(let decodedProductStats):
-                XCTAssertEqual(array, decodedProductStats, "FSNMPingTest:testSuccessfulResponse:Works OK.")
+                if array == decodedProductStats {
+                    XCTFail("FSNMPingTest:successfulDecodingTest:Not equal.")
+                } else {
+                    self.expectation?.fulfill()
+                }
             case .failure(let error):
                 if let error = error as? APIResponseError {
-                    XCTFail("FSNMPingTest:testSuccessfulDecoding:Error: \(error)")
+                    switch error {
+                    case .parsing:
+                        self.expectation?.fulfill()
+                    default:
+                        XCTFail("FSNMPingTest:testWrongJsonDecoding:Wrong error received: \(error)")
+                    }
                 } else {
-                    XCTFail("FSNMPingTest:testSuccessfulDecoding:Incorrect error received.")
+                    XCTFail("FSNMPingTest:testWrongJsonDecoding:Incorrect error received.")
                 }
             }
         }
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testkeysChangedDecoding() throws {
+           
+        // Setup an arbitrary array as check
+        let dict1 = ["product8": 6, "keys": 1, "last_edit": 2, "editors": 1]
+        let dict2 = ["product8": 6, "keys": 1, "last_edit": 2, "editors": 1]
+        let array = [dict1, dict2]
+        let data = try? JSONEncoder().encode(array)
+        
+        OFF.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail("FSNMPingTest:testWrongJsonDecoding:No success expected.")
+            case .failure(let error):
+                if let error = error as? APIResponseError {
+                    switch error {
+                    case .parsing:
+                        self.expectation?.fulfill()
+                    default:
+                        XCTFail("FSNMPingTest:testWrongJsonDecoding:Wrong error received: \(error)")
+                    }
+                } else {
+                    XCTFail("FSNMPingTest:testWrongJsonDecoding:Incorrect error received.")
+                }
+            }
+        }
+        wait(for: [expectation], timeout: 1.0)
     }
 
 }

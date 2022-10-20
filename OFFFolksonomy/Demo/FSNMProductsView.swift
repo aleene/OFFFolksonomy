@@ -34,7 +34,7 @@ class FSNMProductsViewModel: ObservableObject {
 }
 
 struct FSNMProductsView: View {
-    @StateObject var model = FSNMStatsViewModel()
+    @StateObject var model = FSNMProductsViewModel()
 
     var body: some View {
         List(model.products) {
