@@ -7,29 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB620E6A28FD483500D144A7 /* FSNMURLPingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E5B28FD478B00D144A7 /* FSNMURLPingTests.swift */; };
-		AB620E6C28FD570600D144A7 /* FSNMUrlStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6B28FD570600D144A7 /* FSNMUrlStatsTests.swift */; };
-		AB620E7028FD58A900D144A7 /* FSNMUrlProductsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6F28FD58A900D144A7 /* FSNMUrlProductsTests.swift */; };
-		AB620E7228FD598B00D144A7 /* FSNMUrlTagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7128FD598B00D144A7 /* FSNMUrlTagsTests.swift */; };
-		AB620E7428FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7328FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift */; };
-		AB620E7628FD5EBC00D144A7 /* FSNMURLKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7528FD5EBC00D144A7 /* FSNMURLKeysTests.swift */; };
-		AB620E7828FD631B00D144A7 /* FSNMURLTagVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7728FD631B00D144A7 /* FSNMURLTagVersions.swift */; };
-		AB620E7E28FD7D3900D144A7 /* FSNMURLDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7D28FD7D3900D144A7 /* FSNMURLDelete.swift */; };
+		AB620E6A28FD483500D144A7 /* FSNMPingURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */; };
+		AB620E6C28FD570600D144A7 /* FSNMStatsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */; };
+		AB620E7028FD58A900D144A7 /* FSNMProductsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6F28FD58A900D144A7 /* FSNMProductsURLTests.swift */; };
+		AB620E7228FD598B00D144A7 /* FSNMProductTagHierarchyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7128FD598B00D144A7 /* FSNMProductTagHierarchyTests.swift */; };
+		AB620E7428FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7328FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift */; };
+		AB620E7628FD5EBC00D144A7 /* FSNMKeysURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7528FD5EBC00D144A7 /* FSNMKeysURLTests.swift */; };
+		AB620E7828FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */; };
+		AB620E7E28FD7D3900D144A7 /* FSNMDeleteURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */; };
 		AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */; };
 		AB93C67828F85D1D00336E71 /* FSNMTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */; };
 		AB93C67A28F85D1E00336E71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67928F85D1E00336E71 /* Assets.xcassets */; };
 		AB93C67D28F85D1E00336E71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67C28F85D1E00336E71 /* Preview Assets.xcassets */; };
-		AB93C68428F85D4200336E71 /* URL Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68328F85D4200336E71 /* URL Extension.swift */; };
-		AB93C68628F85EB800336E71 /* OFFBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68528F85EB800336E71 /* OFFBarcode.swift */; };
-		AB93C68828F85ECC00336E71 /* OFFProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68728F85ECC00336E71 /* OFFProductType.swift */; };
-		AB93C68A28F86C5700336E71 /* OFFFolksonomyGetProductJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68928F86C5700336E71 /* OFFFolksonomyGetProductJson.swift */; };
-		AB93C68C28F8788800336E71 /* OFFRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68B28F8788800336E71 /* OFFRequest.swift */; };
-		AB93C68E28F8790600336E71 /* FSNMFetchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C68D28F8790600336E71 /* FSNMFetchStatus.swift */; };
-		ABE50A9728FE955700049C02 /* PostAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9628FE955700049C02 /* PostAPITest.swift */; };
 		ABE50A9928FF140400049C02 /* FSNMPingAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */; };
-		ABE50A9B28FFDD5D00049C02 /* FSNMPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9A28FFDD5D00049C02 /* FSNMPing.swift */; };
 		ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */; };
 		ABE50AA128FFEBF000049C02 /* FSNMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AA028FFEBF000049C02 /* FSNMView.swift */; };
+		ABE50AA52900058800049C02 /* FSNMStatsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AA42900058800049C02 /* FSNMStatsAPITest.swift */; };
+		ABE50AA72900187600049C02 /* FSNMStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AA62900187600049C02 /* FSNMStatsView.swift */; };
+		ABE50AAB29003C4900049C02 /* FSNMProductsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AAA29003C4900049C02 /* FSNMProductsAPITest.swift */; };
+		ABE50AAD29003D3C00049C02 /* FSNMProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AAC29003D3C00049C02 /* FSNMProductsView.swift */; };
+		ABE5102429003FBF00706F7D /* FSNMProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101929003FBF00706F7D /* FSNMProducts.swift */; };
+		ABE5102629003FBF00706F7D /* FSNMProductTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101B29003FBF00706F7D /* FSNMProductTags.swift */; };
+		ABE5102729003FBF00706F7D /* FSNMPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101C29003FBF00706F7D /* FSNMPing.swift */; };
+		ABE5102829003FBF00706F7D /* FSNMStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101D29003FBF00706F7D /* FSNMStats.swift */; };
+		ABE5102A29003FBF00706F7D /* FSNMURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102029003FBF00706F7D /* FSNMURLExtension.swift */; };
+		ABE5102B29003FBF00706F7D /* OFFRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102129003FBF00706F7D /* OFFRequest.swift */; };
+		ABE5102C29003FBF00706F7D /* OFFProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102229003FBF00706F7D /* OFFProductType.swift */; };
+		ABE5102D29003FBF00706F7D /* OFFBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102329003FBF00706F7D /* OFFBarcode.swift */; };
+		ABE5102F290041C900706F7D /* FSNMKeysAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5102E290041C900706F7D /* FSNMKeysAPITest.swift */; };
+		ABE51031290042F100706F7D /* FSNMKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE51030290042F100706F7D /* FSNMKeysView.swift */; };
+		ABE510332900441200706F7D /* FSNMProductTagVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510322900441200706F7D /* FSNMProductTagVersions.swift */; };
+		ABE510352900560F00706F7D /* FSNMProductTagVersionAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510342900560F00706F7D /* FSNMProductTagVersionAPITest.swift */; };
+		ABE5103729005A1600706F7D /* OFFURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103629005A1600706F7D /* OFFURLExtension.swift */; };
+		ABE5103929005F4700706F7D /* FSNMProductTagVersionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */; };
+		ABE5103B2900676F00706F7D /* FSNMProductTagsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103A2900676F00706F7D /* FSNMProductTagsAPITest.swift */; };
+		ABE5103D2900706B00706F7D /* FSNMProductTagHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103C2900706B00706F7D /* FSNMProductTagHierarchy.swift */; };
+		ABE510402901298F00706F7D /* FSNMPingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103F2901298F00706F7D /* FSNMPingTest.swift */; };
+		ABE510422901326800706F7D /* FSNMStatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510412901326800706F7D /* FSNMStatsTest.swift */; };
+		ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101A29003FBF00706F7D /* FSNMKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,32 +58,47 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AB620E5B28FD478B00D144A7 /* FSNMURLPingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLPingTests.swift; sourceTree = "<group>"; };
+		AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingURLTests.swift; sourceTree = "<group>"; };
 		AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OFFFolksonomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB620E6B28FD570600D144A7 /* FSNMUrlStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMUrlStatsTests.swift; sourceTree = "<group>"; };
-		AB620E6F28FD58A900D144A7 /* FSNMUrlProductsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMUrlProductsTests.swift; sourceTree = "<group>"; };
-		AB620E7128FD598B00D144A7 /* FSNMUrlTagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMUrlTagsTests.swift; sourceTree = "<group>"; };
-		AB620E7328FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLTagsForKeyTests.swift; sourceTree = "<group>"; };
-		AB620E7528FD5EBC00D144A7 /* FSNMURLKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLKeysTests.swift; sourceTree = "<group>"; };
-		AB620E7728FD631B00D144A7 /* FSNMURLTagVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLTagVersions.swift; sourceTree = "<group>"; };
-		AB620E7D28FD7D3900D144A7 /* FSNMURLDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMURLDelete.swift; sourceTree = "<group>"; };
+		AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsURLTests.swift; sourceTree = "<group>"; };
+		AB620E6F28FD58A900D144A7 /* FSNMProductsURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductsURLTests.swift; sourceTree = "<group>"; };
+		AB620E7128FD598B00D144A7 /* FSNMProductTagHierarchyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagHierarchyTests.swift; sourceTree = "<group>"; };
+		AB620E7328FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsURLTests.swift; sourceTree = "<group>"; };
+		AB620E7528FD5EBC00D144A7 /* FSNMKeysURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMKeysURLTests.swift; sourceTree = "<group>"; };
+		AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionsURLTests.swift; sourceTree = "<group>"; };
+		AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteURLTests.swift; sourceTree = "<group>"; };
 		AB93C67228F85D1D00336E71 /* OFFFolksonomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OFFFolksonomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFFFolksonomyApp.swift; sourceTree = "<group>"; };
 		AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMTagsView.swift; sourceTree = "<group>"; };
 		AB93C67928F85D1E00336E71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB93C67C28F85D1E00336E71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AB93C68328F85D4200336E71 /* URL Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL Extension.swift"; sourceTree = "<group>"; };
-		AB93C68528F85EB800336E71 /* OFFBarcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFBarcode.swift; sourceTree = "<group>"; };
-		AB93C68728F85ECC00336E71 /* OFFProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFProductType.swift; sourceTree = "<group>"; };
-		AB93C68928F86C5700336E71 /* OFFFolksonomyGetProductJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFFolksonomyGetProductJson.swift; sourceTree = "<group>"; };
-		AB93C68B28F8788800336E71 /* OFFRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFRequest.swift; sourceTree = "<group>"; };
-		AB93C68D28F8790600336E71 /* FSNMFetchStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMFetchStatus.swift; sourceTree = "<group>"; };
 		AB93C68F28F941B400336E71 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		ABE50A9628FE955700049C02 /* PostAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPITest.swift; sourceTree = "<group>"; };
 		ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingAPITest.swift; sourceTree = "<group>"; };
-		ABE50A9A28FFDD5D00049C02 /* FSNMPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPing.swift; sourceTree = "<group>"; };
 		ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingView.swift; sourceTree = "<group>"; };
 		ABE50AA028FFEBF000049C02 /* FSNMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMView.swift; sourceTree = "<group>"; };
+		ABE50AA42900058800049C02 /* FSNMStatsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsAPITest.swift; sourceTree = "<group>"; };
+		ABE50AA62900187600049C02 /* FSNMStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsView.swift; sourceTree = "<group>"; };
+		ABE50AAA29003C4900049C02 /* FSNMProductsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductsAPITest.swift; sourceTree = "<group>"; };
+		ABE50AAC29003D3C00049C02 /* FSNMProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductsView.swift; sourceTree = "<group>"; };
+		ABE5101929003FBF00706F7D /* FSNMProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMProducts.swift; sourceTree = "<group>"; };
+		ABE5101A29003FBF00706F7D /* FSNMKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMKeys.swift; sourceTree = "<group>"; };
+		ABE5101B29003FBF00706F7D /* FSNMProductTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMProductTags.swift; sourceTree = "<group>"; };
+		ABE5101C29003FBF00706F7D /* FSNMPing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMPing.swift; sourceTree = "<group>"; };
+		ABE5101D29003FBF00706F7D /* FSNMStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMStats.swift; sourceTree = "<group>"; };
+		ABE5102029003FBF00706F7D /* FSNMURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNMURLExtension.swift; sourceTree = "<group>"; };
+		ABE5102129003FBF00706F7D /* OFFRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFRequest.swift; sourceTree = "<group>"; };
+		ABE5102229003FBF00706F7D /* OFFProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFProductType.swift; sourceTree = "<group>"; };
+		ABE5102329003FBF00706F7D /* OFFBarcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFFBarcode.swift; sourceTree = "<group>"; };
+		ABE5102E290041C900706F7D /* FSNMKeysAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMKeysAPITest.swift; sourceTree = "<group>"; };
+		ABE51030290042F100706F7D /* FSNMKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMKeysView.swift; sourceTree = "<group>"; };
+		ABE510322900441200706F7D /* FSNMProductTagVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersions.swift; sourceTree = "<group>"; };
+		ABE510342900560F00706F7D /* FSNMProductTagVersionAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionAPITest.swift; sourceTree = "<group>"; };
+		ABE5103629005A1600706F7D /* OFFURLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFFURLExtension.swift; sourceTree = "<group>"; };
+		ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionsView.swift; sourceTree = "<group>"; };
+		ABE5103A2900676F00706F7D /* FSNMProductTagsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsAPITest.swift; sourceTree = "<group>"; };
+		ABE5103C2900706B00706F7D /* FSNMProductTagHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagHierarchy.swift; sourceTree = "<group>"; };
+		ABE5103F2901298F00706F7D /* FSNMPingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingTest.swift; sourceTree = "<group>"; };
+		ABE510412901326800706F7D /* FSNMStatsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +122,7 @@
 		AB620E6228FD482E00D144A7 /* OFFFolksonomyTests */ = {
 			isa = PBXGroup;
 			children = (
+				ABE5103E290128E700706F7D /* Data */,
 				AB620E6E28FD577500D144A7 /* FSNMURL */,
 				AB620E6D28FD576D00D144A7 /* Network */,
 			);
@@ -101,8 +132,12 @@
 		AB620E6D28FD576D00D144A7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				ABE50A9628FE955700049C02 /* PostAPITest.swift */,
 				ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */,
+				ABE5102E290041C900706F7D /* FSNMKeysAPITest.swift */,
+				ABE50AAA29003C4900049C02 /* FSNMProductsAPITest.swift */,
+				ABE5103A2900676F00706F7D /* FSNMProductTagsAPITest.swift */,
+				ABE510342900560F00706F7D /* FSNMProductTagVersionAPITest.swift */,
+				ABE50AA42900058800049C02 /* FSNMStatsAPITest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -110,14 +145,14 @@
 		AB620E6E28FD577500D144A7 /* FSNMURL */ = {
 			isa = PBXGroup;
 			children = (
-				AB620E5B28FD478B00D144A7 /* FSNMURLPingTests.swift */,
-				AB620E6B28FD570600D144A7 /* FSNMUrlStatsTests.swift */,
-				AB620E6F28FD58A900D144A7 /* FSNMUrlProductsTests.swift */,
-				AB620E7128FD598B00D144A7 /* FSNMUrlTagsTests.swift */,
-				AB620E7328FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift */,
-				AB620E7528FD5EBC00D144A7 /* FSNMURLKeysTests.swift */,
-				AB620E7728FD631B00D144A7 /* FSNMURLTagVersions.swift */,
-				AB620E7D28FD7D3900D144A7 /* FSNMURLDelete.swift */,
+				AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */,
+				AB620E7528FD5EBC00D144A7 /* FSNMKeysURLTests.swift */,
+				AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */,
+				AB620E6F28FD58A900D144A7 /* FSNMProductsURLTests.swift */,
+				AB620E7328FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift */,
+				AB620E7128FD598B00D144A7 /* FSNMProductTagHierarchyTests.swift */,
+				AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */,
+				AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */,
 			);
 			path = FSNMURL;
 			sourceTree = "<group>";
@@ -144,14 +179,9 @@
 		AB93C67428F85D1D00336E71 /* OFFFolksonomy */ = {
 			isa = PBXGroup;
 			children = (
+				ABE5101729003FBF00706F7D /* Folksonomy */,
 				AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */,
 				ABE50A9F28FFEBCE00049C02 /* Demo */,
-				AB93C68328F85D4200336E71 /* URL Extension.swift */,
-				AB93C68728F85ECC00336E71 /* OFFProductType.swift */,
-				AB93C68528F85EB800336E71 /* OFFBarcode.swift */,
-				AB93C68B28F8788800336E71 /* OFFRequest.swift */,
-				ABE50A9C28FFE1E900049C02 /* Folkosonomy */,
-				AB93C68D28F8790600336E71 /* FSNMFetchStatus.swift */,
 				AB93C67928F85D1E00336E71 /* Assets.xcassets */,
 				AB93C67B28F85D1E00336E71 /* Preview Content */,
 			);
@@ -166,23 +196,62 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		ABE50A9C28FFE1E900049C02 /* Folkosonomy */ = {
-			isa = PBXGroup;
-			children = (
-				AB93C68928F86C5700336E71 /* OFFFolksonomyGetProductJson.swift */,
-				ABE50A9A28FFDD5D00049C02 /* FSNMPing.swift */,
-			);
-			path = Folkosonomy;
-			sourceTree = "<group>";
-		};
 		ABE50A9F28FFEBCE00049C02 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
 				ABE50AA028FFEBF000049C02 /* FSNMView.swift */,
 				AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */,
 				ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */,
+				ABE50AA62900187600049C02 /* FSNMStatsView.swift */,
+				ABE50AAC29003D3C00049C02 /* FSNMProductsView.swift */,
+				ABE51030290042F100706F7D /* FSNMKeysView.swift */,
+				ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		ABE5101729003FBF00706F7D /* Folksonomy */ = {
+			isa = PBXGroup;
+			children = (
+				ABE5101829003FBF00706F7D /* FSNM */,
+				ABE5101E29003FBF00706F7D /* OFF */,
+			);
+			path = Folksonomy;
+			sourceTree = "<group>";
+		};
+		ABE5101829003FBF00706F7D /* FSNM */ = {
+			isa = PBXGroup;
+			children = (
+				ABE5101A29003FBF00706F7D /* FSNMKeys.swift */,
+				ABE5101C29003FBF00706F7D /* FSNMPing.swift */,
+				ABE5101929003FBF00706F7D /* FSNMProducts.swift */,
+				ABE5101B29003FBF00706F7D /* FSNMProductTags.swift */,
+				ABE5103C2900706B00706F7D /* FSNMProductTagHierarchy.swift */,
+				ABE510322900441200706F7D /* FSNMProductTagVersions.swift */,
+				ABE5101D29003FBF00706F7D /* FSNMStats.swift */,
+			);
+			path = FSNM;
+			sourceTree = "<group>";
+		};
+		ABE5101E29003FBF00706F7D /* OFF */ = {
+			isa = PBXGroup;
+			children = (
+				ABE5102029003FBF00706F7D /* FSNMURLExtension.swift */,
+				ABE5102129003FBF00706F7D /* OFFRequest.swift */,
+				ABE5102229003FBF00706F7D /* OFFProductType.swift */,
+				ABE5102329003FBF00706F7D /* OFFBarcode.swift */,
+				ABE5103629005A1600706F7D /* OFFURLExtension.swift */,
+			);
+			path = OFF;
+			sourceTree = "<group>";
+		};
+		ABE5103E290128E700706F7D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				ABE5103F2901298F00706F7D /* FSNMPingTest.swift */,
+				ABE510412901326800706F7D /* FSNMStatsTest.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,16 +354,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB620E7E28FD7D3900D144A7 /* FSNMURLDelete.swift in Sources */,
-				AB620E7428FD5D5C00D144A7 /* FSNMURLTagsForKeyTests.swift in Sources */,
-				AB620E7028FD58A900D144A7 /* FSNMUrlProductsTests.swift in Sources */,
-				AB620E7228FD598B00D144A7 /* FSNMUrlTagsTests.swift in Sources */,
-				AB620E7628FD5EBC00D144A7 /* FSNMURLKeysTests.swift in Sources */,
-				AB620E7828FD631B00D144A7 /* FSNMURLTagVersions.swift in Sources */,
-				ABE50A9728FE955700049C02 /* PostAPITest.swift in Sources */,
-				AB620E6A28FD483500D144A7 /* FSNMURLPingTests.swift in Sources */,
+				AB620E7E28FD7D3900D144A7 /* FSNMDeleteURLTests.swift in Sources */,
+				ABE510422901326800706F7D /* FSNMStatsTest.swift in Sources */,
+				ABE50AA52900058800049C02 /* FSNMStatsAPITest.swift in Sources */,
+				ABE50AAB29003C4900049C02 /* FSNMProductsAPITest.swift in Sources */,
+				ABE510402901298F00706F7D /* FSNMPingTest.swift in Sources */,
+				AB620E7428FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift in Sources */,
+				ABE510352900560F00706F7D /* FSNMProductTagVersionAPITest.swift in Sources */,
+				AB620E7028FD58A900D144A7 /* FSNMProductsURLTests.swift in Sources */,
+				AB620E7228FD598B00D144A7 /* FSNMProductTagHierarchyTests.swift in Sources */,
+				AB620E7628FD5EBC00D144A7 /* FSNMKeysURLTests.swift in Sources */,
+				AB620E7828FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift in Sources */,
+				ABE5103B2900676F00706F7D /* FSNMProductTagsAPITest.swift in Sources */,
+				ABE5102F290041C900706F7D /* FSNMKeysAPITest.swift in Sources */,
+				AB620E6A28FD483500D144A7 /* FSNMPingURLTests.swift in Sources */,
 				ABE50A9928FF140400049C02 /* FSNMPingAPITest.swift in Sources */,
-				AB620E6C28FD570600D144A7 /* FSNMUrlStatsTests.swift in Sources */,
+				AB620E6C28FD570600D144A7 /* FSNMStatsURLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,17 +377,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE5102A29003FBF00706F7D /* FSNMURLExtension.swift in Sources */,
 				ABE50AA128FFEBF000049C02 /* FSNMView.swift in Sources */,
-				AB93C68828F85ECC00336E71 /* OFFProductType.swift in Sources */,
-				AB93C68C28F8788800336E71 /* OFFRequest.swift in Sources */,
+				ABE5103929005F4700706F7D /* FSNMProductTagVersionsView.swift in Sources */,
+				ABE5102729003FBF00706F7D /* FSNMPing.swift in Sources */,
+				ABE5102C29003FBF00706F7D /* OFFProductType.swift in Sources */,
+				ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */,
+				ABE510332900441200706F7D /* FSNMProductTagVersions.swift in Sources */,
+				ABE5102429003FBF00706F7D /* FSNMProducts.swift in Sources */,
+				ABE5103D2900706B00706F7D /* FSNMProductTagHierarchy.swift in Sources */,
+				ABE5102D29003FBF00706F7D /* OFFBarcode.swift in Sources */,
 				ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */,
-				AB93C68E28F8790600336E71 /* FSNMFetchStatus.swift in Sources */,
-				AB93C68428F85D4200336E71 /* URL Extension.swift in Sources */,
+				ABE5102629003FBF00706F7D /* FSNMProductTags.swift in Sources */,
+				ABE5102B29003FBF00706F7D /* OFFRequest.swift in Sources */,
 				AB93C67828F85D1D00336E71 /* FSNMTagsView.swift in Sources */,
-				AB93C68A28F86C5700336E71 /* OFFFolksonomyGetProductJson.swift in Sources */,
-				ABE50A9B28FFDD5D00049C02 /* FSNMPing.swift in Sources */,
-				AB93C68628F85EB800336E71 /* OFFBarcode.swift in Sources */,
+				ABE5102829003FBF00706F7D /* FSNMStats.swift in Sources */,
+				ABE5103729005A1600706F7D /* OFFURLExtension.swift in Sources */,
+				ABE51031290042F100706F7D /* FSNMKeysView.swift in Sources */,
+				ABE50AAD29003D3C00049C02 /* FSNMProductsView.swift in Sources */,
 				AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */,
+				ABE50AA72900187600049C02 /* FSNMStatsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

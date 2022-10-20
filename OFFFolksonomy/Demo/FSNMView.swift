@@ -13,11 +13,19 @@ struct FSNMView: View {
             NavigationLink(destination: FSNMPingView() ) {
                 Text("Ping API")
             }
-            Text("Stats API")
-            Text("Products API")
+            NavigationLink(destination: FSNMStatsView() ) {
+                Text("Stats API")
+            }
+            NavigationLink(destination: FSNMProductsView() ) {
+                Text("Products API")
+            }
             Text("Tags API")
-            Text("Tag Versions API")
-            Text("Keys API")
+            NavigationLink(destination: FSNMProductTagVersionsView() ) {
+                Text("Product Tag Versions API")
+            }
+            NavigationLink(destination: FSNMKeysView() ) {
+                Text("Keys API")
+            }
             Text("Delete API ")
         }
         .navigationTitle("Folkosonomy API's")

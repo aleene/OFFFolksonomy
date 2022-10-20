@@ -8,31 +8,31 @@
 import XCTest
 @testable import OFFFolksonomy
 
-class FSNMURLPingTests: XCTestCase {
+class FSNMPingURLTests: XCTestCase {
 
     // Ping API tests
     
     func testPingFood() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/ping"
-        let url = URL.folksonomyPing(with: .food)
+        let url = URL.FSNMPingURL(with: .food)
         XCTAssertEqual(url.description, result)
     }
     
     func testPingPetFood() throws {
         let result = "https://api.folksonomy.openpetfoodfacts.org/ping"
-        let url = URL.folksonomyPing(with: .petFood)
+        let url = URL.FSNMPingURL(with: .petFood)
         XCTAssertEqual(url.description, result)
     }
 
     func testPingBeauty() throws {
         let result = "https://api.folksonomy.openbeautyfacts.org/ping"
-        let url = URL.folksonomyPing(with: .beauty)
+        let url = URL.FSNMPingURL(with: .beauty)
         XCTAssertEqual(url.description, result)
     }
 
     func testPingProduct() throws {
         let result = "https://api.folksonomy.openproductfacts.org/ping"
-        let url = URL.folksonomyPing(with: .product)
+        let url = URL.FSNMPingURL(with: .product)
         XCTAssertEqual(url.description, result)
     }
 

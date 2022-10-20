@@ -58,37 +58,4 @@ class FSNMPingAPITest: XCTestCase {
         }
         wait(for: [expectation], timeout: 1.0)
     }
-
-    func testParsingFailure() {
-        // Prepare mock response
-        let ping = "pong"
-        let jsonString = """
-                         {
-                            "pong": "\(ping)",
-                         }
-                         """
-        let data = jsonString.data(using: .utf8)
-        MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, data)
-        }
-        
-        // Call API
-        fsnmAPI.fetchPing() { (result) in
-            switch result {
-            case .success(_):
-                XCTFail("FSNMPingAPITest:testParsingFailure:Success response was not expected.")
-            case .failure(let error):
-                guard let error = error as? APIResponseError else {
-                    XCTFail("FSNMPingAPITest:testParsingFailure:Incorrect error received.")
-                    self.expectation.fulfill()
-                    return
-                }
-                XCTAssertEqual(error, APIResponseError.parsing, "FSNMPingAPITest:testParsingFailure:Parsing error was expected.")
-            }
-            self.expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 1.0)
-    }
-
 }

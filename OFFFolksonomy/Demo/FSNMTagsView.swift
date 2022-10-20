@@ -8,6 +8,7 @@
 import SwiftUI
 
 class FSNMTagsViewModel: ObservableObject {
+    /*
     @Published var properties: [OFFFolksonomyGetProductPropertyJson]
     
     init(status: FSNMFetchStatus? = nil) {
@@ -33,25 +34,13 @@ class FSNMTagsViewModel: ObservableObject {
             }
         }
     }
+     */
 }
 struct FSNMTagsView: View {
-        
-    @StateObject var model = FSNMTagsViewModel()
-        
+                
     // Show the properties
     var body: some View {
-        Text(model.properties.count > 0 ? model.properties[0].product! : "no properties")
-        List(model.properties) { property in
-            HStack {
-                Text(property.k!)
-                Text(property.v!)
-                Text(property.editor!)
-            }
-        }
-        .padding()
-        .onAppear {
-            model.update(barcode: OFFBarcode(barcode: "3760091720115"))
-        }
+        Text("")
     }
 }
 

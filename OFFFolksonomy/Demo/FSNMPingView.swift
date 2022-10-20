@@ -36,12 +36,11 @@ struct FSNMPingView: View {
 
     var body: some View {
         VStack {
-            Text("PingAPI result")
-                .padding()
             Text(model.ping.ping!)
                 .onAppear {
                     model.update()
             }
+            .navigationTitle("PingAPI")
         }
 
     }
