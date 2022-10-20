@@ -9,7 +9,7 @@ import SwiftUI
 
 class FSNMPingViewModel: ObservableObject {
     @Published var ping = FSNMAPI.Ping()
-    private var fsnmAPI = FSNMAPI(urlSession: URLSession.shared)
+    private var offAPI = OFFAPI(urlSession: URLSession.shared)
 
     init() {
         self.ping.ping = "initialised"
@@ -18,7 +18,7 @@ class FSNMPingViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        fsnmAPI.fetchPing() { (result) in
+        FSNMAPI().fetchPing() { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let post):
@@ -38,6 +38,7 @@ struct FSNMPingView: View {
     var body: some View {
         VStack {
             Text("The Ping API allows to check whether the folksonomy server is reachable.")
+                .padding()
             Text("ping: \(model.ping.ping!)")
                 .onAppear {
                     model.update()

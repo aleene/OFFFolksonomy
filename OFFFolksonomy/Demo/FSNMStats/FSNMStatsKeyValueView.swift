@@ -10,7 +10,7 @@ import SwiftUI
 class FSNMStatsKeyValueViewModel: ObservableObject {
     @Published var productStats: [FSNMAPI.ProductStats]
     @Published var error: String?
-    private var fsnmAPI = FSNMAPI(urlSession: URLSession.shared)
+    private var offAPI = OFFAPI(urlSession: URLSession.shared)
     @Published var key = "ingredients:garlic"
     @Published var value = "no"
 
@@ -21,7 +21,7 @@ class FSNMStatsKeyValueViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        fsnmAPI.fetchStats(with: key, and: value) { (result) in
+        FSNMAPI().fetchStats(with: key, and: value) { (result) in
             
             switch result {
             case .success(let productStats):

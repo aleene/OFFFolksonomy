@@ -10,7 +10,7 @@ import XCTest
 
 class FSNMProductTagVersionAPITest: XCTestCase {
 
-    var fsnmAPI: FSNMAPI!
+    var offAPI: OFFAPI!
     var expectation: XCTestExpectation!
     let apiURL = URL.FSNMProductTagVersionsURL(with: OFFBarcode(barcode: "3760091720115"), and: "evolutions")
 
@@ -18,12 +18,12 @@ class FSNMProductTagVersionAPITest: XCTestCase {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockURLProtocol.self]
 
-        fsnmAPI = FSNMAPI(urlSession: URLSession.init(configuration: configuration))
+        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
         expectation = expectation(description: "Expectation")
     }
 
     func testSuccessfulResponse() {
-      // Prepare mock json response.
+        // Prepare mock json response.
         let key = "evolutions"
         let barcode = OFFBarcode(barcode: "3760091720115")
         let jsonString = """
@@ -46,63 +46,19 @@ class FSNMProductTagVersionAPITest: XCTestCase {
             guard let url = request.url,
                   url == self.apiURL else {
             throw APIResponseError.request
-        }
+            }
         
-        let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-        return (response, data)
-      }
+            let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
       
-      // Call API.
-        fsnmAPI.fetchProductTagVersions(for: barcode, with: key) { (result) in
-            
+        // Call API.
+        FSNMAPI().fetchProductTagVersions(for: barcode, with: key) { (result) in
             switch result {
             case .success(let versions):
                 XCTAssertEqual(versions[0].product, barcode.string, "FSNMProductTagVersionAPITest:testSuccessfulResponse:Incorrect body.")
             case .failure(let error):
                 XCTFail("FSNMProductTagVersionAPITest:testSuccessfulResponse:Error was not expected: \(error)")
-            }
-            self.expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 1.0)
-    }
-
-    func testParsingFailure() {
-        let key = "evolutions"
-        let barcode = OFFBarcode(barcode: "3760091720115")
-        // Prepare mock json response.
-        let jsonString = """
-                       [
-                         {
-                           "product": "3760091720115",
-                           "key": "here is a wrong key",
-                           "v": "2",
-                           "owner": "",
-                           "version": 1,
-                           "editor": "aleene",
-                           "last_edit": "2022-04-18T10:37:22.75488",
-                           "comment": ""
-                         }
-                       ]
-                       """
-        let data = jsonString.data(using: .utf8)
-        MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, data)
-        }
-        
-        // Call API
-        fsnmAPI.fetchProductTagVersions(for: barcode, with: key) { (result) in
-            switch result {
-            case .success(let versions):
-                print("versions", versions)
-                XCTFail("FSNMProductTagVersionAPITest:testParsingFailure:Success response was not expected.")
-            case .failure(let error):
-                guard let error = error as? APIResponseError else {
-                    XCTFail("FSNMProductTagVersionAPITest:testParsingFailure:Incorrect error received.")
-                    self.expectation.fulfill()
-                    return
-                }
-                XCTAssertEqual(error, APIResponseError.parsing, "FSNMKeysAPITest:testParsingFailure:Parsing error was expected.")
             }
             self.expectation.fulfill()
         }

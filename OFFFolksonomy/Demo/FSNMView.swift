@@ -16,11 +16,11 @@ struct FSNMView: View {
             NavigationLink(destination: FSNMStatsOverView() ) {
                 Text("Stats API")
             }
-            NavigationLink(destination: FSNMProductsView() ) {
+            NavigationLink(destination: FSNMProductsOverView() ) {
                 Text("Products API")
             }
             Text("Tags API")
-            NavigationLink(destination: FSNMProductTagVersionsView() ) {
+            NavigationLink(destination: FSNMProductTagVersionsOverView() ) {
                 Text("Product Tag Versions API")
             }
             NavigationLink(destination: FSNMKeysOverView() ) {

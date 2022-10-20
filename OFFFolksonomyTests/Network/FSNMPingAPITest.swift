@@ -10,7 +10,7 @@ import XCTest
 
 class FSNMPingAPITest: XCTestCase {
 
-    var fsnmAPI: FSNMAPI!
+    var offAPI: OFFAPI!
     var expectation: XCTestExpectation!
     // I do not need to test this again
     let apiURL = URL.FSNMPingURL()
@@ -20,7 +20,7 @@ class FSNMPingAPITest: XCTestCase {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockURLProtocol.self]
 
-        fsnmAPI = FSNMAPI(urlSession: URLSession.init(configuration: configuration))
+        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
         expectation = expectation(description: "Expectation")
     }
 
@@ -45,7 +45,7 @@ class FSNMPingAPITest: XCTestCase {
       }
       
       // Call API.
-        fsnmAPI.fetchPing() { (result) in
+        offAPI.fetchPing() { (result) in
             
             switch result {
             case .success(let post):

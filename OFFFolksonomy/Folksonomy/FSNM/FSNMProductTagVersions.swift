@@ -27,54 +27,11 @@ extension FSNMAPI {
     
     /// Function to be used for fetching the product tag versions
     public func fetchProductTagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: Result<[ProductTagVersions], Error>) -> Void) {
-        let versions: [ProductTagVersions] = []
-        fetchProductTagVersions(url: URL.FSNMProductTagVersionsURL(with: barcode, and: key), responses: [200:versions]) { (result) in
+        OFFAPI().fetchArray(url: URL.FSNMProductTagVersionsURL(with: barcode, and: key), responses: [200:ProductTagVersions.self]) { (result) in
             completion(result)
             return
         }
     }
-    
-    // The intention is to have a generic function that can read any json array
-    private func fetchProductTagVersions (url: URL, responses: [Int:[FSNMAPI.ProductTagVersions]], completion: @escaping (_ result: Result<[FSNMAPI.ProductTagVersions], Error>) -> Void) {
-       
-        func parse(data: Data?, type: [FSNMAPI.ProductTagVersions]) -> Result<[FSNMAPI.ProductTagVersions], Error> {
-            do {
-                if let responseData = data {
-                    let decoded = try JSONDecoder().decode([FSNMAPI.ProductTagVersions].self, from: responseData)
-                    return Result.success(decoded)
-                } else {
-                    return Result.failure(APIResponseError.dataNil)
-                }
-            } catch {
-                return Result.failure(APIResponseError.parsing)
-            }
-        }
-        
-        let dataTask = urlSession.dataTask(with:url) { (data, urlResponse, error) in
-            do {
-                // Check if any error occured.
-                if let error = error {
-                    throw error
-                }
-        
-                // Check response code and handle each possible responses
-                if let httpResponse = urlResponse as? HTTPURLResponse {
-                    if let responsetype = responses[httpResponse.statusCode] {
-                        let klaar = parse(data:data, type: responsetype)
-                        completion(klaar)
-                        return
-                   }
-                } else {
-                    completion(Result.failure(APIResponseError.network))
-                    return
-                }
-            } catch {
-                completion(Result.failure(error))
-            }
-        }
-        dataTask.resume()
-    }
-
 }
 
 extension URL {

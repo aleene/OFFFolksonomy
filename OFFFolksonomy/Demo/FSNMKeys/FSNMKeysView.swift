@@ -10,7 +10,7 @@ import SwiftUI
 class FSNMKeysViewModel: ObservableObject {
     @Published var keys: [FSNMAPI.Keys]
     @Published var error: String?
-    private var fsnmAPI = FSNMAPI(urlSession: URLSession.shared)
+    private var offAPI = OFFAPI(urlSession: URLSession.shared)
 
     init() {
         self.keys = []
@@ -19,7 +19,7 @@ class FSNMKeysViewModel: ObservableObject {
     // get the keys
     func update() {
         // get the remote data
-        fsnmAPI.fetchKeys() { (result) in
+        FSNMAPI().fetchKeys() { (result) in
             
             switch result {
             case .success(let keys):
@@ -37,8 +37,22 @@ struct FSNMKeysView: View {
     @StateObject var model = FSNMKeysViewModel()
 
     var body: some View {
-        List(model.keys) {
-            Text($0.k!)
+        List(model.keys) { key in
+            Section {
+                HStack {
+                    Text("k: ")
+                    Text(key.k ?? "nil")
+                }
+                HStack {
+                    Text("count: ")
+                    Text("\(key.count!)")
+                }
+                HStack {
+                    Text("values: ")
+                    Text("\(key.values!)")
+                }
+
+            }
         }
         .onAppear {
             model.update()
