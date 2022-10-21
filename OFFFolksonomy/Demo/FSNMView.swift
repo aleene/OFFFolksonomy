@@ -10,28 +10,30 @@ import SwiftUI
 struct FSNMView: View {
     var body: some View {
         List {
-            NavigationLink(destination: FSNMPingView() ) {
-                Text("Ping API")
-            }
             NavigationLink(destination: FSNMStatsOverView() ) {
                 Text("Stats API")
             }
             NavigationLink(destination: FSNMProductsOverView() ) {
                 Text("Products API")
             }
-            Text("Tags API")
+            NavigationLink(destination: FSNMProductTagsOverView() ) {
+                Text("Product Tags API")
+            }
             NavigationLink(destination: FSNMProductTagVersionsOverView() ) {
-                Text("Product Tag Versions API")
+                    Text("Product Tag Versions API")
             }
             NavigationLink(destination: FSNMKeysOverView() ) {
                 Text("Keys API")
             }
+            NavigationLink(destination: FSNMPingView() ) {
+                Text("Ping API")
+            }
             Text("Delete API ")
             Text("Put API ")
             Text("Post API ")
-            Text("Auth API ")
+            //Text("Auth API ")
         }
-        .navigationTitle("Folkosonomy API's")
+        .navigationTitle("Folksonomy API's")
     }
 }
 

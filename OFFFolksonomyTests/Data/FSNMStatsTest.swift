@@ -23,7 +23,7 @@ class FSNMStatsTest: XCTestCase {
    
         let data = try? JSONEncoder().encode(array)
                 
-        OFF.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
+        OFFAPI.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
             switch result {
             case .success(let decodedProductStats):
                 if array == decodedProductStats {
@@ -53,7 +53,7 @@ class FSNMStatsTest: XCTestCase {
         productStats0.product = "changed code"
         array = [productStats0, productsStats1]
         
-        OFF.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
+        OFFAPI.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
             switch result {
             case .success(let decodedProductStats):
                 if array == decodedProductStats {
@@ -85,7 +85,7 @@ class FSNMStatsTest: XCTestCase {
         let array = [dict1, dict2]
         let data = try? JSONEncoder().encode(array)
         
-        OFF.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
+        OFFAPI.decodeArray(data: data, type:FSNMAPI.ProductStats.self) { (result) in
             switch result {
             case .success(_):
                 XCTFail("FSNMPingTest:testWrongJsonDecoding:No success expected.")

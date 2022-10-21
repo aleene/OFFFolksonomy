@@ -25,13 +25,17 @@ extension FSNMAPI {
         public var id: String { last_edit! }
     }
     
+}
+
+extension OFFAPI {
     /// Function to be used for fetching the product tag versions
-    public func fetchProductTagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: Result<[ProductTagVersions], Error>) -> Void) {
-        OFFAPI().fetchArray(url: URL.FSNMProductTagVersionsURL(with: barcode, and: key), responses: [200:ProductTagVersions.self]) { (result) in
+    func fetchProductTagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: (Result<[FSNMAPI.ProductTagVersions], Error>?, Result<FSNMAPI.ValidationError, Error>?) ) -> Void) {
+        fetchArray(url: URL.FSNMProductTagVersionsURL(with: barcode, and: key), response: FSNMAPI.ProductTagVersions.self) { (result) in
             completion(result)
             return
         }
     }
+    
 }
 
 extension URL {

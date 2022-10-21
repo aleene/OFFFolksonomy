@@ -13,6 +13,7 @@ import XCTest
 class FSNMProductTagsURLTests: XCTestCase {
 
     let barcodeToTest = "3760091720115"
+    let key = "evolutions"
     let owner = "testmeowner"
 
     func testProduct() throws {
@@ -42,6 +43,12 @@ class FSNMProductTagsURLTests: XCTestCase {
     func testProductOwner() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/product/" + barcodeToTest  + "?owner=" + owner
         let url = URL.FSNMProductTagsURL(for: .food, with: OFFBarcode(barcode: barcodeToTest), by: owner)
+        XCTAssertEqual(url.description, result)
+    }
+
+    func testProductWithKey() throws {
+        let result = "https://api.folksonomy.openfoodfacts.org/product/" + barcodeToTest  + "/" + key
+        let url = URL.FSNMProductTagsURL(with: OFFBarcode(barcode: barcodeToTest), and: key)
         XCTAssertEqual(url.description, result)
     }
 

@@ -10,17 +10,26 @@ import XCTest
 
 class FSNMPingTest: XCTestCase {
 
+    var offAPI: OFFAPI!
+    let apiURL = URL.FSNMPingURL()
+
     var expectation: XCTestExpectation!
 
     override func setUpWithError() throws {
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+
+        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
+        
         expectation = expectation(description: "Expectation")
     }
+
 
     func testSuccessfullDecoding() throws {
         let ping = FSNMAPI.Ping(ping: "pong")
         let data = try? JSONEncoder().encode(ping)
 
-        OFF.decode(data: data, type:FSNMAPI.Ping.self) { (result) in
+        OFFAPI.decode(data: data, type:FSNMAPI.Ping.self) { (result) in
             switch result {
             case .success(let decodedPing):
                 XCTAssertEqual(ping.ping, decodedPing.ping!)
@@ -39,7 +48,7 @@ class FSNMPingTest: XCTestCase {
         let jsonString = ["pong": "\(ping)"]
         let data = try? JSONEncoder().encode(jsonString)
 
-        OFF.decode(data: data, type:FSNMAPI.Ping.self) { (result) in
+        OFFAPI.decode(data: data, type:FSNMAPI.Ping.self) { (result) in
             switch result {
             case .success(let decodedPing):
                 if let validDecodedPing = decodedPing.ping {

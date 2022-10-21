@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB1D12D629019E1B003C7E3B /* FSNMProductTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12D529019E1B003C7E3B /* FSNMProductTagView.swift */; };
+		AB1D12D82902A597003C7E3B /* FSNMAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12D72902A597003C7E3B /* FSNMAPI.swift */; };
 		AB620E6A28FD483500D144A7 /* FSNMPingURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */; };
 		AB620E6C28FD570600D144A7 /* FSNMStatsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */; };
 		AB620E7028FD58A900D144A7 /* FSNMProductsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6F28FD58A900D144A7 /* FSNMProductsURLTests.swift */; };
@@ -16,7 +18,7 @@
 		AB620E7828FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */; };
 		AB620E7E28FD7D3900D144A7 /* FSNMDeleteURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */; };
 		AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */; };
-		AB93C67828F85D1D00336E71 /* FSNMTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */; };
+		AB93C67828F85D1D00336E71 /* FSNMProductTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67728F85D1D00336E71 /* FSNMProductTagsView.swift */; };
 		AB93C67A28F85D1E00336E71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67928F85D1E00336E71 /* Assets.xcassets */; };
 		AB93C67D28F85D1E00336E71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67C28F85D1E00336E71 /* Preview Assets.xcassets */; };
 		ABE50A9928FF140400049C02 /* FSNMPingAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */; };
@@ -41,7 +43,6 @@
 		ABE5103729005A1600706F7D /* OFFURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103629005A1600706F7D /* OFFURLExtension.swift */; };
 		ABE5103929005F4700706F7D /* FSNMProductTagVersionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */; };
 		ABE5103B2900676F00706F7D /* FSNMProductTagsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103A2900676F00706F7D /* FSNMProductTagsAPITest.swift */; };
-		ABE5103D2900706B00706F7D /* FSNMProductTagHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103C2900706B00706F7D /* FSNMProductTagHierarchy.swift */; };
 		ABE510402901298F00706F7D /* FSNMPingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103F2901298F00706F7D /* FSNMPingTest.swift */; };
 		ABE510422901326800706F7D /* FSNMStatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510412901326800706F7D /* FSNMStatsTest.swift */; };
 		ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101A29003FBF00706F7D /* FSNMKeys.swift */; };
@@ -51,6 +52,7 @@
 		ABE5104F29018E5400706F7D /* FSNMProductsOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5104E29018E5400706F7D /* FSNMProductsOverView.swift */; };
 		ABE510512901901400706F7D /* FSNMProductsKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510502901901400706F7D /* FSNMProductsKeyValueView.swift */; };
 		ABE510542901915D00706F7D /* FSNMProductTagVersionsOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510532901915D00706F7D /* FSNMProductTagVersionsOverView.swift */; };
+		ABE51057290196AF00706F7D /* FSNMProductTagsOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE51056290196AF00706F7D /* FSNMProductTagsOverView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB1D12D529019E1B003C7E3B /* FSNMProductTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagView.swift; sourceTree = "<group>"; };
+		AB1D12D72902A597003C7E3B /* FSNMAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMAPI.swift; sourceTree = "<group>"; };
 		AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingURLTests.swift; sourceTree = "<group>"; };
 		AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OFFFolksonomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsURLTests.swift; sourceTree = "<group>"; };
@@ -75,7 +79,7 @@
 		AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteURLTests.swift; sourceTree = "<group>"; };
 		AB93C67228F85D1D00336E71 /* OFFFolksonomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OFFFolksonomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFFFolksonomyApp.swift; sourceTree = "<group>"; };
-		AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMTagsView.swift; sourceTree = "<group>"; };
+		AB93C67728F85D1D00336E71 /* FSNMProductTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsView.swift; sourceTree = "<group>"; };
 		AB93C67928F85D1E00336E71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB93C67C28F85D1E00336E71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AB93C68F28F941B400336E71 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -102,7 +106,6 @@
 		ABE5103629005A1600706F7D /* OFFURLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFFURLExtension.swift; sourceTree = "<group>"; };
 		ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionsView.swift; sourceTree = "<group>"; };
 		ABE5103A2900676F00706F7D /* FSNMProductTagsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsAPITest.swift; sourceTree = "<group>"; };
-		ABE5103C2900706B00706F7D /* FSNMProductTagHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagHierarchy.swift; sourceTree = "<group>"; };
 		ABE5103F2901298F00706F7D /* FSNMPingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingTest.swift; sourceTree = "<group>"; };
 		ABE510412901326800706F7D /* FSNMStatsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsTest.swift; sourceTree = "<group>"; };
 		ABE510462901675F00706F7D /* FSNMStatsKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsKeyView.swift; sourceTree = "<group>"; };
@@ -111,6 +114,7 @@
 		ABE5104E29018E5400706F7D /* FSNMProductsOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductsOverView.swift; sourceTree = "<group>"; };
 		ABE510502901901400706F7D /* FSNMProductsKeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductsKeyValueView.swift; sourceTree = "<group>"; };
 		ABE510532901915D00706F7D /* FSNMProductTagVersionsOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionsOverView.swift; sourceTree = "<group>"; };
+		ABE51056290196AF00706F7D /* FSNMProductTagsOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsOverView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE50AA028FFEBF000049C02 /* FSNMView.swift */,
-				AB93C67728F85D1D00336E71 /* FSNMTagsView.swift */,
+				ABE510552901968600706F7D /* FSNMProductTags */,
 				ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */,
 				ABE510452901674500706F7D /* FSNMStats */,
 				ABE5104D29018E2E00706F7D /* FSNMProducts */,
@@ -238,7 +242,6 @@
 				ABE5101C29003FBF00706F7D /* FSNMPing.swift */,
 				ABE5101929003FBF00706F7D /* FSNMProducts.swift */,
 				ABE5101B29003FBF00706F7D /* FSNMProductTags.swift */,
-				ABE5103C2900706B00706F7D /* FSNMProductTagHierarchy.swift */,
 				ABE510322900441200706F7D /* FSNMProductTagVersions.swift */,
 				ABE5101D29003FBF00706F7D /* FSNMStats.swift */,
 			);
@@ -250,6 +253,7 @@
 			children = (
 				ABE5102029003FBF00706F7D /* FSNMURLExtension.swift */,
 				ABE5102129003FBF00706F7D /* OFFAPI.swift */,
+				AB1D12D72902A597003C7E3B /* FSNMAPI.swift */,
 				ABE5102229003FBF00706F7D /* OFFProductType.swift */,
 				ABE5102329003FBF00706F7D /* OFFBarcode.swift */,
 				ABE5103629005A1600706F7D /* OFFURLExtension.swift */,
@@ -302,6 +306,16 @@
 				ABE510532901915D00706F7D /* FSNMProductTagVersionsOverView.swift */,
 			);
 			path = FSNMProductTagVersions;
+			sourceTree = "<group>";
+		};
+		ABE510552901968600706F7D /* FSNMProductTags */ = {
+			isa = PBXGroup;
+			children = (
+				AB93C67728F85D1D00336E71 /* FSNMProductTagsView.swift */,
+				AB1D12D529019E1B003C7E3B /* FSNMProductTagView.swift */,
+				ABE51056290196AF00706F7D /* FSNMProductTagsOverView.swift */,
+			);
+			path = FSNMProductTags;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,21 +448,23 @@
 				ABE510542901915D00706F7D /* FSNMProductTagVersionsOverView.swift in Sources */,
 				ABE5102729003FBF00706F7D /* FSNMPing.swift in Sources */,
 				ABE5104F29018E5400706F7D /* FSNMProductsOverView.swift in Sources */,
+				AB1D12D629019E1B003C7E3B /* FSNMProductTagView.swift in Sources */,
 				ABE5102C29003FBF00706F7D /* OFFProductType.swift in Sources */,
 				ABE5104C29017A0E00706F7D /* FSNMKeysOverView.swift in Sources */,
 				ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */,
 				ABE510332900441200706F7D /* FSNMProductTagVersions.swift in Sources */,
 				ABE5102429003FBF00706F7D /* FSNMProducts.swift in Sources */,
 				ABE510472901675F00706F7D /* FSNMStatsKeyView.swift in Sources */,
-				ABE5103D2900706B00706F7D /* FSNMProductTagHierarchy.swift in Sources */,
 				ABE5102D29003FBF00706F7D /* OFFBarcode.swift in Sources */,
 				ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */,
 				ABE5102629003FBF00706F7D /* FSNMProductTags.swift in Sources */,
 				ABE5102B29003FBF00706F7D /* OFFAPI.swift in Sources */,
 				ABE51049290169C800706F7D /* FSNMStatsKeyValueView.swift in Sources */,
-				AB93C67828F85D1D00336E71 /* FSNMTagsView.swift in Sources */,
+				AB93C67828F85D1D00336E71 /* FSNMProductTagsView.swift in Sources */,
+				ABE51057290196AF00706F7D /* FSNMProductTagsOverView.swift in Sources */,
 				ABE5102829003FBF00706F7D /* FSNMStats.swift in Sources */,
 				ABE5103729005A1600706F7D /* OFFURLExtension.swift in Sources */,
+				AB1D12D82902A597003C7E3B /* FSNMAPI.swift in Sources */,
 				ABE51031290042F100706F7D /* FSNMKeysView.swift in Sources */,
 				ABE50AAD29003D3C00049C02 /* FSNMProductsKeyView.swift in Sources */,
 				AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */,

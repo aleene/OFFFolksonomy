@@ -62,12 +62,16 @@ class FSNMProductTagsAPITest: XCTestCase {
         }
       
         // Call API.
-        FSNMAPI().fetchProductTags(with: barcode) { (result) in
-            switch result {
-            case .success(let tags):
-                XCTAssertEqual(tags[0].product, barcode.string, "FSNMProductTagVersionAPITest:testSuccessfulResponse:Incorrect body.")
-            case .failure(let error):
-                XCTFail("FSNMProductTagVersionAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+        offAPI.fetchProductTags(with: barcode) { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                   case .success(_):
+                       self.expectation?.fulfill()
+                   case .failure(let error):
+                       XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+                   }
+               } // Add other responses here
             }
             self.expectation.fulfill()
         }

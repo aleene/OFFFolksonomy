@@ -53,14 +53,17 @@ class FSNMProductTagVersionAPITest: XCTestCase {
         }
       
         // Call API.
-        FSNMAPI().fetchProductTagVersions(for: barcode, with: key) { (result) in
-            switch result {
-            case .success(let versions):
-                XCTAssertEqual(versions[0].product, barcode.string, "FSNMProductTagVersionAPITest:testSuccessfulResponse:Incorrect body.")
-            case .failure(let error):
-                XCTFail("FSNMProductTagVersionAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+        offAPI.fetchProductTagVersions(for: barcode, with: key) { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                   case .success(_):
+                       self.expectation?.fulfill()
+                   case .failure(let error):
+                       XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+                   }
+               } // Add other responses here
             }
-            self.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
     }

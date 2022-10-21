@@ -43,13 +43,18 @@ class FSNMStatsAPITest: XCTestCase {
       }
       
       // Call API.
-        FSNMAPI().fetchStats(with: key) { (result) in
-            
-            switch result {
-            case .success(_):
-                self.expectation?.fulfill()
-            case .failure(let error):
-                XCTFail("FSNMStatsAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+        offAPI.fetchStats(with: key) { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                    case .success(_):
+                        self.expectation?.fulfill()
+                    case .failure(let error):
+                        XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+                    }
+                } else {
+                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse: Wrong response")
+                }
             }
             self.expectation.fulfill()
         }

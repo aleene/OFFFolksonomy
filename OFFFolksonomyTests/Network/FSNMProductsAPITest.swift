@@ -26,7 +26,6 @@ class FSNMProductsAPITest: XCTestCase {
 
     func testSuccessfulResponse() {
       // Prepare mock json response.
-        let product1barcode = "0011110805805"
         let jsonString = """
                        [
                          {
@@ -54,15 +53,17 @@ class FSNMProductsAPITest: XCTestCase {
       }
       
       // Call API.
-        FSNMAPI().fetchProducts(with: key) { (result) in
-            
-            switch result {
-            case .success(let products):
-                XCTAssertEqual(products[0].product, product1barcode, "FSNMProductsAPITest:testSuccessfulResponse:Incorrect body.")
-            case .failure(let error):
-                XCTFail("FSNMProductsAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+        offAPI.fetchProducts(with: key) { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                   case .success(_):
+                        self.expectation?.fulfill()
+                   case .failure(let error):
+                       XCTFail("FSNMProductsAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+                   }
+               } // Add other responses here
             }
-            self.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
     }

@@ -20,15 +20,16 @@ class FSNMStatsKeyViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        FSNMAPI().fetchStats(with: key) { (result) in
-            
-            switch result {
-            case .success(let productStats):
-                DispatchQueue.main.async {
-                    self.productStats = productStats
-                }
-            case .failure(let error):
-                self.error = "\(error)"
+        offAPI.fetchStats(with: key) { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                    case .success(let productStats):
+                        self.productStats = productStats
+                    case .failure(let error):
+                        self.error = error.localizedDescription
+                    }
+                } // Add other responses here
             }
         }
     }

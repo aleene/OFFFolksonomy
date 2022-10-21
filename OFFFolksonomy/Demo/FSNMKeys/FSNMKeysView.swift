@@ -19,15 +19,16 @@ class FSNMKeysViewModel: ObservableObject {
     // get the keys
     func update() {
         // get the remote data
-        FSNMAPI().fetchKeys() { (result) in
-            
-            switch result {
-            case .success(let keys):
-                DispatchQueue.main.async {
-                    self.keys = keys
-                }
-            case .failure(let error):
-                self.error = "\(error)"
+        offAPI.fetchKeys() { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                    case .success(let keys):
+                        self.keys = keys
+                    case .failure(let error):
+                        self.error = error.localizedDescription
+                    }
+                } // Add other responses here
             }
         }
     }

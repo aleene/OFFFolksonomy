@@ -21,19 +21,20 @@ class FSNMProductsKeyValueViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        FSNMAPI().fetchProducts(with: key, and: value) { (result) in
-            
-            switch result {
-            case .success(let products):
-                DispatchQueue.main.async {
-                    self.products = products
+        offAPI.fetchProducts(with: key, and: value) { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                       case .success(let products):
+                           self.products = products
+                       case .failure(let error):
+                           self.error = error.localizedDescription
+                       }
+                   } // Add other responses here
                 }
-            case .failure(let error):
-                self.error = "\(error)"
             }
         }
     }
-}
 
 struct FSNMProductsKeyValueView: View {
     @StateObject var model = FSNMProductsKeyValueViewModel()

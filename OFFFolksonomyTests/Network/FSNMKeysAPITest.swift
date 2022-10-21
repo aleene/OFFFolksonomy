@@ -22,34 +22,74 @@ class FSNMKeysAPITest: XCTestCase {
         expectation = expectation(description: "Expectation")
     }
 
-    func testSuccessfulResponse() {
-      // Prepare mock json response.
+    func testSuccessfulResponse200() {
+        // Prepare mock json response.
         let key0 = FSNMAPI.Keys(k: "data_quality:robotoff_issue", count: 59, values: 1)
         let key1 = FSNMAPI.Keys(k: "data_quality:robotoff_issue:product_version", count: 59, values: 43)
         let array = [key0, key1]
         let data = try? JSONEncoder().encode(array)
 
         MockURLProtocol.requestHandler = { request in
-            guard let url = request.url,
+                guard let url = request.url,
                   url == self.apiURL else {
-            throw APIResponseError.request
-        }
-        
-        let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-        return (response, data)
-      }
-      
-      // Call API.
-        FSNMAPI().fetchKeys() { (result) in
-            
-            switch result {
-            case .success(_):
-                self.expectation?.fulfill()
-            case .failure(let error):
-                XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+                    throw APIResponseError.request
             }
-            self.expectation.fulfill()
+        
+            let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+      
+        // Call API.
+        offAPI.fetchKeys() { (result) in
+            DispatchQueue.main.async {
+                if let primaryResult = result.0 {
+                    switch primaryResult {
+                    case .success(_):
+                       self.expectation?.fulfill()
+                    case .failure(let error):
+                        XCTFail("FSNMKeysAPITest:testSuccessfulResponse: error was not expected: \(error)")
+                   }
+                } else {
+                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse: wrong response")
+                }
+            }
         }
         wait(for: [expectation], timeout: 1.0)
     }
+    
+    func testSuccessfulResponse422() {
+        // Prepare mock json response.
+        let valerdet = FSNMAPI.ValidationErrorDetail(loc: ["string"], msg: "msg", type: "type")
+        let mes = FSNMAPI.ValidationError(detail: valerdet)
+        let data = try? JSONEncoder().encode(mes)
+
+        MockURLProtocol.requestHandler = { request in
+                guard let url = request.url,
+                  url == self.apiURL else {
+                throw APIResponseError.request
+            }
+            let response = HTTPURLResponse(url: self.apiURL, statusCode: 422, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+      
+      // Call API.
+        offAPI.fetchKeys() { (result) in
+            DispatchQueue.main.async {
+                if result.0 != nil {
+                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse: wrong response")
+                } else if let primaryResult = result.1 {
+                    switch primaryResult {
+                    case .success(_):
+                       self.expectation?.fulfill()
+                    case .failure(let error):
+                        XCTFail("FSNMKeysAPITest:testSuccessfulResponse: error was not expected: \(error)")
+                   }
+                } else {
+                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse: wrong response")
+                }
+            }
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 }

@@ -1,32 +1,31 @@
 //
-//  FSNMProductTagVersionsView.swift
+//  ContentView.swift
 //  OFFFolksonomy
 //
-//  Created by Arnaud Leene on 19/10/2022.
+//  Created by Arnaud Leene on 13/10/2022.
 //
 
 import SwiftUI
 
-class FSNMProductTagVersionsViewModel: ObservableObject {
-    @Published var versions: [FSNMAPI.ProductTagVersions]
+class FSNMProductTagsViewModel: ObservableObject {
+    @Published var productTags: [FSNMAPI.ProductTags]
     @Published var error: String?
     private var offAPI = OFFAPI(urlSession: URLSession.shared)
     @Published var barcode = OFFBarcode(barcode: "3760091720115")
-    @Published var key = "evolutions"
 
     init() {
-        self.versions = []
+        self.productTags = []
     }
     
-    // get the keys
+    // get the properties
     func update() {
         // get the remote data
-        offAPI.fetchProductTagVersions(for: barcode, with: key) { (result) in
+        offAPI.fetchProductTags(with: barcode) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
-                    case .success(let versions):
-                        self.versions = versions
+                    case .success(let productTags):
+                        self.productTags = productTags
                     case .failure(let error):
                         self.error = error.localizedDescription
                     }
@@ -36,54 +35,58 @@ class FSNMProductTagVersionsViewModel: ObservableObject {
     }
 }
 
-struct FSNMProductTagVersionsView: View {
-    @StateObject var model = FSNMProductTagVersionsViewModel()
+struct FSNMProductTagsView: View {
+    @StateObject var model = FSNMProductTagsViewModel()
 
     var body: some View {
-        Text("The ProductTagVersions API retrieves a list of versions for a specific product and key.")
+        Text("Get a list of existing tags for a product.")
             .padding()
-        Text("The example below uses the product \(model.barcode.string) and key \(model.key)")
-        List(model.versions) { version in
+        Text("The example below uses the product \(model.barcode.string)")
+        List(model.productTags) { tag in
             Section {
                 HStack {
                     Text("product: ")
-                    Text(version.product ?? "nil")
+                    Text(tag.product ?? "nil")
                 }
                 HStack {
                     Text("k: ")
-                    Text(version.k ?? "nil")
+                    Text(tag.k ?? "nil")
                 }
                 HStack {
                     Text("v: ")
-                    Text(version.v ?? "nil")
+                    Text(tag.v ?? "nil")
+                }
+                HStack {
+                    Text("owner: ")
+                    Text(tag.owner ?? "nil")
                 }
                 HStack {
                     Text("version: ")
-                    Text("\(version.version!)")
+                    Text("\(tag.version!)")
                 }
                 HStack {
                     Text("editor: ")
-                    Text(version.editor ?? "nil")
+                    Text(tag.editor ?? "nil")
                 }
                 HStack {
                     Text("last_edit: ")
-                    Text(version.last_edit ?? "nil")
+                    Text(tag.last_edit ?? "nil")
                 }
                 HStack {
                     Text("comment: ")
-                    Text(version.comment ?? "nil")
+                    Text(tag.comment ?? "nil")
                 }
             }
         }
+        .navigationTitle("Product Tags")
         .onAppear {
             model.update()
-            }
-        .navigationTitle("Product Tag Versions")
+        }
     }
 }
 
-struct FSNMProductTagVersionsView_Previews: PreviewProvider {
+struct FSNMProductTagsView_Previews: PreviewProvider {
     static var previews: some View {
-        FSNMProductTagVersionsView()
+        FSNMProductTagsView()
     }
 }
