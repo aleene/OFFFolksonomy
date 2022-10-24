@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Collections
 
 class FSNMKeysViewModel: ObservableObject {
     @Published var keys: [FSNMAPI.Keys]
@@ -16,6 +17,10 @@ class FSNMKeysViewModel: ObservableObject {
         self.keys = []
     }
     
+    var keysDictArray: [OrderedDictionary<String, String>] {
+        keys.map({ $0.dict })
+    }
+
     // get the keys
     func update() {
         // get the remote data
@@ -38,23 +43,7 @@ struct FSNMKeysView: View {
     @StateObject var model = FSNMKeysViewModel()
 
     var body: some View {
-        List(model.keys) { key in
-            Section {
-                HStack {
-                    Text("k: ")
-                    Text(key.k ?? "nil")
-                }
-                HStack {
-                    Text("count: ")
-                    Text("\(key.count!)")
-                }
-                HStack {
-                    Text("values: ")
-                    Text("\(key.values!)")
-                }
-
-            }
-        }
+        FSNMListView(text: "All registered tags", dictArray: model.keysDictArray)
         .onAppear {
             model.update()
         }
@@ -65,5 +54,25 @@ struct FSNMKeysView: View {
 struct FSNMKeysView_Previews: PreviewProvider {
     static var previews: some View {
         FSNMKeysView()
+    }
+}
+
+fileprivate extension FSNMAPI.Keys {
+        
+    private var countString : String {
+        count != nil ? "\(count!)" : "nil"
+    }
+
+    private var valuesString : String {
+        values != nil ? "\(values!)" : "nil"
+    }
+
+    // We like to keep the presentation order of the elements in FSNMAPI.ProductTags as it maps to the Swagger documentation
+    var dict: OrderedDictionary<String, String> {
+        var temp: OrderedDictionary<String, String> = [:]
+        temp["k: "] = k ?? "nil"
+        temp["count: "] = countString
+        temp["values: "] = valuesString
+        return temp
     }
 }

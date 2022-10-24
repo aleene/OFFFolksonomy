@@ -56,7 +56,7 @@ struct FSNMProductTagsView: View {
         if isFetching {
             FSNMListView(text: "The tags for the product with barcode \(model.barcode.barcode)", dictArray: model.productTagsDictArray)
         } else {
-            Text("This API retrieves the existing tags of a product.")
+            Text("This fetch retrieves the existing tags of a product.")
                 .padding()
             FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
             Button(action: {

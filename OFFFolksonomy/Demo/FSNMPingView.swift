@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Collections
 
 class FSNMPingViewModel: ObservableObject {
     @Published var ping = FSNMAPI.Ping()
@@ -29,6 +30,7 @@ class FSNMPingViewModel: ObservableObject {
             }
         }
     }
+    
 }
 
 struct FSNMPingView: View {
@@ -38,10 +40,11 @@ struct FSNMPingView: View {
     var body: some View {
         VStack {
             Text("The Ping API allows to check whether the folksonomy server is reachable.")
+                .multilineTextAlignment(.center)
                 .padding()
-            Text("ping: \(model.ping.ping!)")
-                .onAppear {
-                    model.update()
+            FSNMDictElementView(dict: model.ping.dict)
+            .onAppear {
+                model.update()
             }
             .navigationTitle("PingAPI")
         }
@@ -52,5 +55,15 @@ struct FSNMPingView: View {
 struct FSNMPingView_Previews: PreviewProvider {
     static var previews: some View {
         FSNMPingView()
+    }
+}
+
+fileprivate extension FSNMAPI.Ping {
+    
+    // We like to keep the presentation order of the elements in FSNMAPI.ProductTags as it maps to the Swagger documentation
+    var dict: Dictionary<String, String> {
+        var temp: Dictionary<String, String> = [:]
+        temp["ping"] = ping ?? "nil"
+        return temp
     }
 }
