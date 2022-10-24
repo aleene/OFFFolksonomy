@@ -42,7 +42,7 @@ struct FSNMProductTagVersionsView: View {
     var body: some View {
         Text("The ProductTagVersions API retrieves a list of versions for a specific product and key.")
             .padding()
-        Text("The example below uses the product \(model.barcode.string) and key \(model.key)")
+        Text("The example below uses the product \(model.barcode.barcode) and key \(model.key)")
         List(model.versions) { version in
             Section {
                 HStack {

@@ -42,7 +42,7 @@ struct FSNMProductTagView: View {
     var body: some View {
         Text("Get a specific tag for a product.")
             .padding()
-        Text("The example below uses the product \(model.barcode.string) and tag \(model.key)")
+        Text("The example below uses the product \(model.barcode.barcode) and tag \(model.key)")
             Section {
                 HStack {
                     Text("product: ")

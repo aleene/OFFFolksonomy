@@ -73,7 +73,6 @@ class FSNMProductTagsAPITest: XCTestCase {
                    }
                } // Add other responses here
             }
-            self.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
     }

@@ -6,15 +6,22 @@
 //
 
 import SwiftUI
+import Collections
 
 class FSNMProductTagsViewModel: ObservableObject {
+    
     @Published var productTags: [FSNMAPI.ProductTags]
-    @Published var error: String?
+    @Published var barcode: OFFBarcode = OFFBarcode(barcode: "")
+    public var error: String?
+
     private var offAPI = OFFAPI(urlSession: URLSession.shared)
-    @Published var barcode = OFFBarcode(barcode: "3760091720115")
 
     init() {
         self.productTags = []
+    }
+    
+    var productTagsDictArray: [OrderedDictionary<String, String>] {
+        productTags.map({ $0.dict })
     }
     
     // get the properties
@@ -36,57 +43,70 @@ class FSNMProductTagsViewModel: ObservableObject {
 }
 
 struct FSNMProductTagsView: View {
-    @StateObject var model = FSNMProductTagsViewModel()
-
+    
+    @StateObject var model: FSNMProductTagsViewModel
+    @State private var barcode: String = "3760091720115"
+    @State private var isFetching = false
+    
+    // Either show a barcode input field wth the possibility to start a fetch.
+    // If the fetch is doen show the results
+    
     var body: some View {
-        Text("Get a list of existing tags for a product.")
-            .padding()
-        Text("The example below uses the product \(model.barcode.string)")
-        List(model.productTags) { tag in
-            Section {
-                HStack {
-                    Text("product: ")
-                    Text(tag.product ?? "nil")
-                }
-                HStack {
-                    Text("k: ")
-                    Text(tag.k ?? "nil")
-                }
-                HStack {
-                    Text("v: ")
-                    Text(tag.v ?? "nil")
-                }
-                HStack {
-                    Text("owner: ")
-                    Text(tag.owner ?? "nil")
-                }
-                HStack {
-                    Text("version: ")
-                    Text("\(tag.version!)")
-                }
-                HStack {
-                    Text("editor: ")
-                    Text(tag.editor ?? "nil")
-                }
-                HStack {
-                    Text("last_edit: ")
-                    Text(tag.last_edit ?? "nil")
-                }
-                HStack {
-                    Text("comment: ")
-                    Text(tag.comment ?? "nil")
-                }
+
+        if isFetching {
+            FSNMListView(text: "The tags for the product with barcode \(model.barcode.barcode)", dictArray: model.productTagsDictArray)
+        } else {
+            Text("This API retrieves the existing tags of a product.")
+                .padding()
+            FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
+            Button(action: {
+                
+                model.barcode = OFFBarcode(barcode: barcode)
+                model.update()
+                isFetching = true
+                })
+            { Text("Fetch tags") }
+                .font(.title)
+                
+            .navigationTitle("Product Tags")
+            .onAppear {
+                isFetching = false
             }
-        }
-        .navigationTitle("Product Tags")
-        .onAppear {
-            model.update()
         }
     }
 }
 
+extension FSNMProductTagsView {
+    func cancel() {
+    }
+    func save() {
+    }
+}
+
 struct FSNMProductTagsView_Previews: PreviewProvider {
+            
     static var previews: some View {
-        FSNMProductTagsView()
+        FSNMProductTagsView(model: FSNMProductTagsViewModel())
+    }
+}
+
+fileprivate extension FSNMAPI.ProductTags {
+    
+    private var versionString : String {
+        version != nil ? "\(version!)" : "nil"
+    }
+    
+    // We like to keep the presentation order of the elements in FSNMAPI.ProductTags as it maps to the Swagger documentation
+    var dict: OrderedDictionary<String, String> {
+        var temp: OrderedDictionary<String, String> = [:]
+        temp["product"] = product ?? "nil"
+        temp["k"] = k ?? "nil"
+        temp["v"] = v ?? "nil"
+        temp["owner"] = owner ?? "nil"
+        temp["version"] = versionString
+        temp["editor"] = editor ?? "nil"
+        temp["last_edit"] = last_edit ?? "nil"
+        temp["comment"] = comment ?? "nil"
+        return temp
     }
 }

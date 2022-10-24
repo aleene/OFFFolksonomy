@@ -56,7 +56,6 @@ class FSNMStatsAPITest: XCTestCase {
                     XCTFail("FSNMKeysAPITest:testSuccessfulResponse: Wrong response")
                 }
             }
-            self.expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
     }

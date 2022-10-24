@@ -11,13 +11,13 @@ struct FSNMProductTagsOverView: View {
     var body: some View {
         List {
             Text("Retrieve the tags for a product.")
-            NavigationLink(destination: FSNMProductTagsView() ) {
+            NavigationLink(destination: FSNMProductTagsView(model: FSNMProductTagsViewModel() ) ) {
                 Text("For a product")
             }
             NavigationLink(destination: FSNMProductTagView() ) {
                 Text("For a product and key")
             }
-            NavigationLink(destination: FSNMProductTagsView() ) {
+            NavigationLink(destination: FSNMProductTagsView(model: FSNMProductTagsViewModel()) ) {
                 Text("For a product and subkeys")
             }
             Text("It is also possible to use a key, a value and an owner")
