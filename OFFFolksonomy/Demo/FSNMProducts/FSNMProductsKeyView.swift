@@ -9,7 +9,7 @@ import SwiftUI
 import Collections
 
 class FSNMProductsKeyViewModel: ObservableObject {
-    @Published var products: [FSNMAPI.Product]
+    @Published var products: [FSNM.Product]
     @Published var error: String?
     private var offAPI = OFFAPI(urlSession: URLSession.shared)
     @Published var key = ""
@@ -41,6 +41,7 @@ class FSNMProductsKeyViewModel: ObservableObject {
 }
 
 struct FSNMProductsKeyView: View {
+    
     @StateObject var model = FSNMProductsKeyViewModel()
     @State private var key: String = "ingredients:garlic"
     @State private var isFetching = false
@@ -77,7 +78,7 @@ struct FSNMProductsKeyView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNMAPI.Product {
+fileprivate extension FSNM.Product {
         
     // We like to keep the presentation order of the elements in FSNMAPI.ProductTags as it maps to the Swagger documentation
     var dict: OrderedDictionary<String, String> {

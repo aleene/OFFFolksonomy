@@ -14,27 +14,26 @@ class FSNMPingURLTests: XCTestCase {
     
     func testPingFood() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/ping"
-        let url = URL.FSNMPingURL(with: .food)
-        XCTAssertEqual(url.description, result)
+        let url = HTTPRequest(api: .ping).url!
+        XCTAssertEqual(url.absoluteString, result)
     }
     
     func testPingPetFood() throws {
         let result = "https://api.folksonomy.openpetfoodfacts.org/ping"
-        let url = URL.FSNMPingURL(with: .petFood)
+        let url = HTTPRequest(for: .petFood, for: .ping).url!
         XCTAssertEqual(url.description, result)
     }
 
     func testPingBeauty() throws {
         let result = "https://api.folksonomy.openbeautyfacts.org/ping"
-        let url = URL.FSNMPingURL(with: .beauty)
+        let url = HTTPRequest(for: .beauty, for: .ping).url!
         XCTAssertEqual(url.description, result)
     }
 
     func testPingProduct() throws {
         let result = "https://api.folksonomy.openproductfacts.org/ping"
-        let url = URL.FSNMPingURL(with: .product)
+        let url = HTTPRequest(for: .product, for: .ping).url!
         XCTAssertEqual(url.description, result)
     }
-
 
 }

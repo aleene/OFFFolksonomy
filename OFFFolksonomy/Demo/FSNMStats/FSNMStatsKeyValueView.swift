@@ -6,18 +6,23 @@
 //
 
 import SwiftUI
+import Collections
 
 class FSNMStatsKeyValueViewModel: ObservableObject {
-    @Published var productStats: [FSNMAPI.ProductStats]
+    @Published var productStats: [FSNM.ProductStats]
     @Published var error: String?
     private var offAPI = OFFAPI(urlSession: URLSession.shared)
-    @Published var key = "ingredients:garlic"
-    @Published var value = "no"
+    @Published var key = ""
+    @Published var value = ""
 
     init() {
         self.productStats = []
     }
     
+    var productStatsDictArray: [OrderedDictionary<String, String>] {
+        productStats.map({ $0.dict })
+    }
+
     // get the properties
     func update() {
         // get the remote data
@@ -39,39 +44,61 @@ class FSNMStatsKeyValueViewModel: ObservableObject {
 struct FSNMStatsKeyValueView: View {
 
     @StateObject var model = FSNMStatsKeyValueViewModel()
+    @State private var key: String = "ingredients:garlic"
+    @State private var value: String = "no"
+    @State private var isFetching = false
 
     var body: some View {
-        Text("The StatsAPI retrieves a list of products for a specific key and value.")
-        Text("The example below uses the key \(model.key) and the value \(model.value)")
-        List(model.productStats) { stats in
-            Section {
-                HStack {
-                    Text("product: ")
-                    Text(stats.product ?? "nil")
-                }
-                HStack {
-                    Text("keys: ")
-                    Text("\(stats.keys!)")
-                }
-                HStack {
-                    Text("last_edit: ")
-                    Text(stats.last_edit ?? "nil")
-                }
-                HStack {
-                    Text("editors: ")
-                    Text("\(stats.editors!)")
-                }
+        if isFetching {
+            FSNMListView(text: "All product statistics for key \(model.key) and value \(model.value)", dictArray: model.productStatsDictArray)
+            .navigationTitle("Products")
+
+        } else {
+            Text("This fetch retrieves all the product statistics for a specific key and value.")
+                .padding()
+            FSNMInput(title: "Enter key", placeholder: key, text: $key)
+            FSNMInput(title: "Enter value", placeholder: value, text: $value)
+            Button(action: {
+                
+                model.key = key
+                model.value = value
+                model.update()
+                isFetching = true
+                })
+            { Text("Fetch statistics") }
+                .font(.title)
+                
+            .navigationTitle("Products Fetch")
+            .onAppear {
+                isFetching = false
+            }
         }
-    }
-        .onAppear {
-            model.update()
-        }
-        .navigationTitle("Stats API")
     }
 }
 
 struct FSNMStatsKeyValueView_Previews: PreviewProvider {
     static var previews: some View {
         FSNMStatsKeyValueView()
+    }
+}
+
+fileprivate extension FSNM.ProductStats {
+        
+    private var keysString : String {
+        keys != nil ? "\(keys!)" : "nil"
+    }
+
+    private var editorsString : String {
+        editors != nil ? "\(editors!)" : "nil"
+    }
+
+    // We like to keep the presentation order of the elements in FSNMAPI.ProductStats as it maps to the Swagger documentation
+    var dict: OrderedDictionary<String, String> {
+        var temp: OrderedDictionary<String, String> = [:]
+        temp["product: "] = product ?? "nil"
+        temp["keys: "] = keysString
+        temp["last_edit: "] = last_edit ?? "nil"
+        temp["editors: "] = editorsString
+        return temp
     }
 }

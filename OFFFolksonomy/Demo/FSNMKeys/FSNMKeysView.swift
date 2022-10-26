@@ -9,7 +9,7 @@ import SwiftUI
 import Collections
 
 class FSNMKeysViewModel: ObservableObject {
-    @Published var keys: [FSNMAPI.Keys]
+    @Published var keys: [FSNM.Keys]
     @Published var error: String?
     private var offAPI = OFFAPI(urlSession: URLSession.shared)
 
@@ -57,7 +57,7 @@ struct FSNMKeysView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNMAPI.Keys {
+fileprivate extension FSNM.Keys {
         
     private var countString : String {
         count != nil ? "\(count!)" : "nil"

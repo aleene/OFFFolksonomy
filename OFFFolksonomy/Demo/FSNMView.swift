@@ -31,7 +31,9 @@ struct FSNMView: View {
             Text("Delete API ")
             Text("Put API ")
             Text("Post API ")
-            //Text("Auth API ")
+            NavigationLink(destination: FSNMAuthView()) {
+                Text("Auth API ")
+            }
         }
         .navigationTitle("Folksonomy API's")
     }

@@ -24,8 +24,8 @@ class FSNMKeysAPITest: XCTestCase {
 
     func testSuccessfulResponse200() {
         // Prepare mock json response.
-        let key0 = FSNMAPI.Keys(k: "data_quality:robotoff_issue", count: 59, values: 1)
-        let key1 = FSNMAPI.Keys(k: "data_quality:robotoff_issue:product_version", count: 59, values: 43)
+        let key0 = FSNM.Keys(k: "data_quality:robotoff_issue", count: 59, values: 1)
+        let key1 = FSNM.Keys(k: "data_quality:robotoff_issue:product_version", count: 59, values: 43)
         let array = [key0, key1]
         let data = try? JSONEncoder().encode(array)
 
@@ -59,8 +59,8 @@ class FSNMKeysAPITest: XCTestCase {
     
     func testSuccessfulResponse422() {
         // Prepare mock json response.
-        let valerdet = FSNMAPI.ValidationErrorDetail(loc: ["string"], msg: "msg", type: "type")
-        let mes = FSNMAPI.ValidationError(detail: valerdet)
+        let valerdet = FSNM.ValidationErrorDetail(loc: ["string"], msg: "msg", type: "type")
+        let mes = FSNM.ValidationError(detail: valerdet)
         let data = try? JSONEncoder().encode(mes)
 
         MockURLProtocol.requestHandler = { request in

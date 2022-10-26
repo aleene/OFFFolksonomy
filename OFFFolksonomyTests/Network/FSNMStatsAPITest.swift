@@ -26,8 +26,8 @@ class FSNMStatsAPITest: XCTestCase {
 
     func testSuccessfulResponse() {
       // Prepare mock json response.
-        let productStats0 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
-        let productsStats1 = FSNMAPI.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
+        let productStats0 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
+        let productsStats1 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
         let array = [productStats0, productsStats1]
    
         let data = try? JSONEncoder().encode(array)

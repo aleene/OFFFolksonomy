@@ -10,7 +10,7 @@ import Collections
 
 class FSNMProductTagsViewModel: ObservableObject {
     
-    @Published var productTags: [FSNMAPI.ProductTags]
+    @Published var productTags: [FSNM.ProductTags]
     @Published var barcode: OFFBarcode = OFFBarcode(barcode: "")
     public var error: String?
 
@@ -90,7 +90,7 @@ struct FSNMProductTagsView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNMAPI.ProductTags {
+fileprivate extension FSNM.ProductTags {
     
     private var versionString : String {
         version != nil ? "\(version!)" : "nil"

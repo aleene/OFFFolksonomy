@@ -10,17 +10,17 @@ import XCTest
 
 class FSNMPingAPITest: XCTestCase {
 
-    var offAPI: OFFAPI!
+    var offSession: URLSession!
     var expectation: XCTestExpectation!
     // I do not need to test this again
-    let apiURL = URL.FSNMPingURL()
+    let request = HTTPRequest(api: .ping)
 
 
     override func setUpWithError() throws {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockURLProtocol.self]
 
-        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
+        offSession = URLSession(configuration: configuration)
         expectation = expectation(description: "Expectation")
     }
 
@@ -36,16 +36,16 @@ class FSNMPingAPITest: XCTestCase {
       
       MockURLProtocol.requestHandler = { request in
         guard let url = request.url,
-            url == self.apiURL else {
+              url == request.url else {
             throw APIResponseError.request
         }
         
-        let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
         return (response, data)
       }
       
       // Call API.
-        offAPI.fetchPing() { (result) in
+        offSession.fetchPing() { (result) in
             
             switch result {
             case .success(let post):

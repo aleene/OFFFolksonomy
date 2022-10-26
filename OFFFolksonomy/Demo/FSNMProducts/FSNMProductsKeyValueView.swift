@@ -9,7 +9,7 @@ import SwiftUI
 import Collections
 
 class FSNMProductsKeyValueViewModel: ObservableObject {
-    @Published var products: [FSNMAPI.Product]
+    @Published var products: [FSNM.Product]
     @Published var error: String?
     private var offAPI = OFFAPI(urlSession: URLSession.shared)
     @Published var key = ""
@@ -81,7 +81,7 @@ struct FSNMProductsKeyValueView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNMAPI.Product {
+fileprivate extension FSNM.Product {
         
     // We like to keep the presentation order of the elements in FSNMAPI.ProductTags as it maps to the Swagger documentation
     var dict: OrderedDictionary<String, String> {

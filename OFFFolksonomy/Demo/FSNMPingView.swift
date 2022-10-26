@@ -9,8 +9,10 @@ import SwiftUI
 import Collections
 
 class FSNMPingViewModel: ObservableObject {
-    @Published var ping = FSNMAPI.Ping()
-    private var offAPI = OFFAPI(urlSession: URLSession.shared)
+    
+    @Published var ping = FSNM.Ping()
+   
+    private var offSession = URLSession.shared
 
     init() {
         self.ping.ping = "initialised"
@@ -19,7 +21,7 @@ class FSNMPingViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        offAPI.fetchPing() { (result) in
+        offSession.fetchPing() { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let post):
@@ -43,6 +45,7 @@ struct FSNMPingView: View {
                 .multilineTextAlignment(.center)
                 .padding()
             FSNMDictElementView(dict: model.ping.dict)
+            Spacer()
             .onAppear {
                 model.update()
             }
@@ -53,12 +56,14 @@ struct FSNMPingView: View {
 }
 
 struct FSNMPingView_Previews: PreviewProvider {
+    
     static var previews: some View {
         FSNMPingView()
     }
+    
 }
 
-fileprivate extension FSNMAPI.Ping {
+fileprivate extension FSNM.Ping {
     
     // We like to keep the presentation order of the elements in FSNMAPI.ProductTags as it maps to the Swagger documentation
     var dict: Dictionary<String, String> {
