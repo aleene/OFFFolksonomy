@@ -17,29 +17,14 @@ extension FSNM {
     }
 }
 
-extension OFFAPI {
+extension URLSession {
     
     /// function to hide the intricates of the URL API from the user
-    func fetchAuth(completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void) {
-        fetch(url: URL.FSNMAuthURL(), responses: [200:FSNM.Auth.self]) { (result) in
+    func fetchAuth(username: String, password: String, completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void) {
+        fetch(request: HTTPRequest(username: username, password: password), responses: [200:FSNM.Auth.self]) { (result) in
             completion(result)
             return
         }
-    }
-}
-
-extension URL {
-
-/// Convienience URL to check whether the folksonomy server responds
-    public static func FSNMAuthURL() -> URL {
-        return FSNMAuthURL(for: .food)
-    }
-    
-    private static func FSNMAuthURL(for productType: OFFProductType) -> URL {
-        var url = folksonomyBase(for: productType)
-        url += Folksonomy.Auth
-        assert(URL(string: url) != nil, "URL:folksonomyAuth: url is nil")
-        return URL(string: url)!
     }
 }
 
@@ -50,5 +35,35 @@ extension HTTPLoading {
             completion(result)
             return
         }
+    }
+}
+
+extension HTTPRequest {
+    
+/**
+ Initialised the request for the Auth-API
+- Parameters:
+    - username: the username of the user as registered on OFF.
+    - password: the password of the user as registerd on OFF.
+    
+ - Example:
+ curl -X 'POST' \
+ 'https://api.folksonomy.openfoodfacts.org/auth' \
+ -H 'accept: application/json' \
+ -H 'Content-Type: application/x-www-form-urlencoded' \
+ -d 'grant_type=&username=XXXX&password=YYYYY&scope=&client_id=&client_secret='
+
+*/
+    init(username: String, password: String) {
+        self.init(api: .auth)
+        self.headers["accept"] = "application/json"
+        
+        self.method = .post
+        let body = FormBody(["grant_type": "",
+                             "username": "\(username)",
+                             "password": "\(password)",
+                             "client_id": "",
+                             "client_secret": ""])
+        self.body = body
     }
 }

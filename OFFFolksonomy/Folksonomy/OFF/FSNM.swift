@@ -63,6 +63,8 @@ Init for all producttypes supported by OFF. This will setup the correct host and
         self.host = URL.FSNMHost(for: .food)
         self.path = api.path
     }
+    
+
 }
 
 extension OFFAPI {
