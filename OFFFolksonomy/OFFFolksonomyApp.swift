@@ -11,10 +11,13 @@ import SwiftUI
 
 struct OFFFolksonomyApp: App {
         
+    /// Every API call should get the tokens here
+    @StateObject private var authController = AuthController()
+    
     var body: some Scene {
         WindowGroup {
             NavigationView() {
-                FSNMView()
+                FSNMView(authController: authController)
             }
         }
     }

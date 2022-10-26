@@ -13,13 +13,10 @@ class FSNMAuthViewModel: ObservableObject {
     @Published var password = ""
     
     @Published var signingInDone = false
-    @Published var auth = FSNM.Auth()
     @Published var hasError = false
+    @ObservedObject var authController = AuthController()
     
     private var offSession = URLSession.shared
-
-    init() {
-    }
     
     var canSignIn: Bool {
         !username.isEmpty && !password.isEmpty
@@ -31,8 +28,9 @@ class FSNMAuthViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let auth):
+                    self.authController.access_token = auth.access_token ?? ""
+                    self.authController.token_type = auth.token_type ?? ""
                     self.signingInDone = true
-                    self.auth = auth
                     print(auth)
                 case .failure(let x):
                     self.hasError = true
@@ -45,15 +43,16 @@ class FSNMAuthViewModel: ObservableObject {
 
 struct FSNMAuthView: View {
     @StateObject var model = FSNMAuthViewModel()
-    
+    @ObservedObject var authController: AuthController
+
     var body: some View {
         Group {
             if model.signingInDone {
                 VStack {
                     Text("Log in successful")
-                    Text(model.auth.access_token != nil ? "\(model.auth.access_token!)" : "nil")
-                    Text(model.auth.token_type != nil ? "\(model.auth.token_type!)" : "nil")
-                    Button("Sign in again") {
+                    Text("\(authController.access_token)")
+                    Text("\(authController.token_type)")
+                    Button("Sign In again") {
                         model.signingInDone = false
                         model.signIn()
                     }
@@ -73,7 +72,7 @@ struct FSNMAuthView: View {
                     .textFieldStyle(.roundedBorder)
                     .disabled(model.signingInDone)
 
-                    Button("sign In") {
+                    Button("Sign In") {
                         model.signIn()
                     }
                     .disabled(model.signingInDone)
@@ -83,6 +82,9 @@ struct FSNMAuthView: View {
                 .frame(maxWidth: 400.0)
                 Spacer()
             }
+        }
+        .onAppear() {
+            model.authController = authController
         }
         .alert(isPresented: $model.hasError) {
             Alert(
@@ -95,7 +97,7 @@ struct FSNMAuthView: View {
 struct FSNMAuthView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FSNMAuthView()
+        FSNMAuthView(authController: AuthController())
     }
     
 }

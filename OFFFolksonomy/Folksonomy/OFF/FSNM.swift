@@ -24,6 +24,13 @@ struct FSNM {
     }
 
 /**
+    Some API's (ProductStats) can return a validation error with response code 401.
+*/
+    public struct Error401: Codable {
+        var detail: String?
+    }
+    
+/**
  Some API's (ProductStats) can return a validation error with response code 422.
  */
     public struct ValidationError: Codable {

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FSNMView: View {
+    @ObservedObject var authController: AuthController
+    
     var body: some View {
         List {
             NavigationLink(destination: FSNMStatsOverView() ) {
@@ -31,7 +33,7 @@ struct FSNMView: View {
             Text("Delete API ")
             Text("Put API ")
             Text("Post API ")
-            NavigationLink(destination: FSNMAuthView()) {
+            NavigationLink(destination: FSNMAuthView(authController: authController)) {
                 Text("Auth API ")
             }
         }
@@ -42,6 +44,6 @@ struct FSNMView: View {
 // Give an overview of all FSNM API's
 struct FSNMView_Previews: PreviewProvider {
     static var previews: some View {
-        FSNMView()
+        FSNMView(authController: AuthController())
     }
 }
