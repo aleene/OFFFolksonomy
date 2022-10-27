@@ -10,6 +10,8 @@ import SwiftUI
 
 struct FSNMStatsOverView: View {
     
+    @ObservedObject var authController: AuthController
+
     var body: some View {
         List {
             Text("Demonstration of all API's for retrieving statistics on keys and/or values.")
@@ -19,7 +21,9 @@ struct FSNMStatsOverView: View {
             NavigationLink(destination: FSNMStatsKeyValueView() ) {
                 Text("For a key and value")
             }
-            Text("It is also possible to use a key and an owner")
+            NavigationLink(destination: FSNMStatsOwnerView(authController: authController) ) {
+                Text("For an owner")
+            }
             Text("It is also possible to use a key, a value and an owner")
         }
         .navigationTitle("Stats API's")
@@ -28,6 +32,6 @@ struct FSNMStatsOverView: View {
 
 struct FSNMStatsOverView_Previews: PreviewProvider {
     static var previews: some View {
-        FSNMStatsOverView()
+        FSNMStatsOverView(authController: AuthController())
     }
 }

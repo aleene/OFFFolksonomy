@@ -10,11 +10,11 @@ import XCTest
 
 class FSNMAuthURLTests: XCTestCase {
 
-    // Ping API tests
+    // Auth URL test
     
     func testAuth() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/auth"
-        let url = URL.FSNMAuthURL()
+        let url = HTTPRequest(api: .auth).url!
         XCTAssertEqual(url.description, result)
     }
 

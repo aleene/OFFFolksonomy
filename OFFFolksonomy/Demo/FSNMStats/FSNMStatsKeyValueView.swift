@@ -11,9 +11,10 @@ import Collections
 class FSNMStatsKeyValueViewModel: ObservableObject {
     @Published var productStats: [FSNM.ProductStats]
     @Published var error: String?
-    private var offAPI = OFFAPI(urlSession: URLSession.shared)
     @Published var key = ""
     @Published var value = ""
+
+    private var fsnmSession = URLSession.shared
 
     init() {
         self.productStats = []
@@ -26,7 +27,7 @@ class FSNMStatsKeyValueViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        offAPI.fetchStats(with: key, and: value) { (result) in
+        fsnmSession.fetchStats(with: key, and: value) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {

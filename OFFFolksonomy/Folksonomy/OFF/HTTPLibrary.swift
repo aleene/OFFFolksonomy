@@ -38,6 +38,11 @@ public extension HTTPRequest {
         get { urlComponents.path }
         set { urlComponents.path = newValue }
     }
+    
+    var queryItems: [URLQueryItem] {
+        get { urlComponents.queryItems != nil ? urlComponents.queryItems! : [] }
+        set { urlComponents.queryItems = newValue }
+    }
 }
 
 public struct HTTPResponse {
@@ -61,6 +66,7 @@ public enum HTTPStatus: Int {
     case notFound = 404
     case validationError = 422
     case internalServerError = 500
+    case notImplemented = 501
     case unknown
 }
 
@@ -171,20 +177,21 @@ public struct FormBody: HTTPBody {
     }
 }
 
-public struct JSONBody: HTTPBody {
-    
-    public let isEmpty: Bool = false
-    public var additionalHeaders = ["Content-Type" : "application/json; charset=utf8"]
-    
-    private let encoder: () throws -> Data
-    
-    public init<T: Encodable>(_ value: T, encoder: JSONEncoder = JSONEncoder() ) {
-        self.encoder = { try encoder.encode(value) }
-    }
-    public func encode() throws -> Data {
-        return try encoder()
-    }
-}
+//          NOT USED
+//public struct JSONBody: HTTPBody {
+//
+//    public let isEmpty: Bool = false
+//    public var additionalHeaders = ["Content-Type" : "application/json; charset=utf8"]
+//
+//    private let encoder: () throws -> Data
+//
+//    public init<T: Encodable>(_ value: T, encoder: JSONEncoder = JSONEncoder() ) {
+//        self.encoder = { try encoder.encode(value) }
+//    }
+//    public func encode() throws -> Data {
+//        return try encoder()
+//    }
+//}
 
 public protocol HTTPLoading {
     
@@ -192,6 +199,8 @@ public protocol HTTPLoading {
     
     // function to do additional decoding of a succesfully received json
     func fetch<T: Decodable> (request: HTTPRequest, responses: [Int:T.Type], completion: @escaping (_ result: Result<T, Error>) -> Void)
+
+    func fetchArray<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int:T1.Type], [Int:T2.Type]), completion: @escaping (_ result: (Result<[T1], Error>?, Result<T2, Error>?) ) -> Void)
 
 }
 
@@ -220,6 +229,47 @@ extension URLSession: HTTPLoading {
         }
     }
     
+    public func fetchArray<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int:T1.Type], [Int:T2.Type]), completion: @escaping (_ result: (Result<[T1], Error>?, Result<T2, Error>?) ) -> Void) {
+        
+        guard let response0 = responses.0.first else {
+            completion( (Result.failure(APIResponseError.parsing), nil) )
+            return
+        }
+        guard let response1 = responses.1.first else {
+            completion( (Result.failure(APIResponseError.parsing), nil) )
+            return
+        }
+
+        load(request: request) { result in
+            switch result {
+            case .success(let response):
+                if response0.key == response.status.rawValue {
+                    print("fetchArray: response: \(response.status.rawValue)")
+                    OFFAPI.decodeArray(data: response.body, type: response0.value) { result in
+                        completion( (result, nil) )
+                        return
+                    }
+                } else if response1.key == response.status.rawValue {
+                    OFFAPI.decode(data: response.body, type: response1.value) { result in
+                        completion( (nil, result) )
+                        return
+                    }
+
+                } else {
+                    // unsupported response type
+                    print("fetchArray: unsupported response: \(response.status.rawValue)")
+                    completion( (Result.failure(APIResponseError.unsupportedSuccessResponseType), nil) )
+                    return
+                }
+            case .failure(let error):
+                // the original response failed
+                completion( (Result.failure(error), nil) )
+                return
+            }
+        }
+
+    }
+
     
     public func load(request: HTTPRequest, completion: @escaping (HTTPResult) -> Void) {
         
@@ -272,6 +322,11 @@ extension URLSession: HTTPLoading {
 }
 
 public class MockLoader: HTTPLoading {
+    
+    public func fetchArray<T1, T2>(request: HTTPRequest, responses: ([Int : T1.Type], [Int : T2.Type]), completion: @escaping ((Result<[T1], Error>?, Result<T2, Error>?)) -> Void) where T1 : Decodable, T2 : Decodable {
+        
+    }
+    
     
     public func fetch<T>(request: HTTPRequest, responses: [Int : T.Type], completion: @escaping (Result<T, Error>) -> Void) where T : Decodable {
         

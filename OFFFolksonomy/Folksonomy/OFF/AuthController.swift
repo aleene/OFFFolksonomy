@@ -12,4 +12,5 @@ import Foundation
 class AuthController: ObservableObject {
     @Published var access_token = ""
     @Published var token_type = ""
+    @Published var owner = ""
 }

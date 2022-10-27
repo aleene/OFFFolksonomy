@@ -16,7 +16,7 @@ class FSNMAuthViewModel: ObservableObject {
     @Published var hasError = false
     @ObservedObject var authController = AuthController()
     
-    private var offSession = URLSession.shared
+    private var fsnmSession = URLSession.shared
     
     var canSignIn: Bool {
         !username.isEmpty && !password.isEmpty
@@ -24,12 +24,13 @@ class FSNMAuthViewModel: ObservableObject {
     
     func signIn() {
         guard canSignIn else { return }
-        offSession.fetchAuth(username: self.username, password: self.password) { result in
+        fsnmSession.fetchAuth(username: self.username, password: self.password) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let auth):
                     self.authController.access_token = auth.access_token ?? ""
                     self.authController.token_type = auth.token_type ?? ""
+                    self.authController.owner = self.username
                     self.signingInDone = true
                     print(auth)
                 case .failure(let x):

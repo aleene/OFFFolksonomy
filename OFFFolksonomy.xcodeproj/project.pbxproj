@@ -25,6 +25,7 @@
 		AB620E7828FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */; };
 		AB620E7E28FD7D3900D144A7 /* FSNMDeleteURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */; };
 		AB92329C2909762900B2BF15 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329B2909762900B2BF15 /* AuthController.swift */; };
+		AB92329E290A8B5000B2BF15 /* FSNMStatsOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329D290A8B5000B2BF15 /* FSNMStatsOwnerView.swift */; };
 		AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */; };
 		AB93C67828F85D1D00336E71 /* FSNMProductTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67728F85D1D00336E71 /* FSNMProductTagsView.swift */; };
 		AB93C67A28F85D1E00336E71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67928F85D1E00336E71 /* Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionsURLTests.swift; sourceTree = "<group>"; };
 		AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteURLTests.swift; sourceTree = "<group>"; };
 		AB92329B2909762900B2BF15 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		AB92329D290A8B5000B2BF15 /* FSNMStatsOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsOwnerView.swift; sourceTree = "<group>"; };
 		AB93C67228F85D1D00336E71 /* OFFFolksonomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OFFFolksonomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFFFolksonomyApp.swift; sourceTree = "<group>"; };
 		AB93C67728F85D1D00336E71 /* FSNMProductTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsView.swift; sourceTree = "<group>"; };
@@ -174,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE5103E290128E700706F7D /* Data */,
-				AB620E6E28FD577500D144A7 /* FSNMURL */,
+				AB620E6E28FD577500D144A7 /* URL */,
 				AB620E6D28FD576D00D144A7 /* Network */,
 			);
 			path = OFFFolksonomyTests;
@@ -193,7 +195,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		AB620E6E28FD577500D144A7 /* FSNMURL */ = {
+		AB620E6E28FD577500D144A7 /* URL */ = {
 			isa = PBXGroup;
 			children = (
 				AB620E7D28FD7D3900D144A7 /* FSNMDeleteURLTests.swift */,
@@ -206,7 +208,7 @@
 				AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */,
 				AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */,
 			);
-			path = FSNMURL;
+			path = URL;
 			sourceTree = "<group>";
 		};
 		AB93C66928F85D1D00336E71 = {
@@ -317,6 +319,7 @@
 				ABE50AA62900187600049C02 /* FSNMStatsOverView.swift */,
 				ABE510462901675F00706F7D /* FSNMStatsKeyView.swift */,
 				ABE51048290169C800706F7D /* FSNMStatsKeyValueView.swift */,
+				AB92329D290A8B5000B2BF15 /* FSNMStatsOwnerView.swift */,
 			);
 			path = FSNMStats;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				ABE5104F29018E5400706F7D /* FSNMProductsOverView.swift in Sources */,
 				AB1D12D629019E1B003C7E3B /* FSNMProductTagView.swift in Sources */,
 				ABE5102C29003FBF00706F7D /* OFFProductType.swift in Sources */,
+				AB92329E290A8B5000B2BF15 /* FSNMStatsOwnerView.swift in Sources */,
 				ABF847BC2906D8D300A20CF7 /* FSNMAuthView.swift in Sources */,
 				ABE5104C29017A0E00706F7D /* FSNMKeysOverView.swift in Sources */,
 				AB92329C2909762900B2BF15 /* AuthController.swift in Sources */,

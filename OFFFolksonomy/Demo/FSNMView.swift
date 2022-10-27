@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct FSNMView: View {
+    
     @ObservedObject var authController: AuthController
     
     var body: some View {
         List {
-            NavigationLink(destination: FSNMStatsOverView() ) {
+            NavigationLink(destination: FSNMStatsOverView(authController: authController) ) {
                 Text("Stats API")
             }
             NavigationLink(destination: FSNMProductsOverView() ) {

@@ -9,11 +9,13 @@ import SwiftUI
 import Collections
 
 class FSNMStatsKeyViewModel: ObservableObject {
+    
     @Published var productStats: [FSNM.ProductStats]
     @Published var error: String?
-    private var offAPI = OFFAPI(urlSession: URLSession.shared)
     @Published var key = ""
-    
+
+    private var fsnmSession = URLSession.shared
+
     init() {
         self.productStats = []
     }
@@ -25,7 +27,7 @@ class FSNMStatsKeyViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        offAPI.fetchStats(with: key) { (result) in
+        fsnmSession.fetchStats(with: key) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -43,6 +45,7 @@ class FSNMStatsKeyViewModel: ObservableObject {
 struct FSNMStatsKeyView: View {
     
     @StateObject var model = FSNMStatsKeyViewModel()
+    
     @State private var key: String = "ingredients:garlic"
     @State private var isFetching = false
 

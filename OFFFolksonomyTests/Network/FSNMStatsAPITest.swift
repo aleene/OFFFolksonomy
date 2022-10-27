@@ -10,17 +10,17 @@ import XCTest
 
 class FSNMStatsAPITest: XCTestCase {
 
-    var offAPI: OFFAPI!
+    var offSession: URLSession!
     var expectation: XCTestExpectation!
     let key = "ingredients:garlic"
-    let apiURL = URL.FSNMStatsURL(with: "ingredients:garlic")
+    let apiURL = HTTPRequest(api: .productsStats, with: "ingredients:garlic", and: nil, for: nil, has: nil).url!
 
 
     override func setUpWithError() throws {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockURLProtocol.self]
 
-        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
+        offSession = URLSession(configuration: configuration)
         expectation = expectation(description: "Expectation")
     }
 
@@ -43,7 +43,7 @@ class FSNMStatsAPITest: XCTestCase {
       }
       
       // Call API.
-        offAPI.fetchStats(with: key) { (result) in
+        offSession.fetchStats(with: key) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
