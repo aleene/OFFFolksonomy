@@ -10,15 +10,16 @@ import XCTest
 
 class FSNMKeysAPITest: XCTestCase {
 
-    var offAPI: OFFAPI!
+    var fsnmSession: URLSession!
     var expectation: XCTestExpectation!
-    let apiURL = URL.FSNMKeysURL()
+    let apiURL = HTTPRequest(api: .keys).url!
 
     override func setUpWithError() throws {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockURLProtocol.self]
 
-        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
+        fsnmSession = URLSession(configuration: configuration)
+
         expectation = expectation(description: "Expectation")
     }
 
@@ -40,7 +41,7 @@ class FSNMKeysAPITest: XCTestCase {
         }
       
         // Call API.
-        offAPI.fetchKeys() { (result) in
+        fsnmSession.fetchKeys() { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -73,7 +74,7 @@ class FSNMKeysAPITest: XCTestCase {
         }
       
       // Call API.
-        offAPI.fetchKeys() { (result) in
+        fsnmSession.fetchKeys() { (result) in
             DispatchQueue.main.async {
                 if result.0 != nil {
                     XCTFail("FSNMKeysAPITest:testSuccessfulResponse: wrong response")

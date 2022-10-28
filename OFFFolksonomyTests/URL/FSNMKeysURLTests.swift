@@ -16,31 +16,13 @@ class FSNMKeysURLTests: XCTestCase {
 
     func testProduct() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/keys"
-        let url = URL.FSNMKeysURL(for: .food, by: nil)
-        XCTAssertEqual(url.description, result)
-    }
-
-    func testProductBeauty() throws {
-        let result = "https://api.folksonomy.openbeautyfacts.org/keys"
-        let url = URL.FSNMKeysURL(for: .beauty, by: nil)
-        XCTAssertEqual(url.description, result)
-    }
-
-    func testProductPetFood() throws {
-        let result = "https://api.folksonomy.openpetfoodfacts.org/keys"
-        let url = URL.FSNMKeysURL(for: .petFood, by: nil)
-        XCTAssertEqual(url.description, result)
-    }
-
-    func testProductProduct() throws {
-        let result = "https://api.folksonomy.openproductfacts.org/keys"
-        let url = URL.FSNMKeysURL(for: .product, by: nil)
+        let url = HTTPRequest(api: .keys).url!
         XCTAssertEqual(url.description, result)
     }
 
     func testProductOwner() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/keys?owner=" + owner
-        let url = URL.FSNMKeysURL(for: .food, by: owner)
+        let url = HTTPRequest(api: .keys, for: nil, with: nil, and: nil, by: owner, having: nil).url!
         XCTAssertEqual(url.description, result)
     }
 

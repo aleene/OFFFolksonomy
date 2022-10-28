@@ -177,21 +177,20 @@ public struct FormBody: HTTPBody {
     }
 }
 
-//          NOT USED
-//public struct JSONBody: HTTPBody {
-//
-//    public let isEmpty: Bool = false
-//    public var additionalHeaders = ["Content-Type" : "application/json; charset=utf8"]
-//
-//    private let encoder: () throws -> Data
-//
-//    public init<T: Encodable>(_ value: T, encoder: JSONEncoder = JSONEncoder() ) {
-//        self.encoder = { try encoder.encode(value) }
-//    }
-//    public func encode() throws -> Data {
-//        return try encoder()
-//    }
-//}
+public struct JSONBody: HTTPBody {
+
+    public let isEmpty: Bool = false
+    public var additionalHeaders = ["Content-Type" : "application/json; charset=utf8"]
+
+    private let encoder: () throws -> Data
+
+    public init<T: Encodable>(_ value: T, encoder: JSONEncoder = JSONEncoder() ) {
+        self.encoder = { try encoder.encode(value) }
+    }
+    public func encode() throws -> Data {
+        return try encoder()
+    }
+}
 
 public protocol HTTPLoading {
     

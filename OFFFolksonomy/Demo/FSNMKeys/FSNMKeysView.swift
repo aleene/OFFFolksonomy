@@ -11,7 +11,8 @@ import Collections
 class FSNMKeysViewModel: ObservableObject {
     @Published var keys: [FSNM.Keys]
     @Published var error: String?
-    private var offAPI = OFFAPI(urlSession: URLSession.shared)
+    
+    private var fsnmSession = URLSession.shared
 
     init() {
         self.keys = []
@@ -24,7 +25,7 @@ class FSNMKeysViewModel: ObservableObject {
     // get the keys
     func update() {
         // get the remote data
-        offAPI.fetchKeys() { (result) in
+        fsnmSession.fetchKeys() { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {

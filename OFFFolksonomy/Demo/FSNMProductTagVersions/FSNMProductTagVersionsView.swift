@@ -14,7 +14,7 @@ class FSNMProductTagVersionsViewModel: ObservableObject {
     @Published var barcode = OFFBarcode(barcode: "")
     @Published var key = ""
 
-    private var offAPI = OFFAPI(urlSession: URLSession.shared)
+    private var fsnmSession = URLSession.shared
 
     init() {
         self.versions = []
@@ -27,7 +27,7 @@ class FSNMProductTagVersionsViewModel: ObservableObject {
     // get the keys
     func update() {
         // get the remote data
-        offAPI.fetchProductTagVersions(for: barcode, with: key) { (result) in
+        fsnmSession.fetchProductTagVersions(for: barcode, with: key) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {

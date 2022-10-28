@@ -10,15 +10,16 @@ import XCTest
 
 class FSNMProductTagsAPITest: XCTestCase {
 
-    var offAPI: OFFAPI!
+    var fsnmSession: URLSession!
     var expectation: XCTestExpectation!
-    let apiURL = URL.FSNMProductTagsURL(with: OFFBarcode(barcode: "3760091720115"))
+    let apiURL = HTTPRequest(api: .tags, for: "3760091720115", with: nil, and: nil, by: nil, having: nil).url!
 
     override func setUpWithError() throws {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockURLProtocol.self]
 
-        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
+        fsnmSession = URLSession(configuration: configuration)
+        
         expectation = expectation(description: "Expectation")
     }
 
@@ -62,7 +63,7 @@ class FSNMProductTagsAPITest: XCTestCase {
         }
       
         // Call API.
-        offAPI.fetchProductTags(with: barcode) { (result) in
+        fsnmSession.fetchProductTags(with: barcode) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {

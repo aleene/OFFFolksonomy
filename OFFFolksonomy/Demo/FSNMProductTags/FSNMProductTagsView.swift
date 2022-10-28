@@ -14,7 +14,7 @@ class FSNMProductTagsViewModel: ObservableObject {
     @Published var barcode: OFFBarcode = OFFBarcode(barcode: "")
     public var error: String?
 
-    private var offAPI = OFFAPI(urlSession: URLSession.shared)
+    private var fsnmSession = URLSession.shared
 
     init() {
         self.productTags = []
@@ -27,7 +27,7 @@ class FSNMProductTagsViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        offAPI.fetchProductTags(with: barcode) { (result) in
+        fsnmSession.fetchProductTags(with: barcode) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {

@@ -24,19 +24,19 @@ class FSNMStatsURLTests: XCTestCase {
 
     func testProductStatsOwner() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/products/stats?owner=" + owner
-        let url = HTTPRequest(api: .productsStats, with: nil, and: nil, for: owner, has: nil).url!
+        let url = HTTPRequest(api: .productsStats, for: nil, with: nil, and: nil, by: owner, having: nil).url!
         XCTAssertEqual(url.description, result)
     }
 
     func testProductStatsKey() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/products/stats?k=" + key
-        let url = HTTPRequest(api: .productsStats, with: key, and: nil, for: nil, has: nil).url!
+        let url = HTTPRequest(api: .productsStats, for: nil, with: key, and: nil, by: nil, having: nil).url!
         XCTAssertEqual(url.description, result)
     }
 
     func testProductStatsValue() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/products/stats?v=" + value
-        let url = HTTPRequest(api: .productsStats, with: nil, and: value, for: nil, has: nil).url!
+        let url = HTTPRequest(api: .productsStats, for: nil, with: nil, and: value, by: nil, having: nil).url!
         XCTAssertEqual(url.description, result)
     }
 
@@ -44,13 +44,13 @@ class FSNMStatsURLTests: XCTestCase {
     
     func testProductStatsKeyAndValue() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/products/stats?k=" + key + "&v=" + value
-        let url = HTTPRequest(api: .productsStats, with: key, and: value, for: nil, has: nil).url!
+        let url = HTTPRequest(api: .productsStats, for: nil, with: key, and: value, by: nil, having: nil).url!
         XCTAssertEqual(url.description, result)
     }
 
     func testProductStatsValueAndOwner() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/products/stats?v=" + value + "&owner=" + owner
-        let url = HTTPRequest(api: .productsStats, with: nil, and: value, for: owner, has: nil).url!
+        let url = HTTPRequest(api: .productsStats, for: nil, with: nil, and: value, by: owner, having: nil).url!
         XCTAssertEqual(url.description, result)
     }
 

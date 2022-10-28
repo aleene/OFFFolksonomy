@@ -27,56 +27,15 @@ extension FSNM {
     
 }
 
-extension OFFAPI {
-    /// Function to be used for fetching the product tag versions
+extension URLSession {
+
+/// Function to be used for fetching the product tag versions
     func fetchProductTagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: (Result<[FSNM.ProductTagVersions], Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
-        fetchArray(url: URL.FSNMProductTagVersionsURL(with: barcode, and: key), response: FSNM.ProductTagVersions.self) { (result) in
+        let request = HTTPRequest(api: .productTagVersions, for: barcode.barcode, with: key, and: nil, by: nil, having: nil)
+        fetchFSNMArray(request: request, response: FSNM.ProductTagVersions.self) { (result) in
             completion(result)
             return
         }
     }
     
-}
-
-extension URL {
-
-/// Convienience URL to get versions of a key of a product
-    public static func FSNMProductTagVersionsURL(with barcode: OFFBarcode, and key: String) -> URL {
-        return FSNMProductTagVersionsURL(for: .food, with: barcode, and: key, by: nil)
-    }
-
-/// Convienience URL to get versions of a key of a product for an owner
-    public static func FSNMProductTagVersionsURL(with barcode: OFFBarcode, and key: String, by owner: String?) -> URL {
-        return FSNMProductTagVersionsURL(for: .food, with: barcode, and: key, by: owner)
-    }
-
-    /**
-    Creates the API URL for the fetching of versions of a product.
-    - Parameters:
-        - barcode: the barcode of the product
-        - productType: the product type of the product
-    - Example:
-     https://api.folksonomy.openfoodfacts.org/product/3760091720116/evolutions/versions?owner=aleene
-    */
-    private static func FSNMProductTagVersionsURL(for productType: OFFProductType, with barcode: OFFBarcode, and key: String, by owner: String?) -> URL {
-                            
-            var url = folksonomyBase(for: productType)
-            url += Folksonomy.Product
-            url += Divider.Slash
-            url += barcode.barcode
-            url += Divider.Slash
-            url += key
-            url += Divider.Slash
-            url += Folksonomy.Versions
-
-            if let valid = owner {
-                url += Divider.QuestionMark
-                url += Folksonomy.Owner
-                url += Divider.Equal
-                url += valid
-            }
-            assert(URL(string: url) != nil, "URL:folksonomyTagVersions: url is nil")
-            return URL(string: url)!
-        }
-
 }

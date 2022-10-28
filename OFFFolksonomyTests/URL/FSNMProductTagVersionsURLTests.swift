@@ -16,8 +16,9 @@ class FSNMProductTagVersionsURLTests: XCTestCase {
     let keyToTest = "keytotest"
     
     func testProduct() throws {
-      //  let result = "https://api.folksonomy.openfoodfacts.org/product/" + barcodeToTest + "/" + keyToTest + "/versions"
-        //let url = URL.FSNMProductTagVersionsURL(for: .food, with: OFFBarcode(barcode: barcodeToTest), and: keyToTest, by: nil)
-        //XCTAssertEqual(url.description, result)
+        let result = "https://api.folksonomy.openfoodfacts.org/product/" + barcodeToTest + "/" + keyToTest + "/versions"
+        let url = HTTPRequest(api: .productTagVersions, for: barcodeToTest, with: keyToTest, and: nil, by: nil, having: nil).url!
+
+        XCTAssertEqual(url.description, result)
     }
 }

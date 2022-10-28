@@ -10,15 +10,15 @@ import XCTest
 
 class FSNMProductTagVersionAPITest: XCTestCase {
 
-    var offAPI: OFFAPI!
+    var fsnmSession: URLSession!
     var expectation: XCTestExpectation!
-    let apiURL = URL.FSNMProductTagVersionsURL(with: OFFBarcode(barcode: "3760091720115"), and: "evolutions")
+    let apiURL = HTTPRequest(api: .productTagVersions, for: "3760091720115", with: "evolutions", and: nil, by: nil, having: nil).url!
 
     override func setUpWithError() throws {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [MockURLProtocol.self]
 
-        offAPI = OFFAPI(urlSession: URLSession.init(configuration: configuration))
+        fsnmSession = URLSession(configuration: configuration)
         expectation = expectation(description: "Expectation")
     }
 
@@ -53,14 +53,14 @@ class FSNMProductTagVersionAPITest: XCTestCase {
         }
       
         // Call API.
-        offAPI.fetchProductTagVersions(for: barcode, with: key) { (result) in
+        fsnmSession.fetchProductTagVersions(for: barcode, with: key) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
                    case .success(_):
                        self.expectation?.fulfill()
                    case .failure(let error):
-                       XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected: \(error)")
+                       XCTFail("FSNMProductTagVersionAPITest:testSuccessfulResponse:Error was not expected: \(error)")
                    }
                } // Add other responses here
             }
