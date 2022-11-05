@@ -12,7 +12,11 @@ struct FSNMView: View {
     @ObservedObject var authController: AuthController
     
     var body: some View {
-        List {
+        VStack {
+        Group {
+            NavigationLink(destination: FSNMHelloView() ) {
+                Text("Hello API")
+            }
             NavigationLink(destination: FSNMStatsOverView(authController: authController) ) {
                 Text("Stats API")
             }
@@ -25,6 +29,8 @@ struct FSNMView: View {
             NavigationLink(destination: FSNMProductTagVersionsOverView() ) {
                     Text("Product Tag Versions API")
             }
+        }
+        Group {
             NavigationLink(destination: FSNMKeysOverView() ) {
                 Text("Keys API")
             }
@@ -33,10 +39,13 @@ struct FSNMView: View {
             }
             Text("Delete API ")
             Text("Put API ")
-            Text("Post API ")
-            NavigationLink(destination: FSNMAuthView(authController: authController)) {
+            NavigationLink(destination: FSNMPostProductTagView(authController: authController) ) {
+                Text("Post API ")
+            }
+            NavigationLink(destination: FSNMAuthView(authController: authController) ) {
                 Text("Auth API ")
             }
+        }
         }
         .navigationTitle("Folksonomy API's")
     }

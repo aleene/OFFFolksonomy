@@ -13,6 +13,7 @@ struct FSNM {
  */
     enum APIs {
         case auth
+        case hello
         case keys
         case ping
         case post
@@ -24,6 +25,7 @@ struct FSNM {
         var path: String {
             switch self {
             case .auth: return "/auth"
+            case .hello: return "/"
             case .keys: return "/keys"
             case .ping: return "/ping"
             case .post: return "/post"
@@ -84,7 +86,7 @@ Init for all producttypes supported by OFF. This will setup the correct host and
 */
     init(for productType: OFFProductType, for api: FSNM.APIs) {
         self.init()
-        self.host = productType.host
+        self.host = "api.folksonomy." + productType.host + ".org"
         self.path = api.path
     }
     
@@ -95,8 +97,7 @@ Init for all producttypes supported by OFF. This will setup the correct host and
  - api: the api required (i.e. .auth, .ping, etc)
  */
     init(api: FSNM.APIs) {
-        self.init()
-        self.host = OFFProductType.food.host
+        self.init(for: .food, for: api)
         self.path = api.path
     }
     
@@ -173,6 +174,7 @@ Init for the food folksonomy API. This will setup the correct host and path of t
         self.init(api: api)
         switch api {
         case .post:
+            self.method = .post
             // add the Authorization token header
             if tag.editor != nil,
                let validToken = token {
