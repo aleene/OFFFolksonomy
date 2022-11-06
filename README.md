@@ -25,9 +25,9 @@ Returns: A completion block with a Result enum (success or failure). The associa
 ### Ping API
 ### Put API
 Function to update the value for an existing tag.
-     
-    'func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void)'
-
+```
+func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void)'
+```
 - Parameters:
  - tag:  the tag to be updated
  - token: the token for the user. This can be retrieved with the Auth API
