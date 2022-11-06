@@ -21,7 +21,7 @@ class FSNMPingViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        offSession.fetchPing() { (result) in
+        offSession.FSNMping() { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let post):

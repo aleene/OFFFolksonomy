@@ -18,15 +18,23 @@ You can reuse the libraries from this repository. The steps:
 For all api's you need to setup an URLSession (for instance in your ViewModel), like:
 'private var fsnmSession = URLSession.shared'
 ### Hello API
-Function to check whether the folkosonomy server is available.
+Function to check whether the folksonomy server is available.
 ```    
     func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, Error>) -> Void)
 ```
-Returns: A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Hello struct and for the failure an Error.
+*Returns:* A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Hello struct and for the failure an Error.
 ### Ping API
+Function to check whether the folksonomy server is available.
+```    
+func FSNMping(completion: @escaping (_ result: Result<FSNM.Ping, Error>) -> Void)
+```    
+*Returns:*
+A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Ping struct and for the failure an Error.
+*Data:* The FSNM.Ping datastructure is received upon a succesful fetch. FSNM.Ping has only one variable ping (String), which will contain a timestamp put by the folksonomy server.
+
 ### Put API
 Function to update the value for an existing tag.
-```bash
+```
 func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void)'
 ```
 - Parameters:

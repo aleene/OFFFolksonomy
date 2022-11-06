@@ -19,7 +19,7 @@ extension FSNM {
 extension URLSession {
     
 /**
- Function to check whether the folkosonomy server is available.
+ Function to check whether the folksonomy server is available.
 
 - returns:
  A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Hello struct and for the failure an Error.
