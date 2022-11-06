@@ -247,10 +247,8 @@ extension URLSession: HTTPLoading {
             switch result {
             case .success(let response):
                 if response0.key == response.status.rawValue {
-                    print("fetchString: response: \(response.status.rawValue)")
                     if let data = response.body {
                         let str = String(data: data, encoding: .utf8)
-                        print("str: ", str)
                         // should check what T1 is
                         if let validString = str {
                             completion( (Result.success(validString as! T1), nil) )
@@ -267,7 +265,7 @@ extension URLSession: HTTPLoading {
                         let str = String(data: data, encoding: .utf8)
                         print("str: ", str)
                     }
-                    print("fetchArray: unsupported response: \(response.status.rawValue)", "   desc: \(response.body?.base64EncodedString())")
+                    print("fetchString: unsupported response: \(response.status.rawValue)", "   desc: \(response.body?.base64EncodedString())")
                     completion( (Result.failure(APIResponseError.unsupportedSuccessResponseType), nil) )
                     return
                 }

@@ -11,7 +11,7 @@ class FSNMPostProductTagViewModel: ObservableObject {
     @Published var productTag: FSNM.ProductTags?
     @Published var error: String?
     @Published var owner = ""
-
+    @Published var success = ""
     @ObservedObject var authController = AuthController()
 
     private var fsnmSession = URLSession.shared
@@ -25,7 +25,7 @@ class FSNMPostProductTagViewModel: ObservableObject {
                 if let primaryResult = result.0 {
                     switch primaryResult {
                     case .success(let suc):
-                        print(suc)
+                        self.success = suc
                     case .failure(let error):
                         self.error = error.localizedDescription
                     }
@@ -49,7 +49,7 @@ struct FSNMPostProductTagView: View {
 
     var body: some View {
         if isFetching {
-            Text("What to put here?")
+            Text("Result of post: \(model.success)")
             .navigationTitle("Tag creation")
         } else {
             VStack {
