@@ -20,7 +20,7 @@ class FSNMHelloViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        offSession.fetchHello() { (result) in
+        offSession.FSNMhello() { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let post):
