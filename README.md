@@ -19,8 +19,9 @@ For all api's you need to setup an URLSession (for instance in your ViewModel), 
 'private var fsnmSession = URLSession.shared'
 ### Hello API
 Function to check whether the folkosonomy server is available.
+```    
     func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, Error>) -> Void)
-
+```
 Returns: A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Hello struct and for the failure an Error.
 ### Ping API
 ### Put API
