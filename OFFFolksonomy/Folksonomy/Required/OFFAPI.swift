@@ -14,6 +14,10 @@ public class OFFAPI {
     public static func decode<T:Decodable>(data: Data?, type: T.Type, completion: @escaping (_ result: Result<T, Error>) -> Void)  {
         do {
             if let responseData = data {
+                if let validString = String(data: responseData, encoding: .utf8) {
+                    print(validString)
+                }
+
                 let decoded = try JSONDecoder().decode(type.self, from: responseData)
                 completion(Result.success(decoded))
                 return

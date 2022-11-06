@@ -61,7 +61,7 @@ class FSNMKeysAPITest: XCTestCase {
     func testSuccessfulResponse422() {
         // Prepare mock json response.
         let valerdet = FSNM.ValidationErrorDetail(loc: ["string"], msg: "msg", type: "type")
-        let mes = FSNM.ValidationError(detail: valerdet)
+        let mes = FSNM.ValidationError(detail: [valerdet])
         let data = try? JSONEncoder().encode(mes)
 
         MockURLProtocol.requestHandler = { request in

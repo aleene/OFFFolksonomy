@@ -1,13 +1,13 @@
 //
-//  FSNMPostProductTag.swift
+//  FSNMPutTagView.swift
 //  OFFFolksonomy
 //
-//  Created by Arnaud Leene on 28/10/2022.
+//  Created by Arnaud Leene on 06/11/2022.
 //
 
 import SwiftUI
 
-class FSNMPostProductTagViewModel: ObservableObject {
+class FSNMPutTagViewModel: ObservableObject {
     @Published var productTag: FSNM.ProductTags?
     @Published var error: String?
     @Published var owner = ""
@@ -20,7 +20,7 @@ class FSNMPostProductTagViewModel: ObservableObject {
     func update() {
         guard let validTag = productTag else { return }
         // get the remote data
-        fsnmSession.PostProductTag(validTag, for: authController.owner, has: authController.access_token) { (result) in
+        fsnmSession.putTag(validTag, has: authController.access_token) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -36,46 +36,51 @@ class FSNMPostProductTagViewModel: ObservableObject {
 
 }
 
-struct FSNMPostProductTagView: View {
-    
-    @StateObject var model = FSNMPostProductTagViewModel()
+struct FSNMPutTagView: View {
+    @StateObject var model = FSNMPutTagViewModel()
     // For fetching owner related fetches, authentication is required
     @ObservedObject var authController: AuthController
     
     @State private var barcode: String = ""
     @State private var tag_key: String = ""
     @State private var tag_value: String = ""
+    @State private var version: String = ""
     @State private var isFetching = false
+    
+    private var versionInteger: Int? {
+        Int(version)
+    }
 
     var body: some View {
         if isFetching {
-            Text("Result of post: \(model.success)")
-            .navigationTitle("Tag creation")
+            Text("Result of the put: \(model.success)")
+            .navigationTitle("Tag edit")
         } else {
             VStack {
-                Text("This post allows you to add a tag to a product.")
+                Text("This post allows you to change the value of a tag for a product.")
                     .padding()
                 Text("(Be sure to authenticate first)")
                 FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
                 FSNMInput(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
                 FSNMInput(title: "Enter tag value", placeholder: tag_value, text: $tag_value)
+                FSNMInput(title: "Enter new version", placeholder: version, text: $version)
                 Button(action: {
                     let productTag = FSNM.ProductTags(product: barcode,
                                                       k: tag_key,
                                                       v: tag_value,
                                                       owner: nil,
-                                                      version: nil,
+                                                      version: versionInteger,
                                                       editor: authController.owner,
                                                       last_edit: Date().ISO8601Format(),
-                                                      comment: "created by this app")
+                                                      comment: "created by OFFFolksonomy")
                     model.productTag = productTag
                     model.update()
                     isFetching = true
                     } )
                     {
-                        Text("Post tag")
+                        Text("Edit tag")
                         .font(.title)
-                        .navigationTitle("Post tag")
+                        .navigationTitle("Edit tag")
                         .onAppear {
                             isFetching = false
                             }
@@ -88,8 +93,8 @@ struct FSNMPostProductTagView: View {
     }
 }
 
-struct FSNMPostProductTagView_Previews: PreviewProvider {
+struct FSNMPutTagView_Previews: PreviewProvider {
     static var previews: some View {
-        FSNMPostProductTagView(authController: AuthController())
+        FSNMPutTagView(authController: AuthController())
     }
 }

@@ -261,6 +261,7 @@ extension URLSession: HTTPLoading {
                         return
                     }
                 } else {
+                    // should add 502 for authentication required
                     // unsupported response type
                     if let data = response.body {
                         if let str = String(data: data, encoding: .utf8) {

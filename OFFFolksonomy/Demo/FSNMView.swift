@@ -40,8 +40,10 @@ struct FSNMView: View {
             NavigationLink(destination: FSNMDeleteTagView(authController: authController) ) {
                 Text("Delete API ")
             }
-            Text("Put API ")
-            NavigationLink(destination: FSNMPostProductTagView(authController: authController) ) {
+            NavigationLink(destination: FSNMPutTagView(authController: authController) ) {
+                Text("Put API ")
+            }
+            NavigationLink(destination: FSNMPostTagView(authController: authController) ) {
                 Text("Post API ")
             }
             NavigationLink(destination: FSNMAuthView(authController: authController) ) {
