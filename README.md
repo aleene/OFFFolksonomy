@@ -53,7 +53,7 @@ func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, co
  - token: the token for the user. This can be retrieved with the Auth API
  - completion: the completion block: a tuple for the two possible results. The result is either .success of .failure.
     - The first successful result (code 200) gives a String (usually "ok")
-    - The seconds successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
+    - The second successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
 
 ### Stats API
 Retrieves a list of products for a key and/or value and/or owner.
@@ -61,12 +61,31 @@ Retrieves a list of products for a key and/or value and/or owner.
 func FSNMstats(with key: String?, and value: String?, for owner: String?, has token: String?, completion: @escaping (_ result: (Result<[FSNM.Stats], Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
 ```    
 **Parameters:**
- - key: the key of the tag for which the statistics must be searched
- - value: the key of the tag for which the statistics must be searched
- - owner:
- - token: the token, obtained via the Auth API
-**returns:**
+ - key: the key of the tag for which the statistics must be searched;
+ - value: the key of the tag for which the statistics must be searched;
+ - owner: the owner of the tag;
+ - token: the token, obtained via the Auth API (required if owner is specified);
+ 
+**Returns:**
    A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Stats struct and for the failure an Error. The FSNM.Stats struct has three variables: **product** (String), the barcode of the product; **keys** (Int), the number of keys associated with the product; **last_edit** (String), the last edit date; **editors**: the number of editors associated with the product.
+
+### Tag Versions API
+Retrieves a list of versions for a product and a key.
+```
+func FSNMtagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: (Result<[FSNM.TagVersion], Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
+```
+**Parameters:**
+- product: the barcode of the product
+- k: the key of the tag
+- value : the value of the tag
+- editor: the editor of the tag
+- last_edit: the last edit date of the tag
+- comment: a comment associated with the version
+- version: the version of the tag
+
+**Returns:**
+
+A completion block with a Result enum (success or failure). The associated value for success is a FSNM.TagVersion struct and for the failure an Error. The FSNM.TagVersion struct has the variables: product (String), the barcode of the product; k(String) the key of the tag; v (String) the value of the tag; version (Int) the version number of the tag; editor (String) the editor of this version; last_edit (String) the edit date of this version; comment (String) the associated comment for this version.
 
 ## Testing
 You can reuse the tests.

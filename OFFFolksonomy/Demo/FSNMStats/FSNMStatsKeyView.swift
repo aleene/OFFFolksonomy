@@ -10,7 +10,7 @@ import Collections
 
 class FSNMStatsKeyViewModel: ObservableObject {
     
-    @Published var productStats: [FSNM.ProductStats]
+    @Published var productStats: [FSNM.Stats]
     @Published var error: String?
     @Published var key = ""
 
@@ -27,7 +27,7 @@ class FSNMStatsKeyViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        fsnmSession.fetchStats(with: key) { (result) in
+        fsnmSession.FSNMstats(with: key, and: nil, for: nil, has: nil) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -81,7 +81,7 @@ struct FSNMStatsKeyView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNM.ProductStats {
+fileprivate extension FSNM.Stats {
         
     private var keysString : String {
         keys != nil ? "\(keys!)" : "nil"
@@ -91,7 +91,7 @@ fileprivate extension FSNM.ProductStats {
         editors != nil ? "\(editors!)" : "nil"
     }
 
-    // We like to keep the presentation order of the elements in FSNMAPI.ProductStats as it maps to the Swagger documentation
+    // We like to keep the presentation order of the elements in FSNMAPI.Stats as it maps to the Swagger documentation
     var dict: OrderedDictionary<String, String> {
         var temp: OrderedDictionary<String, String> = [:]
         temp["product: "] = product ?? "nil"

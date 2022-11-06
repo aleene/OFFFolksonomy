@@ -9,7 +9,7 @@ import SwiftUI
 import Collections
 
 class FSNMProductTagVersionsViewModel: ObservableObject {
-    @Published var versions: [FSNM.ProductTagVersions]
+    @Published var versions: [FSNM.TagVersion]
     @Published var error: String?
     @Published var barcode = OFFBarcode(barcode: "")
     @Published var key = ""
@@ -27,7 +27,7 @@ class FSNMProductTagVersionsViewModel: ObservableObject {
     // get the keys
     func update() {
         // get the remote data
-        fsnmSession.fetchProductTagVersions(for: barcode, with: key) { (result) in
+        fsnmSession.FSNMtagVersions(for: barcode, with: key) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -84,7 +84,7 @@ struct FSNMProductTagVersionsView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNM.ProductTagVersions {
+fileprivate extension FSNM.TagVersion {
     
     private var versionString : String {
         version != nil ? "\(version!)" : "nil"

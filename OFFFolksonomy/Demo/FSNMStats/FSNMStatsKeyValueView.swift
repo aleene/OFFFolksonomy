@@ -9,7 +9,7 @@ import SwiftUI
 import Collections
 
 class FSNMStatsKeyValueViewModel: ObservableObject {
-    @Published var productStats: [FSNM.ProductStats]
+    @Published var productStats: [FSNM.Stats]
     @Published var error: String?
     @Published var key = ""
     @Published var value = ""
@@ -27,7 +27,7 @@ class FSNMStatsKeyValueViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        fsnmSession.fetchStats(with: key, and: value) { (result) in
+        fsnmSession.FSNMstats(with: key, and: value, for: nil, has: nil) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -83,7 +83,7 @@ struct FSNMStatsKeyValueView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNM.ProductStats {
+fileprivate extension FSNM.Stats {
         
     private var keysString : String {
         keys != nil ? "\(keys!)" : "nil"

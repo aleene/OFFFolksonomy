@@ -10,7 +10,7 @@ import Collections
 
 class FSNMStatsOwnerViewModel: ObservableObject {
     
-    @Published var productStats: [FSNM.ProductStats]
+    @Published var productStats: [FSNM.Stats]
     @Published var error: String?
     @Published var owner = ""
 
@@ -29,7 +29,7 @@ class FSNMStatsOwnerViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        fsnmSession.fetchStats(with: nil, and: nil, for: owner, has: authController.access_token) { result in
+        fsnmSession.FSNMstats(with: nil, and: nil, for: owner, has: authController.access_token) { result in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -94,7 +94,7 @@ struct FSNMStatsOwnerView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNM.ProductStats {
+fileprivate extension FSNM.Stats {
         
     private var keysString : String {
         keys != nil ? "\(keys!)" : "nil"
