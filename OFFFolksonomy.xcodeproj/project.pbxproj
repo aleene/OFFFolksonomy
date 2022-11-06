@@ -37,6 +37,7 @@
 		ABE380962916C44E005C75ED /* FSNMDeleteTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380952916C44E005C75ED /* FSNMDeleteTag.swift */; };
 		ABE380982917B5F7005C75ED /* FSNMDeleteURLTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380972917B5F7005C75ED /* FSNMDeleteURLTTests.swift */; };
 		ABE3809A2917C913005C75ED /* FSNMPostURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380992917C913005C75ED /* FSNMPostURLTests.swift */; };
+		ABE3809C2917F765005C75ED /* FSNMPutTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE3809B2917F765005C75ED /* FSNMPutTag.swift */; };
 		ABE50A9928FF140400049C02 /* FSNMPingAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */; };
 		ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */; };
 		ABE50AA128FFEBF000049C02 /* FSNMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AA028FFEBF000049C02 /* FSNMView.swift */; };
@@ -114,6 +115,7 @@
 		ABE380952916C44E005C75ED /* FSNMDeleteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteTag.swift; sourceTree = "<group>"; };
 		ABE380972917B5F7005C75ED /* FSNMDeleteURLTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteURLTTests.swift; sourceTree = "<group>"; };
 		ABE380992917C913005C75ED /* FSNMPostURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPostURLTests.swift; sourceTree = "<group>"; };
+		ABE3809B2917F765005C75ED /* FSNMPutTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPutTag.swift; sourceTree = "<group>"; };
 		ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingAPITest.swift; sourceTree = "<group>"; };
 		ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingView.swift; sourceTree = "<group>"; };
 		ABE50AA028FFEBF000049C02 /* FSNMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMView.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				ABE5102229003FBF00706F7D /* OFFProductType.swift */,
 				ABE5102329003FBF00706F7D /* OFFBarcode.swift */,
 				ABF847BF290811F200A20CF7 /* HTTPLibrary.swift */,
+				ABE3809B2917F765005C75ED /* FSNMPutTag.swift */,
 				AB92329B2909762900B2BF15 /* AuthController.swift */,
 			);
 			path = Required;
@@ -520,6 +523,7 @@
 				AB1D133E29042ED1003C7E3B /* FSNMInput.swift in Sources */,
 				ABE5102729003FBF00706F7D /* FSNMPing.swift in Sources */,
 				ABE5104F29018E5400706F7D /* FSNMProductsOverView.swift in Sources */,
+				ABE3809C2917F765005C75ED /* FSNMPutTag.swift in Sources */,
 				AB1D12D629019E1B003C7E3B /* FSNMProductTagView.swift in Sources */,
 				ABE5102C29003FBF00706F7D /* OFFProductType.swift in Sources */,
 				AB92329E290A8B5000B2BF15 /* FSNMStatsOwnerView.swift in Sources */,

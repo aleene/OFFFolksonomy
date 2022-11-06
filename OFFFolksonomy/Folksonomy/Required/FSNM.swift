@@ -21,6 +21,7 @@ struct FSNM {
         case products
         case productsStats
         case productTagVersions
+        case put
         case tags
         
         var path: String {
@@ -34,6 +35,7 @@ struct FSNM {
             case .products: return "/products"
             case .productsStats: return "/products/stats"
             case .productTagVersions: return "/product" // needs to be extended with /<barcode>/<key>/versions
+            case .put: return "/product" // needs to be extended with body and headers
             case .tags: return "/product" // needs to be extended with /<barcode>
             }
         }
@@ -77,7 +79,7 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
     }
     
 /**
-Generic function for multiple FSNM API's. Most of these API's can return two succesfull response codes. It is assumed that all successful calls that return the data have response code 200 and the successful calls that return an error have response code 422.
+Generic function for multiple FSNM API's. Most of these API's can return two succesfull response codes. It is assumed that all successful calls that return the data have response code 200 with a string as response and the successful calls that return an error have response code 422.
 */
     func fetchFSNMString<T:Decodable> (request: HTTPRequest, response: T.Type, completion: @escaping (_ result: (Result<T,Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
             
@@ -215,6 +217,16 @@ Init for the food folksonomy API. This will setup the correct host and path of t
             }
             self.headers["accept"] = "application/json"
             self.body = JSONBody(tag)
+        case .put:
+            self.method = .put
+            // add the Authorization token header
+            if tag.editor != nil,
+               let validToken = token {
+                self.headers["Authorization"] = "Bearer \(validToken)"
+            }
+            self.headers["accept"] = "application/json"
+            self.body = JSONBody(tag)
+
         default:
             print("HTTPRequest:init(api:for:having:) - not a correct api)")
         }

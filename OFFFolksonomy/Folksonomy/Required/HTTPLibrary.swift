@@ -11,6 +11,7 @@ public enum HTTPMethod: String {
     case delete = "DELETE"
     case get = "GET"
     case post = "POST"
+    case put = "PUT"
 }
 
 public struct HTTPRequest {
@@ -262,10 +263,11 @@ extension URLSession: HTTPLoading {
                 } else {
                     // unsupported response type
                     if let data = response.body {
-                        let str = String(data: data, encoding: .utf8)
-                        print("str: ", str)
+                        if let str = String(data: data, encoding: .utf8) {
+                            print("str: \(str)" )
+                        }
                     }
-                    print("fetchString: unsupported response: \(response.status.rawValue)", "   desc: \(response.body?.base64EncodedString())")
+                    print("fetchString: unsupported response: \(response.status.rawValue)" )
                     completion( (Result.failure(APIResponseError.unsupportedSuccessResponseType), nil) )
                     return
                 }
@@ -306,10 +308,11 @@ extension URLSession: HTTPLoading {
                 } else {
                     // unsupported response type
                     if let data = response.body {
-                        let str = String(data: data, encoding: .utf8)
-                        print("str: ", str)
+                        if let str = String(data: data, encoding: .utf8) {
+                            print("str: \(str)" )
+                        }
                     }
-                    print("fetchArray: unsupported response: \(response.status.rawValue)", "   desc: \(response.body?.base64EncodedString())")
+                    print("fetchArray: unsupported response: \(response.status.rawValue)")
                     completion( (Result.failure(APIResponseError.unsupportedSuccessResponseType), nil) )
                     return
                 }

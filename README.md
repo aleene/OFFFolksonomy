@@ -19,6 +19,18 @@ For all api's you need to setup an URLSession (for instance in your ViewModel), 
 'private var fsnmSession = URLSession.shared'
 ### Stats API
 ### Ping API
+### Put API
+Function to update the value for an existing tag.
+     
+    'func PutProductTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void)'
+
+- Parameters:
+ - tag:  the tag to be updated
+ - token: the token for the user. This can be retrieved with the Auth API
+ - completion: the completion block: a tuple for the two possible results. The result is either .success of .failure.
+    - The first successful result (code 200) gives a String (usually "ok")
+    - The seconds successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
+
 ## Testing
 You can reuse the tests.
 
