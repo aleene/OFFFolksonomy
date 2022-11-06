@@ -37,7 +37,7 @@ struct FSNMView: View {
             NavigationLink(destination: FSNMPingView() ) {
                 Text("Ping API")
             }
-            NavigationLink(destination: FSNMDeleteView(authController: authController) ) {
+            NavigationLink(destination: FSNMDeleteTagView(authController: authController) ) {
                 Text("Delete API ")
             }
             Text("Put API ")

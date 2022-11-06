@@ -195,10 +195,13 @@ public struct JSONBody: HTTPBody {
 
 public protocol HTTPLoading {
     
-    func load(request: HTTPRequest, completion: @escaping (HTTPResult) -> Void)
+    // func load(request: HTTPRequest, completion: @escaping (HTTPResult) -> Void)
     
     // function to do additional decoding of a succesfully received json
     func fetch<T: Decodable> (request: HTTPRequest, responses: [Int:T.Type], completion: @escaping (_ result: Result<T, Error>) -> Void)
+
+    // function that receives a string for T1 and a json for T2
+    func fetchString<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int:T1.Type], [Int:T2.Type]), completion: @escaping (_ result: (Result<T1, Error>?, Result<T2, Error>?) ) -> Void)
 
     func fetchArray<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int:T1.Type], [Int:T2.Type]), completion: @escaping (_ result: (Result<[T1], Error>?, Result<T2, Error>?) ) -> Void)
 
@@ -229,6 +232,54 @@ extension URLSession: HTTPLoading {
         }
     }
     
+    public func fetchString<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int : T1.Type], [Int : T2.Type]), completion: @escaping ( (Result<T1, Error>?, Result<T2, Error>?) ) -> Void) {
+        
+        guard let response0 = responses.0.first else {
+            completion( (Result.failure(APIResponseError.parsing), nil) )
+            return
+        }
+        guard let response1 = responses.1.first else {
+            completion( (Result.failure(APIResponseError.parsing), nil) )
+            return
+        }
+
+        load(request: request) { result in
+            switch result {
+            case .success(let response):
+                if response0.key == response.status.rawValue {
+                    print("fetchString: response: \(response.status.rawValue)")
+                    if let data = response.body {
+                        let str = String(data: data, encoding: .utf8)
+                        print("str: ", str)
+                        // should check what T1 is
+                        if let validString = str {
+                            completion( (Result.success(validString as! T1), nil) )
+                        }
+                    }
+                } else if response1.key == response.status.rawValue {
+                    OFFAPI.decode(data: response.body, type: response1.value) { result in
+                        completion( (nil, result) )
+                        return
+                    }
+                } else {
+                    // unsupported response type
+                    if let data = response.body {
+                        let str = String(data: data, encoding: .utf8)
+                        print("str: ", str)
+                    }
+                    print("fetchArray: unsupported response: \(response.status.rawValue)", "   desc: \(response.body?.base64EncodedString())")
+                    completion( (Result.failure(APIResponseError.unsupportedSuccessResponseType), nil) )
+                    return
+                }
+            case .failure(let error):
+                // the original response failed
+                completion( (Result.failure(error), nil) )
+                return
+            }
+        }
+
+    }
+
     public func fetchArray<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int:T1.Type], [Int:T2.Type]), completion: @escaping (_ result: (Result<[T1], Error>?, Result<T2, Error>?) ) -> Void) {
         
         guard let response0 = responses.0.first else {
@@ -256,6 +307,10 @@ extension URLSession: HTTPLoading {
                     }
                 } else {
                     // unsupported response type
+                    if let data = response.body {
+                        let str = String(data: data, encoding: .utf8)
+                        print("str: ", str)
+                    }
                     print("fetchArray: unsupported response: \(response.status.rawValue)", "   desc: \(response.body?.base64EncodedString())")
                     completion( (Result.failure(APIResponseError.unsupportedSuccessResponseType), nil) )
                     return
@@ -321,6 +376,10 @@ extension URLSession: HTTPLoading {
 }
 
 public class MockLoader: HTTPLoading {
+    public func fetchString<T1, T2>(request: HTTPRequest, responses: ([Int : T1.Type], [Int : T2.Type]), completion: @escaping ((Result<T1, Error>?, Result<T2, Error>?)) -> Void) where T1 : Decodable, T2 : Decodable {
+    }
+    
+
     
     public func fetchArray<T1, T2>(request: HTTPRequest, responses: ([Int : T1.Type], [Int : T2.Type]), completion: @escaping ((Result<[T1], Error>?, Result<T2, Error>?)) -> Void) where T1 : Decodable, T2 : Decodable {
         

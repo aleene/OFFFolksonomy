@@ -59,7 +59,6 @@ struct FSNMPostProductTagView: View {
                 FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
                 FSNMInput(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
                 FSNMInput(title: "Enter tag value", placeholder: tag_value, text: $tag_value)
-                let nu = Date().ISO8601Format()
                 Button(action: {
                     let productTag = FSNM.ProductTags(product: barcode,
                                                       k: tag_key,
@@ -67,7 +66,7 @@ struct FSNMPostProductTagView: View {
                                                       owner: nil,
                                                       version: nil,
                                                       editor: authController.owner,
-                                                      last_edit: nu,
+                                                      last_edit: Date().ISO8601Format(),
                                                       comment: "created by this app")
                     model.productTag = productTag
                     model.update()

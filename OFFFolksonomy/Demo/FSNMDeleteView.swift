@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class FSNMDeleteViewModel: ObservableObject {
+class FSNMDeleteTagViewModel: ObservableObject {
     @Published var productTag: FSNM.ProductTags?
     @Published var error: String?
     @Published var owner = ""
@@ -36,8 +36,8 @@ class FSNMDeleteViewModel: ObservableObject {
 
 }
 
-struct FSNMDeleteView: View {
-    @StateObject var model = FSNMPostProductTagViewModel()
+struct FSNMDeleteTagView: View {
+    @StateObject var model = FSNMDeleteTagViewModel()
     // For fetching owner related fetches, authentication is required
     @ObservedObject var authController: AuthController
     
@@ -55,7 +55,7 @@ struct FSNMDeleteView: View {
             .navigationTitle("Tag deletion")
         } else {
             VStack {
-                Text("This post allows you to add a tag to a product.")
+                Text("This post allows you to delete a tag of a product.")
                     .padding()
                 Text("(Be sure to authenticate first)")
                 FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
@@ -68,8 +68,8 @@ struct FSNMDeleteView: View {
                                                       owner: nil,
                                                       version: versionInteger,
                                                       editor: authController.owner,
-                                                      last_edit: "",
-                                                      comment: "deleted by this app")
+                                                      last_edit: Date().ISO8601Format(),
+                                                      comment: "deleted by OFFFolksonomy")
                     model.productTag = productTag
                     model.update()
                     isFetching = true
@@ -90,8 +90,8 @@ struct FSNMDeleteView: View {
     }
 }
 
-struct FSNMDeleteView_Previews: PreviewProvider {
+struct FSNMDeleteTagView_Previews: PreviewProvider {
     static var previews: some View {
-        FSNMDeleteView(authController: AuthController())
+        FSNMDeleteTagView(authController: AuthController())
     }
 }

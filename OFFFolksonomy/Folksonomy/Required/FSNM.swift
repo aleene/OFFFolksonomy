@@ -75,6 +75,18 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
             return
         }
     }
+    
+/**
+Generic function for multiple FSNM API's. Most of these API's can return two succesfull response codes. It is assumed that all successful calls that return the data have response code 200 and the successful calls that return an error have response code 422.
+*/
+    func fetchFSNMString<T:Decodable> (request: HTTPRequest, response: T.Type, completion: @escaping (_ result: (Result<T,Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+            
+        fetchString(request: request, responses: ( [200:T.self], [422:FSNM.ValidationError.self]) ) { result in
+            completion(result)
+            return
+        }
+    }
+
 }
 
 extension HTTPRequest {
