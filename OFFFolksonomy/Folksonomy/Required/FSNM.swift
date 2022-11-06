@@ -13,6 +13,7 @@ struct FSNM {
  */
     enum APIs {
         case auth
+        case delete
         case hello
         case keys
         case ping
@@ -25,10 +26,11 @@ struct FSNM {
         var path: String {
             switch self {
             case .auth: return "/auth"
+            case .delete: return "/product"  // needs to be extended with /<barcode> /<key> ?version=<version>
             case .hello: return "/"
             case .keys: return "/keys"
             case .ping: return "/ping"
-            case .post: return "/post"
+            case .post: return "/product"
             case .products: return "/products"
             case .productsStats: return "/products/stats"
             case .productTagVersions: return "/product" // needs to be extended with /<barcode>/<key>/versions
@@ -48,7 +50,7 @@ struct FSNM {
  Some API's (ProductStats) can return a validation error with response code 422.
  */
     public struct ValidationError: Codable {
-        var detail: ValidationErrorDetail?
+        var detail: [ValidationErrorDetail] = []
     }
     
     public struct ValidationErrorDetail: Codable {
@@ -173,6 +175,25 @@ Init for the food folksonomy API. This will setup the correct host and path of t
     init(api: FSNM.APIs, for tag: FSNM.ProductTags, having token: String?) {
         self.init(api: api)
         switch api {
+        case .delete:
+            if let validProduct = tag.product,
+               let validTag = tag.k,
+               let validVersion = tag.version {
+                self.method = .delete
+                self.path = api.path + "/" + "\(validProduct)" + "/" + "\(validTag)"
+                var queryItems: [URLQueryItem] = []
+                queryItems.append(URLQueryItem(name: "version", value: "\(validVersion)" ) )
+                self.queryItems = queryItems
+
+                // add the Authorization token header
+                if tag.editor != nil,
+                   let validToken = token {
+                    self.headers["Authorization"] = "Bearer \(validToken)"
+                }
+                self.headers["Accept"] = "application/json"
+            } else {
+                print("No valid product")
+            }
         case .post:
             self.method = .post
             // add the Authorization token header
@@ -180,9 +201,10 @@ Init for the food folksonomy API. This will setup the correct host and path of t
                let validToken = token {
                 self.headers["Authorization"] = "Bearer \(validToken)"
             }
+            self.headers["accept"] = "application/json"
             self.body = JSONBody(tag)
         default:
-            print("HTTPRequest:init(api:for:having:) - not a post api)")
+            print("HTTPRequest:init(api:for:having:) - not a correct api)")
         }
 
     }

@@ -32,6 +32,7 @@ extension URLSession {
 /// Function to be used for fetching the product tag versions
     func fetchProductTagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: (Result<[FSNM.ProductTagVersions], Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
         let request = HTTPRequest(api: .productTagVersions, for: barcode.barcode, with: key, and: nil, by: nil, having: nil)
+        
         fetchFSNMArray(request: request, response: FSNM.ProductTagVersions.self) { (result) in
             completion(result)
             return

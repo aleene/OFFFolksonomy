@@ -33,6 +33,10 @@
 		AB93C67D28F85D1E00336E71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67C28F85D1E00336E71 /* Preview Assets.xcassets */; };
 		ABE380902916B0A7005C75ED /* FSNMHelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE3808F2916B0A7005C75ED /* FSNMHelloView.swift */; };
 		ABE380922916B1BC005C75ED /* FSNMHello.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380912916B1BC005C75ED /* FSNMHello.swift */; };
+		ABE380942916C249005C75ED /* FSNMDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380932916C249005C75ED /* FSNMDeleteView.swift */; };
+		ABE380962916C44E005C75ED /* FSNMDeleteTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380952916C44E005C75ED /* FSNMDeleteTag.swift */; };
+		ABE380982917B5F7005C75ED /* FSNMDeleteURLTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380972917B5F7005C75ED /* FSNMDeleteURLTTests.swift */; };
+		ABE3809A2917C913005C75ED /* FSNMPostURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE380992917C913005C75ED /* FSNMPostURLTests.swift */; };
 		ABE50A9928FF140400049C02 /* FSNMPingAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */; };
 		ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */; };
 		ABE50AA128FFEBF000049C02 /* FSNMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE50AA028FFEBF000049C02 /* FSNMView.swift */; };
@@ -106,6 +110,10 @@
 		AB93C68F28F941B400336E71 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ABE3808F2916B0A7005C75ED /* FSNMHelloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMHelloView.swift; sourceTree = "<group>"; };
 		ABE380912916B1BC005C75ED /* FSNMHello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMHello.swift; sourceTree = "<group>"; };
+		ABE380932916C249005C75ED /* FSNMDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteView.swift; sourceTree = "<group>"; };
+		ABE380952916C44E005C75ED /* FSNMDeleteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteTag.swift; sourceTree = "<group>"; };
+		ABE380972917B5F7005C75ED /* FSNMDeleteURLTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteURLTTests.swift; sourceTree = "<group>"; };
+		ABE380992917C913005C75ED /* FSNMPostURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPostURLTests.swift; sourceTree = "<group>"; };
 		ABE50A9828FF140400049C02 /* FSNMPingAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingAPITest.swift; sourceTree = "<group>"; };
 		ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingView.swift; sourceTree = "<group>"; };
 		ABE50AA028FFEBF000049C02 /* FSNMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMView.swift; sourceTree = "<group>"; };
@@ -202,6 +210,8 @@
 			children = (
 				AB620E7528FD5EBC00D144A7 /* FSNMKeysURLTests.swift */,
 				AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */,
+				ABE380972917B5F7005C75ED /* FSNMDeleteURLTTests.swift */,
+				ABE380992917C913005C75ED /* FSNMPostURLTests.swift */,
 				ABF847BD2906E18700A20CF7 /* FSNMAuthURLTests.swift */,
 				AB620E6F28FD58A900D144A7 /* FSNMProductsURLTests.swift */,
 				AB620E7328FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift */,
@@ -255,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE50AA028FFEBF000049C02 /* FSNMView.swift */,
+				ABE380932916C249005C75ED /* FSNMDeleteView.swift */,
 				AB1D134829058C65003C7E3B /* Generic */,
 				ABF847BB2906D8D300A20CF7 /* FSNMAuthView.swift */,
 				ABE50A9D28FFE69400049C02 /* FSNMPingView.swift */,
@@ -283,6 +294,7 @@
 			children = (
 				ABF847B92906D25300A20CF7 /* FSNMAuth.swift */,
 				AB92329F290AE78D00B2BF15 /* FSNMPostProduct.swift */,
+				ABE380952916C44E005C75ED /* FSNMDeleteTag.swift */,
 				ABE5101A29003FBF00706F7D /* FSNMKeys.swift */,
 				ABE5101C29003FBF00706F7D /* FSNMPing.swift */,
 				ABE380912916B1BC005C75ED /* FSNMHello.swift */,
@@ -476,7 +488,9 @@
 				ABE510422901326800706F7D /* FSNMStatsTest.swift in Sources */,
 				ABE50AA52900058800049C02 /* FSNMStatsAPITest.swift in Sources */,
 				ABF847BE2906E18700A20CF7 /* FSNMAuthURLTests.swift in Sources */,
+				ABE380982917B5F7005C75ED /* FSNMDeleteURLTTests.swift in Sources */,
 				ABE50AAB29003C4900049C02 /* FSNMProductsAPITest.swift in Sources */,
+				ABE3809A2917C913005C75ED /* FSNMPostURLTests.swift in Sources */,
 				ABE510402901298F00706F7D /* FSNMPingTest.swift in Sources */,
 				AB620E7428FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift in Sources */,
 				ABE510352900560F00706F7D /* FSNMProductTagVersionAPITest.swift in Sources */,
@@ -497,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABE510512901901400706F7D /* FSNMProductsKeyValueView.swift in Sources */,
+				ABE380942916C249005C75ED /* FSNMDeleteView.swift in Sources */,
 				ABE380902916B0A7005C75ED /* FSNMHelloView.swift in Sources */,
 				ABE50AA128FFEBF000049C02 /* FSNMView.swift in Sources */,
 				ABF847C0290811F200A20CF7 /* HTTPLibrary.swift in Sources */,
@@ -517,6 +532,7 @@
 				AB1D12DC2903FAA5003C7E3B /* FSNMDictView.swift in Sources */,
 				ABE510332900441200706F7D /* FSNMProductTagVersions.swift in Sources */,
 				ABE5102429003FBF00706F7D /* FSNMProducts.swift in Sources */,
+				ABE380962916C44E005C75ED /* FSNMDeleteTag.swift in Sources */,
 				ABE510472901675F00706F7D /* FSNMStatsKeyView.swift in Sources */,
 				ABE5102D29003FBF00706F7D /* OFFBarcode.swift in Sources */,
 				ABE50A9E28FFE69400049C02 /* FSNMPingView.swift in Sources */,

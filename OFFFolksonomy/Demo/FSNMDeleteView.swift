@@ -1,13 +1,13 @@
 //
-//  FSNMPostProductTag.swift
+//  FSNMDeleteView.swift
 //  OFFFolksonomy
 //
-//  Created by Arnaud Leene on 28/10/2022.
+//  Created by Arnaud Leene on 05/11/2022.
 //
 
 import SwiftUI
 
-class FSNMPostProductTagViewModel: ObservableObject {
+class FSNMDeleteViewModel: ObservableObject {
     @Published var productTag: FSNM.ProductTags?
     @Published var error: String?
     @Published var owner = ""
@@ -20,7 +20,7 @@ class FSNMPostProductTagViewModel: ObservableObject {
     func update() {
         guard let validTag = productTag else { return }
         // get the remote data
-        fsnmSession.PostProductTag(validTag, for: authController.owner, has: authController.access_token) { (result) in
+        fsnmSession.deleteTag(validTag, for: authController.owner, has: authController.access_token) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -36,21 +36,23 @@ class FSNMPostProductTagViewModel: ObservableObject {
 
 }
 
-struct FSNMPostProductTagView: View {
-    
+struct FSNMDeleteView: View {
     @StateObject var model = FSNMPostProductTagViewModel()
     // For fetching owner related fetches, authentication is required
     @ObservedObject var authController: AuthController
     
     @State private var barcode: String = ""
     @State private var tag_key: String = ""
-    @State private var tag_value: String = ""
+    @State private var version: String = ""
+    private var versionInteger: Int? {
+        Int(version)
+    }
     @State private var isFetching = false
 
     var body: some View {
         if isFetching {
             Text("What to put here?")
-            .navigationTitle("Tag creation")
+            .navigationTitle("Tag deletion")
         } else {
             VStack {
                 Text("This post allows you to add a tag to a product.")
@@ -58,25 +60,24 @@ struct FSNMPostProductTagView: View {
                 Text("(Be sure to authenticate first)")
                 FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
                 FSNMInput(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
-                FSNMInput(title: "Enter tag value", placeholder: tag_value, text: $tag_value)
-                let nu = Date().ISO8601Format()
+                FSNMInput(title: "Enter version (integer)", placeholder: version, text: $version)
                 Button(action: {
                     let productTag = FSNM.ProductTags(product: barcode,
                                                       k: tag_key,
-                                                      v: tag_value,
+                                                      v: nil,
                                                       owner: nil,
-                                                      version: nil,
+                                                      version: versionInteger,
                                                       editor: authController.owner,
-                                                      last_edit: nu,
-                                                      comment: "created by this app")
+                                                      last_edit: "",
+                                                      comment: "deleted by this app")
                     model.productTag = productTag
                     model.update()
                     isFetching = true
                     } )
                     {
-                        Text("Post tag")
+                        Text("Delete tag")
                         .font(.title)
-                        .navigationTitle("Post tag")
+                        .navigationTitle("Delete tag")
                         .onAppear {
                             isFetching = false
                             }
@@ -89,8 +90,8 @@ struct FSNMPostProductTagView: View {
     }
 }
 
-struct FSNMPostProductTagView_Previews: PreviewProvider {
+struct FSNMDeleteView_Previews: PreviewProvider {
     static var previews: some View {
-        FSNMPostProductTagView(authController: AuthController())
+        FSNMDeleteView(authController: AuthController())
     }
 }

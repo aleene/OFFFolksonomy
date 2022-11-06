@@ -8,6 +8,7 @@
 import Foundation
 
 public enum HTTPMethod: String {
+    case delete = "DELETE"
     case get = "GET"
     case post = "POST"
 }
@@ -253,10 +254,9 @@ extension URLSession: HTTPLoading {
                         completion( (nil, result) )
                         return
                     }
-
                 } else {
                     // unsupported response type
-                    print("fetchArray: unsupported response: \(response.status.rawValue)")
+                    print("fetchArray: unsupported response: \(response.status.rawValue)", "   desc: \(response.body?.base64EncodedString())")
                     completion( (Result.failure(APIResponseError.unsupportedSuccessResponseType), nil) )
                     return
                 }
