@@ -9,7 +9,7 @@ import SwiftUI
 import Collections
 
 class FSNMKeysViewModel: ObservableObject {
-    @Published var keys: [FSNM.Keys]
+    @Published var keys: [FSNM.Key]
     @Published var error: String?
     
     private var fsnmSession = URLSession.shared
@@ -25,7 +25,7 @@ class FSNMKeysViewModel: ObservableObject {
     // get the keys
     func update() {
         // get the remote data
-        fsnmSession.fetchKeys() { (result) in
+        fsnmSession.FSNMkeys() { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
@@ -58,7 +58,7 @@ struct FSNMKeysView_Previews: PreviewProvider {
     }
 }
 
-fileprivate extension FSNM.Keys {
+fileprivate extension FSNM.Key {
         
     private var countString : String {
         count != nil ? "\(count!)" : "nil"

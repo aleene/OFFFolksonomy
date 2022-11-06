@@ -28,12 +28,11 @@ URLSession function to check whether the folksonomy server is available.
 
 ### Keys API
 Retrieves the list of all keys on the folksonomy server with statistics.
-Declaration
-```    
 
+```
 func FSNMkeys(completion: @escaping (_ result: (Result<[FSNM.Keys], Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
-```    
-**Returns:** A completion block with a Result enum (success or failure). The associated value for success is a **FSNM.Keys** struct and for the failure an Error. The **FSNM.Keys** structure has three variables: **k** (String), the name of the key; **count** (Int), the numer of occurences; **values** (Int), the numer of associated values.
+```
+**Returns:** A completion block with a Result enum (success or failure). The associated value for success is an array of **FSNM.Key** struct and for the failure an Error. The **FSNM.Key** structure has three variables: **k** (String), the name of the key; **count** (Int), the numer of occurences; **values** (Int), the numer of associated values.
 
 ### Ping API
 URLSession function to check whether the folksonomy server is available.
@@ -55,6 +54,19 @@ func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, co
  - completion: the completion block: a tuple for the two possible results. The result is either .success of .failure.
     - The first successful result (code 200) gives a String (usually "ok")
     - The seconds successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
+
+### Stats API
+Retrieves a list of products for a key and/or value and/or owner.
+```
+func FSNMstats(with key: String?, and value: String?, for owner: String?, has token: String?, completion: @escaping (_ result: (Result<[FSNM.Stats], Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
+```    
+**Parameters:**
+ - key: the key of the tag for which the statistics must be searched
+ - value: the key of the tag for which the statistics must be searched
+ - owner:
+ - token: the token, obtained via the Auth API
+**returns:**
+   A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Stats struct and for the failure an Error. The FSNM.Stats struct has three variables: **product** (String), the barcode of the product; **keys** (Int), the number of keys associated with the product; **last_edit** (String), the last edit date; **editors**: the number of editors associated with the product.
 
 ## Testing
 You can reuse the tests.
