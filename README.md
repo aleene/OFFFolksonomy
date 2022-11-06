@@ -16,21 +16,33 @@ You can reuse the libraries from this repository. The steps:
 ## Usage
 ### Initialisation
 For all api's you need to setup an URLSession (for instance in your ViewModel), like:
-'private var fsnmSession = URLSession.shared'
+```    
+private var fsnmSession = URLSession.shared
+```    
 ### Hello API
-Function to check whether the folksonomy server is available.
+URLSession function to check whether the folksonomy server is available.
 ```    
     func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, Error>) -> Void)
 ```
-*Returns:* A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Hello struct and for the failure an Error.
+**Returns:** A completion block with a Result enum (success or failure). The associated value for success is a **FSNM.Hello** struct and for the failure an Error. The **FSNM.Hello** struct has one variable: **message**
+
+### Keys API
+Retrieves the list of all keys on the folksonomy server with statistics.
+Declaration
+```    
+
+func FSNMkeys(completion: @escaping (_ result: (Result<[FSNM.Keys], Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
+```    
+**Returns:** A completion block with a Result enum (success or failure). The associated value for success is a **FSNM.Keys** struct and for the failure an Error. The **FSNM.Keys** structure has three variables: **k** (String), the name of the key; **count** (Int), the numer of occurences; **values** (Int), the numer of associated values.
+
 ### Ping API
-Function to check whether the folksonomy server is available.
+URLSession function to check whether the folksonomy server is available.
 ```    
 func FSNMping(completion: @escaping (_ result: Result<FSNM.Ping, Error>) -> Void)
 ```    
-*Returns:*
+**Returns:**
 A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Ping struct and for the failure an Error.
-*Data:* The FSNM.Ping datastructure is received upon a succesful fetch. FSNM.Ping has only one variable ping (String), which will contain a timestamp put by the folksonomy server.
+**Data:** The **FSNM.Ping** datastructure is received upon a succesful fetch. **FSNM.Ping** has only one variable: **ping** (String), which will contain a timestamp put by the folksonomy server.
 
 ### Put API
 Function to update the value for an existing tag.
