@@ -27,7 +27,7 @@ class FSNMProductsKeyValueViewModel: ObservableObject {
     // get the properties
     func update() {
         // get the remote data
-        fsnmSession.fetchProducts(with: key, and: value) { (result) in
+        fsnmSession.FSNMproducts(with: key, and: value) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {

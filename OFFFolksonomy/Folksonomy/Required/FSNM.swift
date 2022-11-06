@@ -186,7 +186,7 @@ Init for the food folksonomy API. This will setup the correct host and path of t
         }
     }
     
-    init(api: FSNM.APIs, for tag: FSNM.ProductTags, having token: String?) {
+    init(api: FSNM.APIs, for tag: FSNM.Tag, having token: String?) {
         self.init(api: api)
         switch api {
         case .delete:

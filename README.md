@@ -22,7 +22,7 @@ private var fsnmSession = URLSession.shared
 ### Hello API
 URLSession function to check whether the folksonomy server is available.
 ```    
-    func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, Error>) -> Void)
+func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, Error>) -> Void)
 ```
 **Returns:** A completion block with a Result enum (success or failure). The associated value for success is a **FSNM.Hello** struct and for the failure an Error. The **FSNM.Hello** struct has one variable: **message**
 
@@ -43,12 +43,43 @@ func FSNMping(completion: @escaping (_ result: Result<FSNM.Ping, Error>) -> Void
 A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Ping struct and for the failure an Error.
 **Data:** The **FSNM.Ping** datastructure is received upon a succesful fetch. **FSNM.Ping** has only one variable: **ping** (String), which will contain a timestamp put by the folksonomy server.
 
+### Products API
+Retrieves all products for a specific key and/or value.
+```    
+func FSNMproducts(with key: String?, and value: String?, completion: @escaping (_ result: (Result<[FSNM.Product], Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
+```    
+**Parameters:**
+- product: the barcode of the product
+- k: the key of the tag
+- v : the value of the tag
+
+**Returns:**
+A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Product struct and for the failure an Error. The FSNM.Product struct has the variables: product (String), the barcode of the product; k(String) the key of the tag; v (String) the value of the tag;
+
+### Product Tags API
+Retrieves all tags for a product.
+```    
+func FSNMtags(with barcode: OFFBarcode, and key: String?, completion: @escaping (_ result: (Result<[FSNM.Tag], Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
+```    
+**Parameters:**
+- product: the barcode of the product
+- k: the key of the tag
+- v: the value of the tag
+- owner: the owner of the tag
+- version: the tag version
+- editor: the tag editor
+- last_edit: the last edit date
+- comment: the tag comment
+
+**Returns:**
+A completion block with a Result enum (success or failure). The associated value for success is an array of FSNM.Tag struct and for the failure an Error. The FSNM.Tag struct has the variables: product (String), the barcode of the product; k(String) the key of the tag; v (String) the value of the tag; owner (string) the owner of the tag; version (Int) the tag version; editor (String) the tag editor; last_edit: (String) the last edit date; comment (String) the tag comment.
+
 ### Put API
 Function to update the value for an existing tag.
 ```
 func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void)'
 ```
-- Parameters:
+**Parameters:**
  - tag:  the tag to be updated
  - token: the token for the user. This can be retrieved with the Auth API
  - completion: the completion block: a tuple for the two possible results. The result is either .success of .failure.

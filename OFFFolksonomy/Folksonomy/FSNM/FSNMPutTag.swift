@@ -28,7 +28,7 @@ import Foundation
 extension URLSession {
     
 /// function to hide the intricates of the URL Stats API from the user
-    func putTag(_ tag: FSNM.ProductTags, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+    func FSNMputTag(_ tag: FSNM.Tag, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
         let request = HTTPRequest(api: .put, for: tag, having: token)
 
         fetchFSNMString(request: request, response: String.self) { result in

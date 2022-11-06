@@ -8,7 +8,7 @@
 import SwiftUI
 
 class FSNMPostTagViewModel: ObservableObject {
-    @Published var productTag: FSNM.ProductTags?
+    @Published var productTag: FSNM.Tag?
     @Published var error: String?
     @Published var owner = ""
     @Published var success = ""
@@ -60,7 +60,7 @@ struct FSNMPostTagView: View {
                 FSNMInput(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
                 FSNMInput(title: "Enter tag value", placeholder: tag_value, text: $tag_value)
                 Button(action: {
-                    let productTag = FSNM.ProductTags(product: barcode,
+                    let productTag = FSNM.Tag(product: barcode,
                                                       k: tag_key,
                                                       v: tag_value,
                                                       owner: nil,

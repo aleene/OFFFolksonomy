@@ -8,7 +8,7 @@
 import SwiftUI
 
 class FSNMDeleteTagViewModel: ObservableObject {
-    @Published var productTag: FSNM.ProductTags?
+    @Published var productTag: FSNM.Tag?
     @Published var error: String?
     @Published var owner = ""
 
@@ -62,14 +62,14 @@ struct FSNMDeleteTagView: View {
                 FSNMInput(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
                 FSNMInput(title: "Enter version (integer)", placeholder: version, text: $version)
                 Button(action: {
-                    let productTag = FSNM.ProductTags(product: barcode,
-                                                      k: tag_key,
-                                                      v: nil,
-                                                      owner: nil,
-                                                      version: versionInteger,
-                                                      editor: authController.owner,
-                                                      last_edit: Date().ISO8601Format(),
-                                                      comment: "deleted by OFFFolksonomy")
+                    let productTag = FSNM.Tag(product: barcode,
+                                              k: tag_key,
+                                              v: nil,
+                                              owner: nil,
+                                              version: versionInteger,
+                                              editor: authController.owner,
+                                              last_edit: Date().ISO8601Format(),
+                                              comment: "deleted by OFFFolksonomy")
                     model.productTag = productTag
                     model.update()
                     isFetching = true
