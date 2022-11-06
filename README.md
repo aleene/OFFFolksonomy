@@ -25,7 +25,7 @@ Returns: A completion block with a Result enum (success or failure). The associa
 ### Ping API
 ### Put API
 Function to update the value for an existing tag.
-```
+```bash
 func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void)'
 ```
 - Parameters:
