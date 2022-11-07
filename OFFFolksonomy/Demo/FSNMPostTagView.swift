@@ -20,7 +20,7 @@ class FSNMPostTagViewModel: ObservableObject {
     func update() {
         guard let validTag = productTag else { return }
         // get the remote data
-        fsnmSession.PostProductTag(validTag, for: authController.owner, has: authController.access_token) { (result) in
+        fsnmSession.FSNMpostTag(validTag, for: authController.owner, has: authController.access_token) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {

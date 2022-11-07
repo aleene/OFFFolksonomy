@@ -18,13 +18,27 @@ You can reuse the libraries from this repository. The steps:
 For all api's you need to setup an URLSession (for instance in your ViewModel), like:
 ```    
 private var fsnmSession = URLSession.shared
+```
+
+### Delete API
+Deletes a tag of a product.
 ```    
+func FSNMdelete(_ tag: FSNM.Tag, for owner: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
+```    
+** Parameters **
+- product: the FSNM tag to be deleted
+- owner: the tag owner
+- token: the token of the user (get the token via the Auth API)
+
+**Returns**
+A completion block with a Result enum (success or failure) tuple. The associated value for success is a string and for the failure an Error.
+
 ### Hello API
 URLSession function to check whether the folksonomy server is available.
 ```    
 func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, Error>) -> Void)
 ```
-**Returns:** A completion block with a Result enum (success or failure). The associated value for success is a **FSNM.Hello** struct and for the failure an Error. The **FSNM.Hello** struct has one variable: **message**
+** Returns :** A completion block with a Result enum (success or failure). The associated value for success is a **FSNM.Hello** struct and for the failure an Error. The **FSNM.Hello** struct has one variable: **message**
 
 ### Keys API
 Retrieves the list of all keys on the folksonomy server with statistics.
@@ -115,11 +129,15 @@ func FSNMtagVersions(for barcode: OFFBarcode, with key: String, completion: @esc
 - version: the version of the tag
 
 **Returns:**
-
 A completion block with a Result enum (success or failure). The associated value for success is a FSNM.TagVersion struct and for the failure an Error. The FSNM.TagVersion struct has the variables: product (String), the barcode of the product; k(String) the key of the tag; v (String) the value of the tag; version (Int) the version number of the tag; editor (String) the editor of this version; last_edit (String) the edit date of this version; comment (String) the associated comment for this version.
 
 ## Testing
 You can reuse the tests.
+
+## To Be Done
+* error handling is at the moment rudimentary
+* extend the support for owner
+* auth by cookie is not implemented
 
 ## Requirements
 The demo application has been tested under:

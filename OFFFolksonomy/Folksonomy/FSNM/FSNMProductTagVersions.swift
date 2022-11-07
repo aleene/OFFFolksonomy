@@ -32,11 +32,11 @@ extension URLSession {
 /**
 Retrieves a list of versions for a product and a key.
  
- - parameters:
+- Parameters:
  - product: the barcode of the product
  - k: the key of the tag
  - value : the value of the tag
- - version: the version of the tag
+ - 'version: the version of the tag
  - editor: the editor of the tag
  - last_edit: the last edit date of the tag
  - comment: a comment associated with the version

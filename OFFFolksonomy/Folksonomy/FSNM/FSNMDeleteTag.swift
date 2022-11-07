@@ -19,8 +19,18 @@ extension FSNM {
 }
 extension URLSession {
     
-/// function to hide the intricates of the URL Stats API from the user
-    func deleteTag(_ tag: FSNM.Tag, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+/**
+Deletes a tag of a product.
+             
+- Parameters:
+ - product: the FSNM tag to be deleted
+ - owner: the tag owner
+ - token: the token of the user (get the token via the Auth API)
+             
+- returns:
+A completion block with a Result enum (success or failure). The associated value for success is a string and for the failure an Error.
+    */
+    func FSNMdelete(_ tag: FSNM.Tag, for owner: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
         let request = HTTPRequest(api: .delete, for: tag, having: token)
 
         fetchFSNMString(request: request, response: String.self) { result in

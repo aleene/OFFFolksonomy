@@ -20,7 +20,7 @@ class FSNMDeleteTagViewModel: ObservableObject {
     func update() {
         guard let validTag = productTag else { return }
         // get the remote data
-        fsnmSession.deleteTag(validTag, for: authController.owner, has: authController.access_token) { (result) in
+        fsnmSession.FSNMdelete(validTag, for: authController.owner, has: authController.access_token) { (result) in
             DispatchQueue.main.async {
                 if let primaryResult = result.0 {
                     switch primaryResult {
