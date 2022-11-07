@@ -10,7 +10,7 @@ import Foundation
 //  Extensions for the Auth API
 //
 extension FSNM {
-    /// the datastructure retreived for reponse 200
+    /// the datastructure retrieved for reponse 200
     public struct Auth: Codable {
         var access_token: String?
         var token_type: String?
@@ -19,7 +19,14 @@ extension FSNM {
 
 extension URLSession {
     
-    /// function to hide the intricates of the URL API from the user
+/**
+ Function to retrieve an authentication token for a username/password combination.
+ - Parameters:
+    - username: the username of the user as registered on OpenFoodFacts
+    - password: the corresponding password
+ - Returns:
+ A Result enum, with either a succes Auth Struct or an Error. The Auth Struct has the variables: **access_token** (String), which has to be passed on in other API calls; **token_type** (String).
+*/
     func fetchAuth(username: String, password: String, completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void) {
         fetch(request: HTTPRequest(username: username, password: password), responses: [200:FSNM.Auth.self]) { (result) in
             completion(result)

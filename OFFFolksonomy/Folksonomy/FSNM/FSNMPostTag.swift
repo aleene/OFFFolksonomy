@@ -1,5 +1,5 @@
 //
-//  FSNMPostProduct.swift
+//  FSNMPostTag.swift
 //  OFFFolksonomy
 //
 //  Created by Arnaud Leene on 27/10/2022.
@@ -26,7 +26,18 @@ import Foundation
 
 extension URLSession {
     
-/// function to hide the intricates of the URL Stats API from the user
+/**
+Function to create a tag.
+- Parameters:
+- tag:the tag to be created
+- token: the token for the user. This can be retrieved with the Auth API
+      
+- Returns:
+A completion block: a tuple for the two possible results. The result is either .success of .failure.
+    - The first successful result (code 200) gives a String (usually "ok")
+    - The second successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
+
+*/
     func FSNMpostTag(_ tag: FSNM.Tag, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
         let request = HTTPRequest(api: .post, for: tag, having: token)
 

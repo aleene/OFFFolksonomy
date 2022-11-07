@@ -20,6 +20,17 @@ For all api's you need to setup an URLSession (for instance in your ViewModel), 
 private var fsnmSession = URLSession.shared
 ```
 
+### Auth API
+Retrieves an authentication token for a username/password combination.
+```    
+func fetchAuth(username: String, password: String, completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void)
+```    
+**Parameters:**
+- username: the username of the user as registered on OpenFoodFacts
+- password: the corresponding password
+**Returns:**
+A Result enum, with either a succes Auth Struct or an Error. The Auth Struct has the variables: **access_token** (String), which has to be passed on in other API calls; **token_type** (String).
+
 ### Delete API
 Deletes a tag of a product.
 ```    
@@ -31,7 +42,7 @@ func FSNMdelete(_ tag: FSNM.Tag, for owner: String?, has token: String?, complet
 - token: the token of the user (get the token via the Auth API)
 
 **Returns**
-A completion block with a Result enum (success or failure) tuple. The associated value for success is a string and for the failure an Error.
+A completion block with a Result enum (success or failure) tuple. The associated value for success is a string and for the failure an Error. Or a validation error struct or error.
 
 ### Hello API
 URLSession function to check whether the folksonomy server is available.
@@ -88,6 +99,20 @@ func FSNMtags(with barcode: OFFBarcode, and key: String?, completion: @escaping 
 **Returns:**
 A completion block with a Result enum (success or failure). The associated value for success is an array of FSNM.Tag struct and for the failure an Error. The FSNM.Tag struct has the variables: product (String), the barcode of the product; k(String) the key of the tag; v (String) the value of the tag; owner (string) the owner of the tag; version (Int) the tag version; editor (String) the tag editor; last_edit: (String) the last edit date; comment (String) the tag comment.
 
+### Post API
+Function to create a tag.
+```
+func FSNMpostTag(_ tag: FSNM.Tag, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?)) -> Void)
+```
+**Parameters:**
+- tag: the tag to be created
+- token: the token for the user. This can be retrieved with the Auth API
+
+**Returns**
+A completion block: a tuple for the two possible results. The result is either .success of .failure.
+    - The first successful result (code 200) gives a String (usually "ok")
+    - The second successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
+
 ### Put API
 Function to update the value for an existing tag.
 ```
@@ -96,7 +121,9 @@ func putTag(_ tag: FSNM.ProductTags, for editor: String?, has token: String?, co
 **Parameters:**
  - tag:  the tag to be updated
  - token: the token for the user. This can be retrieved with the Auth API
- - completion: the completion block: a tuple for the two possible results. The result is either .success of .failure.
+ 
+ **Return:**
+ A completion block: a tuple for the two possible results. The result is either .success of .failure.
     - The first successful result (code 200) gives a String (usually "ok")
     - The second successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
 

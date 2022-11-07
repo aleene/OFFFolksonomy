@@ -26,7 +26,7 @@
 		AB6EB412290BC89500ED4322 /* FSNMPostTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EB411290BC89500ED4322 /* FSNMPostTagView.swift */; };
 		AB92329C2909762900B2BF15 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329B2909762900B2BF15 /* AuthController.swift */; };
 		AB92329E290A8B5000B2BF15 /* FSNMStatsOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329D290A8B5000B2BF15 /* FSNMStatsOwnerView.swift */; };
-		AB9232A0290AE78D00B2BF15 /* FSNMPostProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329F290AE78D00B2BF15 /* FSNMPostProduct.swift */; };
+		AB9232A0290AE78D00B2BF15 /* FSNMPostTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329F290AE78D00B2BF15 /* FSNMPostTag.swift */; };
 		AB93C67628F85D1D00336E71 /* OFFFolksonomyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */; };
 		AB93C67828F85D1D00336E71 /* FSNMProductTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93C67728F85D1D00336E71 /* FSNMProductTagsView.swift */; };
 		AB93C67A28F85D1E00336E71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB93C67928F85D1E00336E71 /* Assets.xcassets */; };
@@ -104,7 +104,7 @@
 		AB6EB411290BC89500ED4322 /* FSNMPostTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPostTagView.swift; sourceTree = "<group>"; };
 		AB92329B2909762900B2BF15 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		AB92329D290A8B5000B2BF15 /* FSNMStatsOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsOwnerView.swift; sourceTree = "<group>"; };
-		AB92329F290AE78D00B2BF15 /* FSNMPostProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPostProduct.swift; sourceTree = "<group>"; };
+		AB92329F290AE78D00B2BF15 /* FSNMPostTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPostTag.swift; sourceTree = "<group>"; };
 		AB93C67228F85D1D00336E71 /* OFFFolksonomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OFFFolksonomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFFFolksonomyApp.swift; sourceTree = "<group>"; };
 		AB93C67728F85D1D00336E71 /* FSNMProductTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsView.swift; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 			children = (
 				ABF847B92906D25300A20CF7 /* FSNMAuth.swift */,
 				ABE3809F2917FBA1005C75ED /* FSNMPutTag.swift */,
-				AB92329F290AE78D00B2BF15 /* FSNMPostProduct.swift */,
+				AB92329F290AE78D00B2BF15 /* FSNMPostTag.swift */,
 				ABE380952916C44E005C75ED /* FSNMDeleteTag.swift */,
 				ABE380912916B1BC005C75ED /* FSNMHello.swift */,
 				ABE5101A29003FBF00706F7D /* FSNMKeys.swift */,
@@ -542,7 +542,7 @@
 				ABE5104C29017A0E00706F7D /* FSNMKeysOverView.swift in Sources */,
 				AB92329C2909762900B2BF15 /* AuthController.swift in Sources */,
 				ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */,
-				AB9232A0290AE78D00B2BF15 /* FSNMPostProduct.swift in Sources */,
+				AB9232A0290AE78D00B2BF15 /* FSNMPostTag.swift in Sources */,
 				AB1D12DC2903FAA5003C7E3B /* FSNMDictView.swift in Sources */,
 				ABE510332900441200706F7D /* FSNMProductTagVersions.swift in Sources */,
 				ABE5102429003FBF00706F7D /* FSNMProducts.swift in Sources */,
