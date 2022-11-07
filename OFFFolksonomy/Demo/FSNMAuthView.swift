@@ -24,7 +24,7 @@ class FSNMAuthViewModel: ObservableObject {
     
     func signIn() {
         guard canSignIn else { return }
-        fsnmSession.fetchAuth(username: self.username, password: self.password) { result in
+        fsnmSession.FSNMauth(username: self.username, password: self.password) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let auth):

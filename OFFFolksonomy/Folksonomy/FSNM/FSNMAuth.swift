@@ -27,7 +27,7 @@ extension URLSession {
  - Returns:
  A Result enum, with either a succes Auth Struct or an Error. The Auth Struct has the variables: **access_token** (String), which has to be passed on in other API calls; **token_type** (String).
 */
-    func fetchAuth(username: String, password: String, completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void) {
+    func FSNMauth(username: String, password: String, completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void) {
         fetch(request: HTTPRequest(username: username, password: password), responses: [200:FSNM.Auth.self]) { (result) in
             completion(result)
             return

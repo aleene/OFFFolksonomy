@@ -23,7 +23,7 @@ private var fsnmSession = URLSession.shared
 ### Auth API
 Retrieves an authentication token for a username/password combination.
 ```    
-func fetchAuth(username: String, password: String, completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void)
+func FSNMauth(username: String, password: String, completion: @escaping (_ postResult: Result<FSNM.Auth, Error>) -> Void)
 ```    
 **Parameters:**
 - username: the username of the user as registered on OpenFoodFacts
