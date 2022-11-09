@@ -32,7 +32,7 @@ class FSNMKeysViewModel: ObservableObject {
                     case .success(let keys):
                         self.keys = keys
                     case .failure(let error):
-                        self.errorMessage = error.message
+                        self.errorMessage = error.description
                     }
                 } // Add other responses here
             }

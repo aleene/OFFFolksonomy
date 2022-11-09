@@ -28,7 +28,7 @@ class FSNMPingViewModel: ObservableObject {
                 case .success(let post):
                     self.ping.ping = post.ping ?? "ping has nil value"
                 case .failure(let error):
-                    self.errorMessage = error.message
+                    self.errorMessage = error.description
                 }
             }
         }

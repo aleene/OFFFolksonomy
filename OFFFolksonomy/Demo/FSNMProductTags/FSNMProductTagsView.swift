@@ -12,7 +12,7 @@ class FSNMProductTagsViewModel: ObservableObject {
     
     @Published var productTags: [FSNM.Tag]
     @Published var barcode: OFFBarcode = OFFBarcode(barcode: "")
-    public var error: String?
+    @Published var errorMessage: String?
 
     private var fsnmSession = URLSession.shared
 
@@ -34,7 +34,7 @@ class FSNMProductTagsViewModel: ObservableObject {
                     case .success(let productTags):
                         self.productTags = productTags
                     case .failure(let error):
-                        self.error = error.localizedDescription
+                        self.errorMessage = error.description
                     }
                 } // Add other responses here
             }
@@ -73,13 +73,6 @@ struct FSNMProductTagsView: View {
                 isFetching = false
             }
         }
-    }
-}
-
-extension FSNMProductTagsView {
-    func cancel() {
-    }
-    func save() {
     }
 }
 

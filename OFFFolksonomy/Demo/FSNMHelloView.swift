@@ -29,7 +29,7 @@ class FSNMHelloViewModel: ObservableObject {
                     self.hello.message = post.message ?? "message has nil value"
                     // other status
                 case .failure(let error):
-                    self.errorMessage = error.message
+                    self.errorMessage = error.description
                 }
             }
         }

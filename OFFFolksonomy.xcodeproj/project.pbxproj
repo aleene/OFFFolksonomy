@@ -117,7 +117,7 @@
 		ABE380952916C44E005C75ED /* FSNMDeleteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteTag.swift; sourceTree = "<group>"; };
 		ABE380972917B5F7005C75ED /* FSNMDeleteURLTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDeleteURLTTests.swift; sourceTree = "<group>"; };
 		ABE380992917C913005C75ED /* FSNMPostURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPostURLTests.swift; sourceTree = "<group>"; };
-		ABE3809B2917F765005C75ED /* FSNMPutTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPutTag.swift; sourceTree = "<group>"; };
+		ABE3809B2917F765005C75ED /* FSNMPutTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FSNMPutTag.swift; path = ../Required/FSNMPutTag.swift; sourceTree = "<group>"; };
 		ABE3809D2917FB04005C75ED /* FSNMPutTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPutTagView.swift; sourceTree = "<group>"; };
 		ABE3809F2917FBA1005C75ED /* FSNMPutTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPutTag.swift; sourceTree = "<group>"; };
 		ABE380A12917FF52005C75ED /* FSNMPutURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPutURLTests.swift; sourceTree = "<group>"; };
@@ -311,6 +311,7 @@
 				ABE5101929003FBF00706F7D /* FSNMProducts.swift */,
 				ABE5101B29003FBF00706F7D /* FSNMProductTags.swift */,
 				ABE510322900441200706F7D /* FSNMProductTagVersions.swift */,
+				ABE3809B2917F765005C75ED /* FSNMPutTag.swift */,
 				ABE5101D29003FBF00706F7D /* FSNMStats.swift */,
 			);
 			path = FSNM;
@@ -324,7 +325,6 @@
 				ABE5102229003FBF00706F7D /* OFFProductType.swift */,
 				ABE5102329003FBF00706F7D /* OFFBarcode.swift */,
 				ABF847BF290811F200A20CF7 /* HTTPLibrary.swift */,
-				ABE3809B2917F765005C75ED /* FSNMPutTag.swift */,
 				AB92329B2909762900B2BF15 /* AuthController.swift */,
 			);
 			path = Required;

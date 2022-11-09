@@ -28,7 +28,7 @@ class FSNMDeleteTagViewModel: ObservableObject {
                     case .success(let suc):
                         self.successMessage = suc
                     case .failure(let error):
-                        self.errorMessage = error.message
+                        self.errorMessage = error.description
                     }
                 } // Add other responses here
             }

@@ -29,7 +29,7 @@ struct FSNM {
             case .auth: return "/auth"
             case .delete: return "/product"  // needs to be extended with /<barcode> /<key> ?version=<version>
             case .hello: return "/"
-            case .keys: return "/keys"
+            case .keys: return "/key"
             case .ping: return "/ping"
             case .post: return "/product"
             case .products: return "/products"
@@ -92,18 +92,44 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
         load(request: request) { result in
             switch result {
             case .success(let response):
+                print("fetchArray: response: \(response.status.rawValue)")
+
                 if response0.key == response.status.rawValue {
-                    print("fetchArray: response: \(response.status.rawValue)")
                     OFFAPI.decodeArray(data: response.body, type: response0.value) { result in
-                        completion( (result, nil) )
-                        return
+                        switch result {
+                        case .success(let array):
+                            completion( (.success(array), nil) )
+                            return
+                        case .failure:
+                            if let data = response.body {
+                                if let str = String(data: data, encoding: .utf8) {
+                                    print("fetchArray: \(str)")
+                                    completion( (.failure(FSNMError.null), nil) )
+                                    return
+                                }
+                            }
+                        }
                     }
                 } else if response1.key == response.status.rawValue {
                     OFFAPI.decode(data: response.body, type: response1.value) { result in
                         completion( (nil, result) )
                         return
                     }
+                } else if response.status.rawValue == 404 {
+                    // the expected one dit not work, so try another
+                    OFFAPI.decode(data: response.body, type: FSNM.Detail.self) { result in
+                        switch result {
+                        case .success(let detail):
+                            completion( (.failure(FSNMError.detail(detail)), nil) )
+                            return
+                        default:
+                            completion( (.failure(FSNMError.dataType), nil) )
+                            return
+                        }
+                    }
                 } else {
+                    print(response.status.rawValue)
+
                     if let data = response.body {
                         if let str = String(data: data, encoding: .utf8) {
                             completion( (.failure(FSNMError.analyse(str)), nil) )
@@ -182,7 +208,8 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
         }
 
     }
-
+    
+/// Used for responses FSNM.Hello and FSNM.Ping
     public func fetch<T>(request: HTTPRequest, responses: [Int : T.Type], completion: @escaping (Result<T, FSNMError>) -> Void) where T : Decodable {
         
         load(request: request) { result in
@@ -193,18 +220,29 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
                         completion(result)
                         return
                     }
+                } else if response.status.rawValue == 404 {
+                    // the expected one dit not work, so try another
+                    OFFAPI.decode(data: response.body, type: FSNM.Detail.self) { result in
+                        switch result {
+                        case .success(let detail):
+                            completion( .failure(FSNMError.detail(detail)) )
+                            return
+                        default:
+                            completion( .failure(FSNMError.dataType) )
+                            return
+                        }
+                    }
                 } else {
                     if let data = response.body {
-                        
                         if let str = String(data: data, encoding: .utf8) {
                             completion( .failure(FSNMError.analyse(str)) )
                             return
                         } else {
-                            completion(.failure( FSNMError.dataNil) )
+                            completion(.failure( FSNMError.dataType) )
                             return
                         }
                     } else {
-                        completion(.failure( FSNMError.dataNil) )
+                        completion(.failure( FSNMError.noBody) )
                         return
                     // unsupported response type
                     }
@@ -372,9 +410,12 @@ public enum FSNMError: Error {
     case connectionFailure
     case dataNil
     case dataType
+    case detail(Any) // if a 404 Detail struct is received
     case authenticationRequired
     case methodNotAllowed
+    case noBody
     case notFound
+    case null
     case unsupportedSuccessResponseType
     
     
@@ -389,7 +430,7 @@ public enum FSNMError: Error {
             return .unsupportedSuccessResponseType
         }
     }
-    var message: String {
+    public var description: String {
         switch self {
         case .network:
             return ""
@@ -398,17 +439,28 @@ public enum FSNMError: Error {
         case .request:
             return ""
         case .authenticationRequired:
-            return "FSNMError: Authentication Required. Log in before doing this function"
+            return "FSNMError: Authentication Required. Log in before using this function"
         case .connectionFailure:
             return "FSNMError: Not able to connect to the Folksonomy server"
         case .dataNil:
             return ""
         case .dataType:
-            return ""
+            return "FSNMError: unexpected datatype"
+        case .detail(let detail):
+            if let validDetail = detail as? FSNM.Detail,
+               let valid = validDetail.detail {
+                    return valid + ": Probaly a wrong path"
+            } else {
+                return "FSNMError: Wrong detail struct or nil value"
+            }
         case .methodNotAllowed:
             return "Error: Method Not Allowed, probably a missing parameter"
+        case .noBody:
+            return ""
         case .notFound:
             return "Error: API not found, probably a typo in the path"
+        case .null:
+            return" FSNMError: null - probably a non-existing key"
         case .unsupportedSuccessResponseType:
             return ""
         }

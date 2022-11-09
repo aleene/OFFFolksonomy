@@ -9,18 +9,18 @@ import SwiftUI
 import Collections
 
 class FSNMProductsKeyViewModel: ObservableObject {
-    @Published var products: [FSNM.Product]
-    @Published var error: String?
+    @Published var products: [FSNM.Product]?
+    @Published var errorMessage: String?
     @Published var key = ""
 
     private var fsnmSession = URLSession.shared
-
-    init() {
-        self.products = []
-    }
     
     var productsDictArray: [OrderedDictionary<String, String>] {
-        products.map({ $0.dict })
+        if let validProducts = products {
+            return validProducts.map({ $0.dict })
+        } else {
+            return []
+        }
     }
 
     // get the properties
@@ -33,7 +33,7 @@ class FSNMProductsKeyViewModel: ObservableObject {
                     case .success(let products):
                         self.products = products
                     case .failure(let error):
-                        self.error = error.localizedDescription
+                        self.errorMessage = error.description
                     }
                 } // Add other responses here
             }
@@ -49,7 +49,20 @@ struct FSNMProductsKeyView: View {
 
     var body: some View {
         if isFetching {
-            FSNMListView(text: "The products with key \(model.key)", dictArray: model.productsDictArray)
+            VStack {
+                if let products = model.products {
+                    
+                    if !products.isEmpty {
+                        FSNMListView(text: "The products with key \(model.key)", dictArray: model.productsDictArray)
+                    } else {
+                        Text("No products with \(model.key) available")
+                    }
+                } else if model.errorMessage != nil {
+                    Text(model.errorMessage!)
+                } else {
+                    Text("Search in progress for products with key \(model.key)")
+                }
+            }
             .navigationTitle("Products")
 
         } else {

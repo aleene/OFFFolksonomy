@@ -11,7 +11,7 @@ import Collections
 class FSNMStatsKeyViewModel: ObservableObject {
     
     @Published var productStats: [FSNM.Stats]
-    @Published var error: String?
+    @Published var errorMessage: String?
     @Published var key = ""
 
     private var fsnmSession = URLSession.shared
@@ -34,7 +34,7 @@ class FSNMStatsKeyViewModel: ObservableObject {
                     case .success(let productStats):
                         self.productStats = productStats
                     case .failure(let error):
-                        self.error = error.localizedDescription
+                        self.errorMessage = error.description
                     }
                 } // Add other responses here
             }
@@ -51,7 +51,16 @@ struct FSNMStatsKeyView: View {
 
     var body: some View {
         if isFetching {
-            FSNMListView(text: "All product statistics for key \(model.key)", dictArray: model.productStatsDictArray)
+            VStack {
+                if !model.productStats.isEmpty {
+                    FSNMListView(text: "All product statistics for key \(model.key)", dictArray: model.productStatsDictArray)
+                } else if model.errorMessage != nil {
+                    Text(model.errorMessage!)
+                } else {
+                    Text("Search in progress for key \(model.key)")
+                }
+            }
+
             .navigationTitle("Products")
 
         } else {
