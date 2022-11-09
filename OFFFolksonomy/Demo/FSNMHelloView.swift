@@ -10,7 +10,8 @@ import SwiftUI
 class FSNMHelloViewModel: ObservableObject {
     
     @Published var hello = FSNM.Hello()
-   
+    @Published var errorMessage: String?
+
     private var offSession = URLSession.shared
 
     init() {
@@ -23,10 +24,12 @@ class FSNMHelloViewModel: ObservableObject {
         offSession.FSNMhello() { (result) in
             DispatchQueue.main.async {
                 switch result {
+                    // the status 200
                 case .success(let post):
                     self.hello.message = post.message ?? "message has nil value"
+                    // other status
                 case .failure(let error):
-                    self.hello.message = "\(error)"
+                    self.errorMessage = error.message
                 }
             }
         }

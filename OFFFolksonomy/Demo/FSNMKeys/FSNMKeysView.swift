@@ -10,7 +10,7 @@ import Collections
 
 class FSNMKeysViewModel: ObservableObject {
     @Published var keys: [FSNM.Key]
-    @Published var error: String?
+    @Published var errorMessage: String?
     
     private var fsnmSession = URLSession.shared
 
@@ -32,7 +32,7 @@ class FSNMKeysViewModel: ObservableObject {
                     case .success(let keys):
                         self.keys = keys
                     case .failure(let error):
-                        self.error = error.localizedDescription
+                        self.errorMessage = error.message
                     }
                 } // Add other responses here
             }
@@ -44,7 +44,13 @@ struct FSNMKeysView: View {
     @StateObject var model = FSNMKeysViewModel()
 
     var body: some View {
-        FSNMListView(text: "All registered tags", dictArray: model.keysDictArray)
+        VStack {
+            if model.errorMessage == nil {
+                FSNMListView(text: "All registered tags", dictArray: model.keysDictArray)
+            } else {
+                Text(model.errorMessage!)
+            }
+        }
         .onAppear {
             model.update()
         }

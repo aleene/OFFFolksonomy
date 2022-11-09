@@ -24,7 +24,7 @@ extension URLSession {
 - returns:
  A completion block with a Result enum (success or failure). The associated value for success is a FSNM.Hello struct and for the failure an Error.
 */
-    func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, Error>) -> Void) {
+    func FSNMhello(completion: @escaping (_ result: Result<FSNM.Hello, FSNMError>) -> Void) {
         fetch(request: HTTPRequest(api: .hello), responses: [200:FSNM.Hello.self]) { (result) in
             completion(result)
             return

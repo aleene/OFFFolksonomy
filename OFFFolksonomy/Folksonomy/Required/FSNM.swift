@@ -70,7 +70,7 @@ extension URLSession {
 /**
 Generic function for multiple FSNM API's. Most of these API's can return two succesfull response codes. It is assumed that all successful calls that return the data have response code 200 and the successful calls that return an error have response code 422.
 */
-    func fetchFSNMArray<T:Decodable> (request: HTTPRequest, response: T.Type, completion: @escaping (_ result: (Result<[T],Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+    func fetchFSNMArray<T:Decodable> (request: HTTPRequest, response: T.Type, completion: @escaping (_ result: (Result<[T], FSNMError>?, Result<FSNM.ValidationError, FSNMError>?) ) -> Void) {
         
         fetchArray(request: request, responses: ( [200:T.self], [422:FSNM.ValidationError.self]) ) { result in
             completion(result)
@@ -78,14 +78,143 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
         }
     }
     
+    public func fetchArray<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int:T1.Type], [Int:T2.Type]), completion: @escaping (_ result: (Result<[T1], FSNMError>?, Result<T2, FSNMError>?) ) -> Void) {
+        
+        guard let response0 = responses.0.first else {
+            completion( (Result.failure(FSNMError.parsing), nil) )
+            return
+        }
+        guard let response1 = responses.1.first else {
+            completion( (Result.failure(FSNMError.parsing), nil) )
+            return
+        }
+
+        load(request: request) { result in
+            switch result {
+            case .success(let response):
+                if response0.key == response.status.rawValue {
+                    print("fetchArray: response: \(response.status.rawValue)")
+                    OFFAPI.decodeArray(data: response.body, type: response0.value) { result in
+                        completion( (result, nil) )
+                        return
+                    }
+                } else if response1.key == response.status.rawValue {
+                    OFFAPI.decode(data: response.body, type: response1.value) { result in
+                        completion( (nil, result) )
+                        return
+                    }
+                } else {
+                    if let data = response.body {
+                        if let str = String(data: data, encoding: .utf8) {
+                            completion( (.failure(FSNMError.analyse(str)), nil) )
+                            return
+                        } else {
+                            completion( (.failure(FSNMError.dataNil), nil) )
+                            return
+                        }
+                    }
+                }
+            case .failure(_):
+                // the original response failed
+                print (result.response.debugDescription)
+                completion( (.failure(FSNMError.connectionFailure), nil) )
+                return
+            }
+        }
+
+    }
+
 /**
 Generic function for multiple FSNM API's. Most of these API's can return two succesfull response codes. It is assumed that all successful calls that return the data have response code 200 with a string as response and the successful calls that return an error have response code 422.
 */
-    func fetchFSNMString<T:Decodable> (request: HTTPRequest, response: T.Type, completion: @escaping (_ result: (Result<T,Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+    func fetchFSNMString<T:Decodable> (request: HTTPRequest, response: T.Type, completion: @escaping (_ result: (Result<T, FSNMError>?, Result<FSNM.ValidationError, FSNMError>?) ) -> Void) {
             
         fetchString(request: request, responses: ( [200:T.self], [422:FSNM.ValidationError.self]) ) { result in
             completion(result)
             return
+        }
+    }
+
+    public func fetchString<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int : T1.Type], [Int : T2.Type]), completion: @escaping ( (Result<T1, FSNMError>?, Result<T2, FSNMError>?) ) -> Void) {
+        
+        guard let response0 = responses.0.first else {
+            completion( (Result.failure(FSNMError.parsing), nil) )
+            return
+        }
+        guard let response1 = responses.1.first else {
+            completion( (Result.failure(FSNMError.parsing), nil) )
+            return
+        }
+
+        load(request: request) { result in
+            switch result {
+            case .success(let response):
+                if response0.key == response.status.rawValue {
+                    if let data = response.body {
+                        let str = String(data: data, encoding: .utf8)
+                        // should check what T1 is
+                        if let validString = str {
+                            completion( (Result.success(validString as! T1), nil) )
+                        }
+                    }
+                } else if response1.key == response.status.rawValue {
+                    OFFAPI.decode(data: response.body, type: response1.value) { result in
+                        completion( (nil, result) )
+                        return
+                    }
+                } else {
+                    if let data = response.body {
+                        if let str = String(data: data, encoding: .utf8) {
+                            completion( (.failure(FSNMError.analyse(str)), nil) )
+                            return
+                        } else {
+                            completion( (.failure(FSNMError.dataNil), nil) )
+                            return
+                        }
+                    }
+                }
+            case .failure(_):
+                // the original response failed
+                print (result.response.debugDescription)
+                completion( (.failure(FSNMError.connectionFailure), nil) )
+                return
+            }
+        }
+
+    }
+
+    public func fetch<T>(request: HTTPRequest, responses: [Int : T.Type], completion: @escaping (Result<T, FSNMError>) -> Void) where T : Decodable {
+        
+        load(request: request) { result in
+            switch result {
+            case .success(let response):
+                if let responsetype = responses[response.status.rawValue] {
+                    OFFAPI.decode(data: response.body, type: responsetype) { result in
+                        completion(result)
+                        return
+                    }
+                } else {
+                    if let data = response.body {
+                        
+                        if let str = String(data: data, encoding: .utf8) {
+                            completion( .failure(FSNMError.analyse(str)) )
+                            return
+                        } else {
+                            completion(.failure( FSNMError.dataNil) )
+                            return
+                        }
+                    } else {
+                        completion(.failure( FSNMError.dataNil) )
+                        return
+                    // unsupported response type
+                    }
+                }
+            case .failure(_):
+                // the original response failed
+                print (result.response.debugDescription)
+                completion( .failure( FSNMError.connectionFailure) )
+                return
+            }
         }
     }
 
@@ -233,4 +362,55 @@ Init for the food folksonomy API. This will setup the correct host and path of t
 
     }
     
+}
+
+// The specific errors that can be produced by the server
+public enum FSNMError: Error {
+    case network
+    case parsing
+    case request
+    case connectionFailure
+    case dataNil
+    case dataType
+    case authenticationRequired
+    case methodNotAllowed
+    case notFound
+    case unsupportedSuccessResponseType
+    
+    
+    static func analyse(_ message: String) -> FSNMError {
+        if message.contains("Not Found") {
+            return .connectionFailure
+        } else if message.contains("Method Not Allowed") {
+            return .methodNotAllowed
+        } else if message.contains("Authentication required") {
+            return .authenticationRequired
+        } else {
+            return .unsupportedSuccessResponseType
+        }
+    }
+    var message: String {
+        switch self {
+        case .network:
+            return ""
+        case .parsing:
+            return ""
+        case .request:
+            return ""
+        case .authenticationRequired:
+            return "FSNMError: Authentication Required. Log in before doing this function"
+        case .connectionFailure:
+            return "FSNMError: Not able to connect to the Folksonomy server"
+        case .dataNil:
+            return ""
+        case .dataType:
+            return ""
+        case .methodNotAllowed:
+            return "Error: Method Not Allowed, probably a missing parameter"
+        case .notFound:
+            return "Error: API not found, probably a typo in the path"
+        case .unsupportedSuccessResponseType:
+            return ""
+        }
+    }
 }

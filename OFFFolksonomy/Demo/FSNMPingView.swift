@@ -11,7 +11,8 @@ import Collections
 class FSNMPingViewModel: ObservableObject {
     
     @Published var ping = FSNM.Ping()
-   
+    @Published var errorMessage: String?
+    
     private var offSession = URLSession.shared
 
     init() {
@@ -27,7 +28,7 @@ class FSNMPingViewModel: ObservableObject {
                 case .success(let post):
                     self.ping.ping = post.ping ?? "ping has nil value"
                 case .failure(let error):
-                    self.ping.ping = "\(error)"
+                    self.errorMessage = error.message
                 }
             }
         }
@@ -44,7 +45,11 @@ struct FSNMPingView: View {
             Text("The Ping API allows to check whether the folksonomy server is reachable.")
                 .multilineTextAlignment(.center)
                 .padding()
-            FSNMDictElementView(dict: model.ping.dict)
+            if model.errorMessage == nil {
+                FSNMDictElementView(dict: model.ping.dict)
+            } else {
+                Text(model.errorMessage!)
+            }
             Spacer()
             .onAppear {
                 model.update()

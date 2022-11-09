@@ -44,7 +44,7 @@ Retrieves a list of versions for a product and a key.
 - returns:
     A completion block with a Result enum (success or failure). The associated value for success is a **FSNM.TagVersion** struct and for the failure an Error. The **FSNM.TagVersion** struct has the variables: **product** (String), the barcode of the product; **k**(String) the key of the tag; **v** (String) the value of the tag; **version** (Int) the version number of the tag; **editor** (String) the editor of this version; **last_edit** (String) the edit date of this version; **comment** (String) the associated comment for this version.
 */
-    func FSNMtagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: (Result<[FSNM.TagVersion], Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+    func FSNMtagVersions(for barcode: OFFBarcode, with key: String, completion: @escaping (_ postResult: (Result<[FSNM.TagVersion], FSNMError>?, Result<FSNM.ValidationError, FSNMError>?) ) -> Void) {
         let request = HTTPRequest(api: .productTagVersions, for: barcode.barcode, with: key, and: nil, by: nil, having: nil)
         
         fetchFSNMArray(request: request, response: FSNM.TagVersion.self) { (result) in

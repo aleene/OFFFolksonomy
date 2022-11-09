@@ -156,10 +156,15 @@ func FSNMtagVersions(for barcode: OFFBarcode, with key: String, completion: @esc
 - version: the version of the tag
 
 **Returns:**
-A completion block with a Result enum (success or failure). The associated value for success is a FSNM.TagVersion struct and for the failure an Error. The FSNM.TagVersion struct has the variables: product (String), the barcode of the product; k(String) the key of the tag; v (String) the value of the tag; version (Int) the version number of the tag; editor (String) the editor of this version; last_edit (String) the edit date of this version; comment (String) the associated comment for this version.
+A completion block with a Result enum (success or failure). The associated value for success is a FSNM.TagVersion struct and for the failure an Error. The FSNM.TagVersion struct has the variables: product (String), the barcode of the product; k(String) the key of the tag; v (String) the value of the tag; version (Int) the version number of the tag; editor (String) the editor of this version; last_edit (String) the edit date of this version; comment (String) the associated comment for this version
+
+## Errors
+The following errors are intercepted and can be used to intercept:
+- connectionFailure: impossible to connect to the folksonomy server (url?)
+- notFound(404): the API path is wrong
 
 ## Testing
-You can reuse the tests.
+You can reuse the tests, to be sure you did not broke something. The tests check the URL, the folksonomy datastructures and the request responses.
 
 ## To Be Done
 * error handling is at the moment rudimentary

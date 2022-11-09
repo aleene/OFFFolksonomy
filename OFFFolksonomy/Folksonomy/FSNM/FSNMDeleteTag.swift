@@ -30,7 +30,7 @@ Deletes a tag of a product.
 - returns:
 A completion block with a Result enum (success or failure). The associated value for success is a string and for the failure an Error.
     */
-    func FSNMdelete(_ tag: FSNM.Tag, for owner: String?, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+    func FSNMdelete(_ tag: FSNM.Tag, for owner: String?, has token: String?, completion: @escaping (_ result: (Result<String, FSNMError>?, Result<FSNM.ValidationError, FSNMError>?) ) -> Void) {
         let request = HTTPRequest(api: .delete, for: tag, having: token)
 
         fetchFSNMString(request: request, response: String.self) { result in

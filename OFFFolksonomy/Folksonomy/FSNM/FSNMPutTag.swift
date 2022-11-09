@@ -36,7 +36,7 @@ extension URLSession {
  - The first successful result (code 200) gives a String (usually "ok")
  - The second successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
 */
-    func FSNMputTag(_ tag: FSNM.Tag, has token: String?, completion: @escaping (_ result: (Result<String, Error>?, Result<FSNM.ValidationError, Error>?) ) -> Void) {
+    func FSNMputTag(_ tag: FSNM.Tag, has token: String?, completion: @escaping (_ result: (Result<String, FSNMError>?, Result<FSNM.ValidationError, FSNMError>?) ) -> Void) {
         let request = HTTPRequest(api: .put, for: tag, having: token)
 
         fetchFSNMString(request: request, response: String.self) { result in

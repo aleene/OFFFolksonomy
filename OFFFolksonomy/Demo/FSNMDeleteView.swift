@@ -9,7 +9,8 @@ import SwiftUI
 
 class FSNMDeleteTagViewModel: ObservableObject {
     @Published var productTag: FSNM.Tag?
-    @Published var error: String?
+    @Published var errorMessage: String?
+    @Published var successMessage: String?
     @Published var owner = ""
 
     @ObservedObject var authController = AuthController()
@@ -25,9 +26,9 @@ class FSNMDeleteTagViewModel: ObservableObject {
                 if let primaryResult = result.0 {
                     switch primaryResult {
                     case .success(let suc):
-                        print(suc)
+                        self.successMessage = suc
                     case .failure(let error):
-                        self.error = error.localizedDescription
+                        self.errorMessage = error.message
                     }
                 } // Add other responses here
             }
@@ -51,11 +52,19 @@ struct FSNMDeleteTagView: View {
 
     var body: some View {
         if isFetching {
-            Text("What to put here?")
-            .navigationTitle("Tag deletion")
+            VStack {
+                if model.successMessage != nil {
+                    Text(model.successMessage!)
+                } else if model.errorMessage != nil {
+                    Text(model.errorMessage!)
+                } else {
+                    Text("Deletion in progress")
+                }
+            }
+            .navigationTitle("Tag deletion result")
         } else {
             VStack {
-                Text("This post allows you to delete a tag of a product.")
+                Text("This function allows you to delete a tag of a product.")
                     .padding()
                 Text("(Be sure to authenticate first)")
                 FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
