@@ -29,14 +29,12 @@ class FSNMStatsKeyViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMstats(with: key, and: nil, for: nil, has: nil) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let productStats):
-                        self.productStats = productStats
-                    case .failure(let error):
-                        self.errorMessage = error.description
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let productStats):
+                    self.productStats = productStats
+                case .failure(let error):
+                    self.errorMessage = error.description
+                }
             }
         }
     }

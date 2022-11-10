@@ -30,14 +30,12 @@ class FSNMProductTagVersionsViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMtagVersions(for: barcode, with: key) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let versions):
-                        self.versions = versions
-                    case .failure(let error):
-                        self.errorMessage = error.description
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let versions):
+                    self.versions = versions
+                case .failure(let error):
+                    self.errorMessage = error.description
+                }
             }
         }
     }

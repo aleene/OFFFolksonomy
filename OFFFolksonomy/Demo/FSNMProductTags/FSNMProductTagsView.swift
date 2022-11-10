@@ -29,14 +29,12 @@ class FSNMProductTagsViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMtags(with: barcode, and: nil) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let productTags):
-                        self.productTags = productTags
-                    case .failure(let error):
-                        self.errorMessage = error.description
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let productTags):
+                    self.productTags = productTags
+                case .failure(let error):
+                    self.errorMessage = error.description
+                }
             }
         }
     }

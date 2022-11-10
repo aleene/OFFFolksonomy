@@ -29,14 +29,12 @@ class FSNMProductsKeyValueViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMproducts(with: key, and: value) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                       case .success(let products):
-                            self.products = products
-                       case .failure(let error):
-                            self.errorMessage = error.description
-                       }
-                   } // Add other responses here
+                    switch result {
+                    case .success(let products):
+                        self.products = products
+                    case .failure(let error):
+                        self.errorMessage = error.description
+                    }
                 }
             }
         }

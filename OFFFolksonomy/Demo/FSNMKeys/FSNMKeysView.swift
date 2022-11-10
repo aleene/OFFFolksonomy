@@ -27,14 +27,12 @@ class FSNMKeysViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMkeys() { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let keys):
-                        self.keys = keys
-                    case .failure(let error):
-                        self.errorMessage = error.description
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let keys):
+                    self.keys = keys
+                case .failure(let error):
+                    self.errorMessage = error.description
+                }
             }
         }
     }

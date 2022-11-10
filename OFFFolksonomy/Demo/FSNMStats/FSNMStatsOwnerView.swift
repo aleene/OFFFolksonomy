@@ -31,14 +31,12 @@ class FSNMStatsOwnerViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMstats(with: nil, and: nil, for: owner, has: authController.access_token) { result in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let productStats):
-                        self.productStats = productStats
-                    case .failure(let error):
-                        self.error = error.localizedDescription
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let productStats):
+                    self.productStats = productStats
+                case .failure(let error):
+                    self.error = error.localizedDescription
+                }
             }
         }
     }
