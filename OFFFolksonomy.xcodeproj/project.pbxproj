@@ -93,6 +93,7 @@
 		AB1D12DB2903FAA5003C7E3B /* FSNMDictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDictView.swift; sourceTree = "<group>"; };
 		AB1D133B29042AED003C7E3B /* FSNMDictElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDictElementView.swift; sourceTree = "<group>"; };
 		AB1D133D29042ED1003C7E3B /* FSNMInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMInput.swift; sourceTree = "<group>"; };
+		AB45639B291D48B700359D2A /* OFFFolksonomy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OFFFolksonomy.entitlements; sourceTree = "<group>"; };
 		AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingURLTests.swift; sourceTree = "<group>"; };
 		AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OFFFolksonomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsURLTests.swift; sourceTree = "<group>"; };
@@ -251,6 +252,7 @@
 		AB93C67428F85D1D00336E71 /* OFFFolksonomy */ = {
 			isa = PBXGroup;
 			children = (
+				AB45639B291D48B700359D2A /* OFFFolksonomy.entitlements */,
 				ABE5101729003FBF00706F7D /* Folksonomy */,
 				AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */,
 				ABE50A9F28FFEBCE00049C02 /* Demo */,
@@ -732,6 +734,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OFFFolksonomy/OFFFolksonomy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OFFFolksonomy/Preview Content\"";
@@ -750,6 +753,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sivas.hoveringabove.OFFFolksonomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -761,6 +765,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OFFFolksonomy/OFFFolksonomy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OFFFolksonomy/Preview Content\"";
@@ -779,6 +784,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sivas.hoveringabove.OFFFolksonomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
