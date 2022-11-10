@@ -9,19 +9,20 @@ import SwiftUI
 import Collections
 
 class FSNMProductTagVersionsViewModel: ObservableObject {
-    @Published var versions: [FSNM.TagVersion]
-    @Published var error: String?
+    @Published var versions: [FSNM.TagVersion]?
+    @Published var errorMessage: String?
     @Published var barcode = OFFBarcode(barcode: "")
     @Published var key = ""
 
     private var fsnmSession = URLSession.shared
-
-    init() {
-        self.versions = []
-    }
     
     var productTagVersionsDictArray: [OrderedDictionary<String, String>] {
-        versions.map({ $0.dict })
+        if let validVersions = versions {
+            return validVersions.map({ $0.dict })
+        } else {
+            return []
+        }
+
     }
 
     // get the keys
@@ -34,7 +35,7 @@ class FSNMProductTagVersionsViewModel: ObservableObject {
                     case .success(let versions):
                         self.versions = versions
                     case .failure(let error):
-                        self.error = error.localizedDescription
+                        self.errorMessage = error.description
                     }
                 } // Add other responses here
             }
@@ -51,7 +52,19 @@ struct FSNMProductTagVersionsView: View {
 
     var body: some View {
         if isFetching {
-            FSNMListView(text: "All versions the barcode \(model.barcode.barcode) and for key \(model.key)", dictArray: model.productTagVersionsDictArray)
+            VStack {
+                if let products = model.versions {
+                    if !products.isEmpty {
+                        FSNMListView(text: "All versions the barcode \(model.barcode.barcode) and for key \(model.key)", dictArray: model.productTagVersionsDictArray)
+                    } else {
+                        Text("No versions for the barcode \(model.barcode.barcode) and for key  \(model.key) available")
+                    }
+                } else if model.errorMessage != nil {
+                    Text(model.errorMessage!)
+                } else {
+                    Text("Search in progress for versions for the barcode \(model.barcode.barcode) and for key \(model.key)")
+                }
+            }
             .navigationTitle("Versions")
 
         } else {

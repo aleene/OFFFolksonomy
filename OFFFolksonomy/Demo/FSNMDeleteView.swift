@@ -23,14 +23,12 @@ class FSNMDeleteTagViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMdelete(validTag, for: authController.owner, has: authController.access_token) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let suc):
-                        self.successMessage = suc
-                    case .failure(let error):
-                        self.errorMessage = error.description
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let suc):
+                    self.successMessage = suc
+                case .failure(let error):
+                    self.errorMessage = error.description
+                }
             }
         }
     }
@@ -53,12 +51,12 @@ struct FSNMDeleteTagView: View {
     var body: some View {
         if isFetching {
             VStack {
-                if model.successMessage != nil {
-                    Text(model.successMessage!)
-                } else if model.errorMessage != nil {
-                    Text(model.errorMessage!)
+                if let success = model.successMessage {
+                    Text("Result of deletion of tag with key \(tag_key) and version \(version) for product \(barcode):  \(success)" )
+                } else if let error = model.errorMessage {
+                    Text("Result of deletion of tag with key \(tag_key) and version \(version) for product \(barcode):  \(error)" )
                 } else {
-                    Text("Deletion in progress")
+                    Text("Deletion of tag with key \(tag_key) and version \(version) for product \(barcode) in progress")
                 }
             }
             .navigationTitle("Tag deletion result")

@@ -9,9 +9,9 @@ import SwiftUI
 
 class FSNMPutTagViewModel: ObservableObject {
     @Published var productTag: FSNM.Tag?
-    @Published var error: String?
+    @Published var errorMessage: String?
     @Published var owner = ""
-    @Published var success = ""
+    @Published var success: String?
     @ObservedObject var authController = AuthController()
 
     private var fsnmSession = URLSession.shared
@@ -22,14 +22,12 @@ class FSNMPutTagViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMputTag(validTag, has: authController.access_token) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let suc):
-                        self.success = suc
-                    case .failure(let error):
-                        self.error = error.localizedDescription
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let suc):
+                    self.success = suc
+                case .failure(let error):
+                    self.errorMessage = error.description
+                }
             }
         }
     }
@@ -41,19 +39,27 @@ struct FSNMPutTagView: View {
     // For fetching owner related fetches, authentication is required
     @ObservedObject var authController: AuthController
     
-    @State private var barcode: String = ""
-    @State private var tag_key: String = ""
-    @State private var tag_value: String = ""
-    @State private var version: String = ""
+    @State private var barcode = ""
+    @State private var tag_key = ""
+    @State private var tag_value = ""
+    @State private var version = ""
     @State private var isFetching = false
     
     private var versionInteger: Int? {
-        Int(version)
+        !version.isEmpty ? Int(version) : nil
     }
 
     var body: some View {
         if isFetching {
-            Text("Result of the put: \(model.success)")
+            VStack {
+                if let success = model.success {
+                    Text("Result of putting tag with \(tag_key) and value \(tag_value) for product \(barcode): \(success)")
+                } else if let error = model.errorMessage {
+                    Text("Result of putting tag with \(tag_key) and value \(tag_value) for product \(barcode): \(error)")
+                } else {
+                    Text("Busy putting tag with \(tag_key) and value \(tag_value) for product \(barcode)")
+                }
+            }
             .navigationTitle("Tag edit")
         } else {
             VStack {

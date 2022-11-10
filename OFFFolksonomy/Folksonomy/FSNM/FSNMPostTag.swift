@@ -38,10 +38,10 @@ A completion block: a tuple for the two possible results. The result is either .
     - The second successful (result 422) result gives a FSNM.ValidationError, usually due to a missing or wrong parameter in the request.
 
 */
-    func FSNMpostTag(_ tag: FSNM.Tag, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, FSNMError>?, Result<FSNM.ValidationError, FSNMError>?) ) -> Void) {
+    func FSNMpostTag(_ tag: FSNM.Tag, for editor: String?, has token: String?, completion: @escaping (_ result: (Result<String, FSNMError>) ) -> Void) {
         let request = HTTPRequest(api: .post, for: tag, having: token)
 
-        fetchFSNMString(request: request, response: String.self) { result in
+        fetchFSNMString(request: request) { result in
             completion(result)
             return
         }

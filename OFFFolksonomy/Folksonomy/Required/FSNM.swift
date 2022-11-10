@@ -153,48 +153,61 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
 /**
 Generic function for multiple FSNM API's. Most of these API's can return two succesfull response codes. It is assumed that all successful calls that return the data have response code 200 with a string as response and the successful calls that return an error have response code 422.
 */
-    func fetchFSNMString<T:Decodable> (request: HTTPRequest, response: T.Type, completion: @escaping (_ result: (Result<T, FSNMError>?, Result<FSNM.ValidationError, FSNMError>?) ) -> Void) {
-            
-        fetchString(request: request, responses: ( [200:T.self], [422:FSNM.ValidationError.self]) ) { result in
-            completion(result)
-            return
-        }
-    }
-
-    public func fetchString<T1:Decodable, T2:Decodable> (request: HTTPRequest, responses: ([Int : T1.Type], [Int : T2.Type]), completion: @escaping ( (Result<T1, FSNMError>?, Result<T2, FSNMError>?) ) -> Void) {
-        
-        guard let response0 = responses.0.first else {
-            completion( (Result.failure(FSNMError.parsing), nil) )
-            return
-        }
-        guard let response1 = responses.1.first else {
-            completion( (Result.failure(FSNMError.parsing), nil) )
-            return
-        }
-
+    func fetchFSNMString (request: HTTPRequest, completion: @escaping (_ result: (Result<String, FSNMError>) ) -> Void) {
+                    
         load(request: request) { result in
             switch result {
             case .success(let response):
-                if response0.key == response.status.rawValue {
+                if response.status.rawValue == 200 {
+                    print("fetchString: response: \(response.status.rawValue)")
                     if let data = response.body {
                         let str = String(data: data, encoding: .utf8)
                         // should check what T1 is
                         if let validString = str {
-                            completion( (Result.success(validString as! T1), nil) )
+                            if !validString.isEmpty {
+                                if validString == "null" {
+                                    completion( (.failure(FSNMError.null) ))
+                                } else {
+                                    completion( (Result.success(validString)) )
+                                }
+                            } else {
+                                completion( (.failure(FSNMError.dataType) ))
+                            }
                         }
                     }
-                } else if response1.key == response.status.rawValue {
-                    OFFAPI.decode(data: response.body, type: response1.value) { result in
-                        completion( (nil, result) )
-                        return
+                } else if response.status.rawValue == 422 {
+                    print("fetchString: response: \(response.status.rawValue)")
+                    OFFAPI.decode(data: response.body, type: FSNM.ValidationError.self) { result in
+                        switch result {
+                        case .success(let validationError):
+                            completion( (.failure(FSNMError.validationError(validationError))) )
+                            return
+                        case .failure:
+                            // the expected one did not work, so try another
+                            OFFAPI.decode(data: response.body, type: FSNM.Detail.self) { result in
+                                switch result {
+                                case .success(let detail):
+                                    completion( .failure(FSNMError.detail(detail)) )
+                                    return
+                                case .failure:
+                                    if let data = response.body,
+                                       let str = String(data: data, encoding: .utf8) {
+                                        print("fetchString: \(str)")
+                                        completion( (.failure(FSNMError.null) ))
+                                        return
+                                    }
+                                }
+                            }
+                        }
                     }
                 } else {
                     if let data = response.body {
+                        print("fetchString: response: \(response.status.rawValue)")
                         if let str = String(data: data, encoding: .utf8) {
-                            completion( (.failure(FSNMError.analyse(str)), nil) )
+                            completion( (.failure(FSNMError.analyse(str))) )
                             return
                         } else {
-                            completion( (.failure(FSNMError.dataNil), nil) )
+                            completion( (.failure(FSNMError.dataNil)) )
                             return
                         }
                     }
@@ -202,7 +215,7 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
             case .failure(_):
                 // the original response failed
                 print (result.response.debugDescription)
-                completion( (.failure(FSNMError.connectionFailure), nil) )
+                completion( (.failure(FSNMError.connectionFailure)) )
                 return
             }
         }
@@ -221,7 +234,7 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
                         return
                     }
                 } else if response.status.rawValue == 404 {
-                    // the expected one dit not work, so try another
+                    // the expected one did not work, so try another
                     OFFAPI.decode(data: response.body, type: FSNM.Detail.self) { result in
                         switch result {
                         case .success(let detail):
@@ -417,6 +430,7 @@ public enum FSNMError: Error {
     case notFound
     case null
     case unsupportedSuccessResponseType
+    case validationError(Any)
     
     
     static func analyse(_ message: String) -> FSNMError {
@@ -449,7 +463,7 @@ public enum FSNMError: Error {
         case .detail(let detail):
             if let validDetail = detail as? FSNM.Detail,
                let valid = validDetail.detail {
-                    return valid + ": Probaly a wrong path"
+                    return valid
             } else {
                 return "FSNMError: Wrong detail struct or nil value"
             }
@@ -463,6 +477,21 @@ public enum FSNMError: Error {
             return" FSNMError: null - probably a non-existing key"
         case .unsupportedSuccessResponseType:
             return ""
+        case .validationError(let detail):
+            if let validationError = detail as? FSNM.ValidationError {
+                if !validationError.detail.isEmpty {
+                    var errorMessage = ""
+                    for item in validationError.detail {
+                        errorMessage += item.msg ?? "FSNMError: message nil"
+                        errorMessage += "; "
+                    }
+                    return errorMessage
+                } else {
+                    return "FSNMError: No error received"
+                }
+            } else {
+                return "FSNMError: Not a validation error"
+            }
         }
     }
 }

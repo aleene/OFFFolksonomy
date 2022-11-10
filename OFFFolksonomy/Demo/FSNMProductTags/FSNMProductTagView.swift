@@ -10,7 +10,7 @@ import Collections
 
 class FSNMProductTagViewModel: ObservableObject {
     @Published var productTag: FSNM.Tag?
-    @Published var error: String?
+    @Published var errorMessage: String?
     @Published var barcode = OFFBarcode(barcode: "3760091720115")
     @Published var key = "evolutions"
 
@@ -34,7 +34,7 @@ class FSNMProductTagViewModel: ObservableObject {
                     case .success(let productTag):
                         self.productTag = productTag[0]
                     case .failure(let error):
-                        self.error = "\(error)"
+                        self.errorMessage = error.description
                     }
                 }
             }
@@ -58,16 +58,15 @@ struct FSNMProductTagView: View {
                 .padding()
             FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
             FSNMInput(title: "Enter key", placeholder: key, text: $key)
-            Button(action: {
+            Button( action: {
                 
                 model.barcode = OFFBarcode(barcode: barcode)
                 model.key = key
                 model.update()
                 isFetching = true
-                })
-            { Text("Fetch tag") }
-                .font(.title)
-                
+                } )
+                { Text("Fetch tag") }
+            .font(.title)
             .navigationTitle("Tag Fetch")
             .onAppear {
                 isFetching = false
@@ -75,7 +74,7 @@ struct FSNMProductTagView: View {
         }
 
         Text("Get a specific tag for a product.")
-            .padding()
+            .padding()/*
         Text("The example below uses the product \(model.barcode.barcode) and tag \(model.key)")
             Section {
                 HStack {
@@ -96,7 +95,7 @@ struct FSNMProductTagView: View {
                 }
                 HStack {
                     Text("version: ")
-                    Text("\(model.productTag!.version!)")
+                    Text(model.productTag?.versionString ?? "nil")
                 }
                 HStack {
                     Text("editor: ")
@@ -106,11 +105,11 @@ struct FSNMProductTagView: View {
                     Text("last_edit: ")
                     Text(model.productTag?.last_edit ?? "nil")
                 }
-                HStack {
-                    Text("comment: ")
-                    Text(model.productTag?.comment ?? "nil")
-                }
-            }
+                //HStack {
+                //    Text("comment: ")
+                 //   Text(model.productTag?.comment ?? "nil")
+               }
+            }*/
         .navigationTitle("Product Tag")
         .onAppear {
             model.update()

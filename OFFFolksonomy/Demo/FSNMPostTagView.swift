@@ -9,9 +9,9 @@ import SwiftUI
 
 class FSNMPostTagViewModel: ObservableObject {
     @Published var productTag: FSNM.Tag?
-    @Published var error: String?
+    @Published var errorMessage: String?
     @Published var owner = ""
-    @Published var success = ""
+    @Published var success: String?
     @ObservedObject var authController = AuthController()
 
     private var fsnmSession = URLSession.shared
@@ -22,14 +22,12 @@ class FSNMPostTagViewModel: ObservableObject {
         // get the remote data
         fsnmSession.FSNMpostTag(validTag, for: authController.owner, has: authController.access_token) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(let suc):
-                        self.success = suc
-                    case .failure(let error):
-                        self.error = error.localizedDescription
-                    }
-                } // Add other responses here
+                switch result {
+                case .success(let suc):
+                    self.success = suc
+                case .failure(let error):
+                    self.errorMessage = error.description
+                }
             }
         }
     }
@@ -49,7 +47,15 @@ struct FSNMPostTagView: View {
 
     var body: some View {
         if isFetching {
-            Text("Result of post: \(model.success)")
+            VStack {
+                if let success = model.success {
+                    Text("Result of post: \(success)")
+                } else if let error = model.errorMessage {
+                    Text("Result of post: \(error)")
+                } else {
+                    Text("Busy posting")
+                }
+            }
             .navigationTitle("Tag creation")
         } else {
             VStack {
