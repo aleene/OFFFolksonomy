@@ -48,6 +48,10 @@ struct FSNM {
         var detail: String?
     }
     
+    public struct Detail: Codable {
+        var detail: String?
+    }
+
 /**
  Some API's (ProductStats) can return a validation error with response code 422.
  */
