@@ -48,14 +48,14 @@ struct FSNMProductTagView: View {
 
     var body: some View {
         if isFetching {
-            FSNMListView(text: "The products with key \(model.key) ", dictArray: model.productTagDictArray)
+            ListView(text: "The products with key \(model.key) ", dictArray: model.productTagDictArray)
             .navigationTitle("Products")
 
         } else {
             Text("This fetch retrieves the tag for a product .")
                 .padding()
-            FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
-            FSNMInput(title: "Enter key", placeholder: key, text: $key)
+            InputView(title: "Enter barcode", placeholder: barcode, text: $barcode)
+            InputView(title: "Enter key", placeholder: key, text: $key)
             Button( action: {
                 
                 model.barcode = OFFBarcode(barcode: barcode)

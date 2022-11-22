@@ -44,7 +44,7 @@ struct FSNMKeysView: View {
     var body: some View {
         VStack {
             if model.errorMessage == nil {
-                FSNMListView(text: "All registered tags", dictArray: model.keysDictArray)
+                ListView(text: "All registered tags", dictArray: model.keysDictArray)
             } else {
                 Text(model.errorMessage!)
             }

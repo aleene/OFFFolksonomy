@@ -51,7 +51,7 @@ struct FSNMStatsKeyView: View {
         if isFetching {
             VStack {
                 if !model.productStats.isEmpty {
-                    FSNMListView(text: "All product statistics for key \(model.key)", dictArray: model.productStatsDictArray)
+                    ListView(text: "All product statistics for key \(model.key)", dictArray: model.productStatsDictArray)
                 } else if model.errorMessage != nil {
                     Text(model.errorMessage!)
                 } else {
@@ -64,7 +64,7 @@ struct FSNMStatsKeyView: View {
         } else {
             Text("This fetch retrieves all the product statistics for a specific key.")
                 .padding()
-            FSNMInput(title: "Enter key", placeholder: key, text: $key)
+            InputView(title: "Enter key", placeholder: key, text: $key)
             Button(action: {
                 
                 model.key = key

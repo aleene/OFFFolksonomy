@@ -46,7 +46,7 @@ struct FSNMPingView: View {
                 .multilineTextAlignment(.center)
                 .padding()
             if model.errorMessage == nil {
-                FSNMDictElementView(dict: model.ping.dict)
+                DictElementView(dict: model.ping.dict)
             } else {
                 Text(model.errorMessage!)
             }

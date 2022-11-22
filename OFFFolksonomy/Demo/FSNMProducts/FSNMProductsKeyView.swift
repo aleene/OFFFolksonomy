@@ -51,7 +51,7 @@ struct FSNMProductsKeyView: View {
                 if let products = model.products {
                     
                     if !products.isEmpty {
-                        FSNMListView(text: "The products with key \(model.key)", dictArray: model.productsDictArray)
+                        ListView(text: "The products with key \(model.key)", dictArray: model.productsDictArray)
                     } else {
                         Text("No products with \(model.key) available")
                     }
@@ -66,7 +66,7 @@ struct FSNMProductsKeyView: View {
         } else {
             Text("This fetch retrieves all the products for a specific key.")
                 .padding()
-            FSNMInput(title: "Enter key", placeholder: key, text: $key)
+            InputView(title: "Enter key", placeholder: key, text: $key)
             Button(action: {
                 
                 model.key = key

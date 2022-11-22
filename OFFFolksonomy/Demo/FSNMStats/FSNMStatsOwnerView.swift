@@ -54,14 +54,14 @@ struct FSNMStatsOwnerView: View {
 
     var body: some View {
         if isFetching {
-            FSNMListView(text: "All product statistics for owner \(model.owner)", dictArray: model.productStatsDictArray)
+            ListView(text: "All product statistics for owner \(model.owner)", dictArray: model.productStatsDictArray)
             .navigationTitle("Products")
         } else {
             VStack {
                 Text("This fetch retrieves all the product statistics for a specific owner.")
                     .padding()
                 Text("(Be sure to authenticate first)")
-                FSNMInput(title: "Enter owner", placeholder: owner, text: $owner)
+                InputView(title: "Enter owner", placeholder: owner, text: $owner)
                 Button(action: {
                     model.owner = owner
                     model.update()

@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		AB1D12D629019E1B003C7E3B /* FSNMProductTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12D529019E1B003C7E3B /* FSNMProductTagView.swift */; };
 		AB1D12D82902A597003C7E3B /* FSNM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12D72902A597003C7E3B /* FSNM.swift */; };
-		AB1D12DA2903D1B8003C7E3B /* FSNMListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12D92903D1B8003C7E3B /* FSNMListView.swift */; };
-		AB1D12DC2903FAA5003C7E3B /* FSNMDictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12DB2903FAA5003C7E3B /* FSNMDictView.swift */; };
-		AB1D133C29042AED003C7E3B /* FSNMDictElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D133B29042AED003C7E3B /* FSNMDictElementView.swift */; };
-		AB1D133E29042ED1003C7E3B /* FSNMInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D133D29042ED1003C7E3B /* FSNMInput.swift */; };
+		AB1D12DA2903D1B8003C7E3B /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12D92903D1B8003C7E3B /* ListView.swift */; };
+		AB1D12DC2903FAA5003C7E3B /* DictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12DB2903FAA5003C7E3B /* DictView.swift */; };
+		AB1D133C29042AED003C7E3B /* DictElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D133B29042AED003C7E3B /* DictElementView.swift */; };
+		AB1D133E29042ED1003C7E3B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D133D29042ED1003C7E3B /* InputView.swift */; };
 		AB1D134329057541003C7E3B /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = AB1D134229057541003C7E3B /* Collections */; };
 		AB1D134529057541003C7E3B /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = AB1D134429057541003C7E3B /* DequeModule */; };
 		AB1D134729057541003C7E3B /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = AB1D134629057541003C7E3B /* OrderedCollections */; };
@@ -89,10 +89,10 @@
 /* Begin PBXFileReference section */
 		AB1D12D529019E1B003C7E3B /* FSNMProductTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagView.swift; sourceTree = "<group>"; };
 		AB1D12D72902A597003C7E3B /* FSNM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNM.swift; sourceTree = "<group>"; };
-		AB1D12D92903D1B8003C7E3B /* FSNMListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMListView.swift; sourceTree = "<group>"; };
-		AB1D12DB2903FAA5003C7E3B /* FSNMDictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDictView.swift; sourceTree = "<group>"; };
-		AB1D133B29042AED003C7E3B /* FSNMDictElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDictElementView.swift; sourceTree = "<group>"; };
-		AB1D133D29042ED1003C7E3B /* FSNMInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMInput.swift; sourceTree = "<group>"; };
+		AB1D12D92903D1B8003C7E3B /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		AB1D12DB2903FAA5003C7E3B /* DictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictView.swift; sourceTree = "<group>"; };
+		AB1D133B29042AED003C7E3B /* DictElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictElementView.swift; sourceTree = "<group>"; };
+		AB1D133D29042ED1003C7E3B /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		AB45639B291D48B700359D2A /* OFFFolksonomy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OFFFolksonomy.entitlements; sourceTree = "<group>"; };
 		AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingURLTests.swift; sourceTree = "<group>"; };
 		AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OFFFolksonomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,10 +181,10 @@
 		AB1D134829058C65003C7E3B /* Generic */ = {
 			isa = PBXGroup;
 			children = (
-				AB1D12D92903D1B8003C7E3B /* FSNMListView.swift */,
-				AB1D133B29042AED003C7E3B /* FSNMDictElementView.swift */,
-				AB1D12DB2903FAA5003C7E3B /* FSNMDictView.swift */,
-				AB1D133D29042ED1003C7E3B /* FSNMInput.swift */,
+				AB1D12D92903D1B8003C7E3B /* ListView.swift */,
+				AB1D133B29042AED003C7E3B /* DictElementView.swift */,
+				AB1D12DB2903FAA5003C7E3B /* DictView.swift */,
+				AB1D133D29042ED1003C7E3B /* InputView.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -253,8 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				AB45639B291D48B700359D2A /* OFFFolksonomy.entitlements */,
-				ABE5101729003FBF00706F7D /* Folksonomy */,
 				AB93C67528F85D1D00336E71 /* OFFFolksonomyApp.swift */,
+				ABE5101729003FBF00706F7D /* Folksonomy */,
 				ABE50A9F28FFEBCE00049C02 /* Demo */,
 				AB93C67928F85D1E00336E71 /* Assets.xcassets */,
 				AB93C67B28F85D1E00336E71 /* Preview Content */,
@@ -530,7 +530,7 @@
 				ABF847C0290811F200A20CF7 /* HTTPLibrary.swift in Sources */,
 				ABE5103929005F4700706F7D /* FSNMProductTagVersionsView.swift in Sources */,
 				ABE510542901915D00706F7D /* FSNMProductTagVersionsOverView.swift in Sources */,
-				AB1D133E29042ED1003C7E3B /* FSNMInput.swift in Sources */,
+				AB1D133E29042ED1003C7E3B /* InputView.swift in Sources */,
 				ABE380A02917FBA1005C75ED /* FSNMPutTag.swift in Sources */,
 				ABE5102729003FBF00706F7D /* FSNMPing.swift in Sources */,
 				ABE5104F29018E5400706F7D /* FSNMProductsOverView.swift in Sources */,
@@ -543,7 +543,7 @@
 				AB92329C2909762900B2BF15 /* AuthController.swift in Sources */,
 				ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */,
 				AB9232A0290AE78D00B2BF15 /* FSNMPostTag.swift in Sources */,
-				AB1D12DC2903FAA5003C7E3B /* FSNMDictView.swift in Sources */,
+				AB1D12DC2903FAA5003C7E3B /* DictView.swift in Sources */,
 				ABE510332900441200706F7D /* FSNMProductTagVersions.swift in Sources */,
 				ABE5102429003FBF00706F7D /* FSNMProducts.swift in Sources */,
 				ABE380962916C44E005C75ED /* FSNMDeleteTag.swift in Sources */,
@@ -555,10 +555,10 @@
 				ABE51049290169C800706F7D /* FSNMStatsKeyValueView.swift in Sources */,
 				AB93C67828F85D1D00336E71 /* FSNMProductTagsView.swift in Sources */,
 				ABF847BA2906D25300A20CF7 /* FSNMAuth.swift in Sources */,
-				AB1D12DA2903D1B8003C7E3B /* FSNMListView.swift in Sources */,
+				AB1D12DA2903D1B8003C7E3B /* ListView.swift in Sources */,
 				ABE51057290196AF00706F7D /* FSNMProductTagsOverView.swift in Sources */,
 				ABE5102829003FBF00706F7D /* FSNMStats.swift in Sources */,
-				AB1D133C29042AED003C7E3B /* FSNMDictElementView.swift in Sources */,
+				AB1D133C29042AED003C7E3B /* DictElementView.swift in Sources */,
 				AB1D12D82902A597003C7E3B /* FSNM.swift in Sources */,
 				ABE51031290042F100706F7D /* FSNMKeysView.swift in Sources */,
 				AB6EB412290BC89500ED4322 /* FSNMPostTagView.swift in Sources */,

@@ -53,7 +53,7 @@ struct FSNMProductTagVersionsView: View {
             VStack {
                 if let products = model.versions {
                     if !products.isEmpty {
-                        FSNMListView(text: "All versions the barcode \(model.barcode.barcode) and for key \(model.key)", dictArray: model.productTagVersionsDictArray)
+                        ListView(text: "All versions the barcode \(model.barcode.barcode) and for key \(model.key)", dictArray: model.productTagVersionsDictArray)
                     } else {
                         Text("No versions for the barcode \(model.barcode.barcode) and for key  \(model.key) available")
                     }
@@ -68,8 +68,8 @@ struct FSNMProductTagVersionsView: View {
         } else {
             Text("This fetch retrieves all the versions of a tag for a specific barcode and key.")
                 .padding()
-            FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
-            FSNMInput(title: "Enter key", placeholder: key, text: $key)
+            InputView(title: "Enter barcode", placeholder: barcode, text: $barcode)
+            InputView(title: "Enter key", placeholder: key, text: $key)
             Button(action: {
                 
                 model.barcode = OFFBarcode(barcode: barcode)

@@ -62,9 +62,9 @@ struct FSNMPostTagView: View {
                 Text("This post allows you to add a tag to a product.")
                     .padding()
                 Text("(Be sure to authenticate first)")
-                FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
-                FSNMInput(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
-                FSNMInput(title: "Enter tag value", placeholder: tag_value, text: $tag_value)
+                InputView(title: "Enter barcode", placeholder: barcode, text: $barcode)
+                InputView(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
+                InputView(title: "Enter tag value", placeholder: tag_value, text: $tag_value)
                 Button(action: {
                     let productTag = FSNM.Tag(product: barcode,
                                                       k: tag_key,

@@ -46,7 +46,7 @@ struct FSNMHelloView: View {
             Text("The Hello API allows to check whether the folksonomy server is reachable.")
                 .multilineTextAlignment(.center)
                 .padding()
-            FSNMDictElementView(dict: model.hello.dict)
+            DictElementView(dict: model.hello.dict)
             Spacer()
             .onAppear {
                 model.update()

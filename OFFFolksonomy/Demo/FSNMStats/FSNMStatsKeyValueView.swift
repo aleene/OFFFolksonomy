@@ -49,14 +49,14 @@ struct FSNMStatsKeyValueView: View {
 
     var body: some View {
         if isFetching {
-            FSNMListView(text: "All product statistics for key \(model.key) and value \(model.value)", dictArray: model.productStatsDictArray)
+            ListView(text: "All product statistics for key \(model.key) and value \(model.value)", dictArray: model.productStatsDictArray)
             .navigationTitle("Products")
 
         } else {
             Text("This fetch retrieves all the product statistics for a specific key and value.")
                 .padding()
-            FSNMInput(title: "Enter key", placeholder: key, text: $key)
-            FSNMInput(title: "Enter value", placeholder: value, text: $value)
+            InputView(title: "Enter key", placeholder: key, text: $key)
+            InputView(title: "Enter value", placeholder: value, text: $value)
             Button(action: {
                 
                 model.key = key

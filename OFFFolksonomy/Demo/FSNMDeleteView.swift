@@ -65,9 +65,9 @@ struct FSNMDeleteTagView: View {
                 Text("This function allows you to delete a tag of a product.")
                     .padding()
                 Text("(Be sure to authenticate first)")
-                FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
-                FSNMInput(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
-                FSNMInput(title: "Enter version (integer)", placeholder: version, text: $version)
+                InputView(title: "Enter barcode", placeholder: barcode, text: $barcode)
+                InputView(title: "Enter tag key", placeholder: tag_key, text: $tag_key)
+                InputView(title: "Enter version (integer)", placeholder: version, text: $version)
                 Button(action: {
                     let productTag = FSNM.Tag(product: barcode,
                                               k: tag_key,

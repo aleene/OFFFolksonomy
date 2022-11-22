@@ -56,7 +56,7 @@ struct FSNMProductTagsView: View {
                 if let products = model.productTags {
                     
                     if !products.isEmpty {
-                        FSNMListView(text: "The tags for the product with barcode \(model.barcode.barcode)", dictArray: model.productTagsDictArray)
+                        ListView(text: "The tags for the product with barcode \(model.barcode.barcode)", dictArray: model.productTagsDictArray)
                     } else {
                         Text("No tags for \(model.barcode.barcode) available")
                     }
@@ -71,7 +71,7 @@ struct FSNMProductTagsView: View {
         } else {
             Text("This fetch retrieves the existing tags of a product.")
                 .padding()
-            FSNMInput(title: "Enter barcode", placeholder: barcode, text: $barcode)
+            InputView(title: "Enter barcode", placeholder: barcode, text: $barcode)
             Button(action: {
                 
                 model.barcode = OFFBarcode(barcode: barcode)
