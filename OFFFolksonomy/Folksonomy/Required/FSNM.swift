@@ -29,7 +29,7 @@ struct FSNM {
             case .auth: return "/auth"
             case .delete: return "/product"  // needs to be extended with /<barcode> /<key> ?version=<version>
             case .hello: return "/"
-            case .keys: return "/key"
+            case .keys: return "/keys"
             case .ping: return "/ping"
             case .post: return "/product"
             case .products: return "/products"

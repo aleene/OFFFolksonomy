@@ -37,7 +37,7 @@ class FSNMPingAPITest: XCTestCase {
       MockURLProtocol.requestHandler = { request in
         guard let url = request.url,
               url == request.url else {
-            throw APIResponseError.request
+            throw FSNMError.request
         }
         
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -45,7 +45,7 @@ class FSNMPingAPITest: XCTestCase {
       }
       
       // Call API.
-        offSession.fetchPing() { (result) in
+        offSession.FSNMping { (result) in
             
             switch result {
             case .success(let post):

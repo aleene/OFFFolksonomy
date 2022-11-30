@@ -17,13 +17,13 @@ class FSNMStatsTest: XCTestCase {
     }
 
     func testSuccessfulDecoding() throws {
-        let productStats0 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
-        let productsStats1 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
+        let productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
+        let productsStats1 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
         let array = [productStats0, productsStats1]
    
         let data = try? JSONEncoder().encode(array)
                 
-        OFFAPI.decodeArray(data: data, type:FSNM.ProductStats.self) { (result) in
+        OFFAPI.decodeArray(data: data, type:FSNM.Stats.self) { (result) in
             switch result {
             case .success(let decodedProductStats):
                 if array == decodedProductStats {
@@ -32,11 +32,7 @@ class FSNMStatsTest: XCTestCase {
                     XCTFail("FSNMPingTest:successfulDecodingTest:Not equal.")
                 }
             case .failure(let error):
-                if let error = error as? APIResponseError {
                     XCTFail("FSNMPingTest:successfulDecodingTest:Error: \(error)")
-                } else {
-                    XCTFail("FSNMPingTest:successfulDecodingTest:Incorrect error received.")
-                }
             }
         }
         wait(for: [expectation], timeout: 1.0)
@@ -44,8 +40,8 @@ class FSNMStatsTest: XCTestCase {
 
     func testValueChangedDecoding() throws {
            
-        var productStats0 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
-        let productsStats1 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
+        var productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
+        let productsStats1 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
         var array = [productStats0, productsStats1]
    
         let data = try? JSONEncoder().encode(array)
@@ -53,7 +49,7 @@ class FSNMStatsTest: XCTestCase {
         productStats0.product = "changed code"
         array = [productStats0, productsStats1]
         
-        OFFAPI.decodeArray(data: data, type:FSNM.ProductStats.self) { (result) in
+        OFFAPI.decodeArray(data: data, type:FSNM.Stats.self) { (result) in
             switch result {
             case .success(let decodedProductStats):
                 if array == decodedProductStats {
@@ -62,16 +58,12 @@ class FSNMStatsTest: XCTestCase {
                     self.expectation?.fulfill()
                 }
             case .failure(let error):
-                if let error = error as? APIResponseError {
                     switch error {
                     case .parsing:
                         self.expectation?.fulfill()
                     default:
                         XCTFail("FSNMPingTest:testWrongJsonDecoding:Wrong error received: \(error)")
                     }
-                } else {
-                    XCTFail("FSNMPingTest:testWrongJsonDecoding:Incorrect error received.")
-                }
             }
         }
         wait(for: [expectation], timeout: 1.0)
@@ -85,21 +77,17 @@ class FSNMStatsTest: XCTestCase {
         let array = [dict1, dict2]
         let data = try? JSONEncoder().encode(array)
         
-        OFFAPI.decodeArray(data: data, type:FSNM.ProductStats.self) { (result) in
+        OFFAPI.decodeArray(data: data, type:FSNM.Stats.self) { (result) in
             switch result {
             case .success(_):
                 XCTFail("FSNMPingTest:testWrongJsonDecoding:No success expected.")
             case .failure(let error):
-                if let error = error as? APIResponseError {
                     switch error {
                     case .parsing:
                         self.expectation?.fulfill()
                     default:
                         XCTFail("FSNMPingTest:testWrongJsonDecoding:Wrong error received: \(error)")
                     }
-                } else {
-                    XCTFail("FSNMPingTest:testWrongJsonDecoding:Incorrect error received.")
-                }
             }
         }
         wait(for: [expectation], timeout: 1.0)

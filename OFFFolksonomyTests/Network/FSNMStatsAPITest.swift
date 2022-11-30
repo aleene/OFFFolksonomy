@@ -26,8 +26,8 @@ class FSNMStatsAPITest: XCTestCase {
 
     func testSuccessfulResponse() {
       // Prepare mock json response.
-        let productStats0 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
-        let productsStats1 = FSNM.ProductStats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
+        let productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
+        let productsStats1 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
         let array = [productStats0, productsStats1]
    
         let data = try? JSONEncoder().encode(array)
@@ -35,7 +35,7 @@ class FSNMStatsAPITest: XCTestCase {
         MockURLProtocol.requestHandler = { request in
             guard let url = request.url,
                   url == self.apiURL else {
-            throw APIResponseError.request
+            throw FSNMError.request
         }
         
         let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -43,17 +43,13 @@ class FSNMStatsAPITest: XCTestCase {
       }
       
       // Call API.
-        fsnmSession.fetchStats(with: key) { (result) in
+        fsnmSession.FSNMstats(with: key, and: nil, for: nil, has: nil) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
-                    case .success(_):
-                        self.expectation?.fulfill()
-                    case .failure(let error):
-                        XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected: \(error)")
-                    }
-                } else {
-                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse: Wrong response")
+                switch result {
+                case .success(_):
+                    self.expectation?.fulfill()
+                case .failure(let error):
+                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected:\(error)")
                 }
             }
         }

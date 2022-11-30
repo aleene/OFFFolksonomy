@@ -30,7 +30,7 @@ class FSNMPostURLTests: XCTestCase {
      */
     func testPost() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/product"
-        let tag = FSNM.ProductTags(product: "07951125", k: "test2", v: nil, owner: nil, version: 1, editor: nil, last_edit: nil, comment: nil)
+        let tag = FSNM.Tag(product: "07951125", k: "test2", v: nil, owner: nil, version: 1, editor: nil, last_edit: nil, comment: nil)
         let url = HTTPRequest(api: .post, for: tag, having: "").url!
         XCTAssertEqual(url.description, result)
     }

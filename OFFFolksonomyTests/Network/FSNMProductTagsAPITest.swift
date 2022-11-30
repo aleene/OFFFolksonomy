@@ -55,7 +55,7 @@ class FSNMProductTagsAPITest: XCTestCase {
         MockURLProtocol.requestHandler = { request in
                 guard let url = request.url,
                   url == self.apiURL else {
-                throw APIResponseError.request
+                throw FSNMError.request
             }
         
             let response = HTTPURLResponse(url: self.apiURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -63,16 +63,14 @@ class FSNMProductTagsAPITest: XCTestCase {
         }
       
         // Call API.
-        fsnmSession.fetchProductTags(with: barcode) { (result) in
+        fsnmSession.FSNMtags(with: barcode, and: nil) { (result) in
             DispatchQueue.main.async {
-                if let primaryResult = result.0 {
-                    switch primaryResult {
+                    switch result {
                    case .success(_):
                        self.expectation?.fulfill()
                    case .failure(let error):
                        XCTFail("FSNMKeysAPITest:testSuccessfulResponse:Error was not expected: \(error)")
                    }
-               } // Add other responses here
             }
         }
         wait(for: [expectation], timeout: 1.0)

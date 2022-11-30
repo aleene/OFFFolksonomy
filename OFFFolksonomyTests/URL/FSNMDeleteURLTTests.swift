@@ -14,7 +14,7 @@ class FSNMDeleteURLTests: XCTestCase {
     
     func testDelete() throws {
         let result = "https://api.folksonomy.openfoodfacts.org/product/07951125/test?version=1"
-        let tag = FSNM.ProductTags(product: "07951125", k: "test", v: nil, owner: nil, version: 1, editor: nil, last_edit: nil, comment: nil)
+        let tag = FSNM.Tag(product: "07951125", k: "test", v: nil, owner: nil, version: 1, editor: nil, last_edit: nil, comment: nil)
         let url = HTTPRequest(api: .delete, for: tag, having: "").url!
         XCTAssertEqual(url.description, result)
     }

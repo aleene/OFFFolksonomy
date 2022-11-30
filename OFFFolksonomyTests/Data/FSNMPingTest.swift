@@ -19,11 +19,7 @@ class FSNMPingTest: XCTestCase {
             case .success(let decodedPing):
                 XCTAssertEqual(ping.ping, decodedPing.ping!)
             case .failure(let error):
-                if let error = error as? APIResponseError {
-                    XCTFail("FSNMPingTest:testSuccessfulDecoding:Error: \(error)")
-                } else {
-                    XCTFail("FSNMPingTest:testSuccessfulDecoding:Incorrect error received.")
-                }
+                XCTFail("FSNMPingTest:testSuccessfulDecoding:Error: \(error)")
             }
         }
     }
@@ -38,11 +34,7 @@ class FSNMPingTest: XCTestCase {
             case .success(let decodedPing):
                 XCTAssert(ping != decodedPing.ping)
             case .failure(let error):
-                if let error = error as? APIResponseError {
-                    XCTFail("FSNMPingTest:testUnsuccesfulDecoding:Error: \(error)")
-                } else {
-                    XCTFail("FSNMPingTest:testUnsuccesfulDecoding:Incorrect error received.")
-                }
+                XCTFail("FSNMPingTest:testUnsuccesfulDecoding:Error: \(error)")
             }
         }
     }
