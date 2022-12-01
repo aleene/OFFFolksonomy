@@ -81,8 +81,9 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
             case .success(let response):
                 //print("fetchArray: response: \(response.status.rawValue)")
 
-                if response.status.rawValue == 200 {
-                    OFFAPI.decodeArray(data: response.body, type: T.self) { result in
+                if response.status.rawValue == 200,
+                   let data = response.body {
+                    Decoding.decodeArray(data: data, type: T.self) { result in
                         switch result {
                         case .success(let array):
                             completion( .success(array) )
@@ -103,8 +104,9 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
                             }
                         }
                     }
-                } else if response.status.rawValue == 422 {
-                    OFFAPI.decode(data: response.body, type: FSNM.ValidationError.self) { result in
+                } else if response.status.rawValue == 422,
+                          let data = response.body {
+                    Decoding.decode(data: data, type: FSNM.ValidationError.self) { result in
                         switch result {
                         case .success(let validationError):
                             if let validValidationError = validationError as? T {
@@ -130,9 +132,10 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
                             }
                         }
                     }
-                } else if response.status.rawValue == 404 {
+                } else if response.status.rawValue == 404,
+                          let data = response.body {
                     // the expected one dit not work, so try another
-                    OFFAPI.decode(data: response.body, type: FSNM.Detail.self) { result in
+                    Decoding.decode(data: data, type: FSNM.Detail.self) { result in
                         switch result {
                         case .success(let detail):
                             completion( .failure(FSNMError.detail(detail)) )
@@ -190,16 +193,17 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
                             }
                         }
                     }
-                } else if response.status.rawValue == 422 {
+                } else if response.status.rawValue == 422,
+                          let data = response.body {
                     //print("fetchString: response: \(response.status.rawValue)")
-                    OFFAPI.decode(data: response.body, type: FSNM.ValidationError.self) { result in
+                    Decoding.decode(data: data, type: FSNM.ValidationError.self) { result in
                         switch result {
                         case .success(let validationError):
                             completion( (.failure(FSNMError.validationError(validationError))) )
                             return
                         case .failure:
                             // the expected one did not work, so try another
-                            OFFAPI.decode(data: response.body, type: FSNM.Detail.self) { result in
+                            Decoding.decode(data: data, type: FSNM.Detail.self) { result in
                                 switch result {
                                 case .success(let detail):
                                     completion( .failure(FSNMError.detail(detail)) )
@@ -250,14 +254,32 @@ Generic function for multiple FSNM API's. Most of these API's can return two suc
         load(request: request) { result in
             switch result {
             case .success(let response):
-                if let responsetype = responses[response.status.rawValue] {
-                    OFFAPI.decode(data: response.body, type: responsetype) { result in
-                        completion(result)
+                if let responsetype = responses[response.status.rawValue],
+                   let data = response.body {
+                    Decoding.decode(data: data, type: responsetype) { result in
+                        switch result {
+                        case .success(let gelukt):
+                            completion(.success(gelukt))
+                        case .failure(let decodingError):
+                            switch decodingError {
+                            case .dataCorrupted(let context):
+                                completion(.failure(.dataCorrupted(context)))
+                            case .keyNotFound(let key, let context):
+                                completion(.failure(.keyNotFound(key, context)))
+                            case .typeMismatch(let type, let context):
+                                completion(.failure(.typeMismatch(type, context)))
+                            case .valueNotFound(let type, let context):
+                                completion(.failure(.valueNotFound(type, context)))
+                            @unknown default:
+                                completion(.failure(.unsupportedSuccessResponseType))
+                            }
+                        }
                         return
                     }
-                } else if response.status.rawValue == 404 {
+                } else if response.status.rawValue == 404,
+                          let data = response.body {
                     // the expected one did not work, so try another
-                    OFFAPI.decode(data: response.body, type: FSNM.Detail.self) { result in
+                    Decoding.decode(data: data, type: FSNM.Detail.self) { result in
                         switch result {
                         case .success(let detail):
                             completion( .failure(FSNMError.detail(detail)) )
@@ -440,7 +462,10 @@ Init for the food folksonomy API. This will setup the correct host and path of t
 // The specific errors that can be produced by the server
 public enum FSNMError: Error {
     case network
-    case parsing
+    case dataCorrupted(DecodingError.Context)
+    case keyNotFound(CodingKey, DecodingError.Context)
+    case typeMismatch(Any.Type, DecodingError.Context)
+    case valueNotFound(Any.Type, DecodingError.Context)
     case request
     case connectionFailure
     case dataNil
@@ -469,8 +494,6 @@ public enum FSNMError: Error {
     public var description: String {
         switch self {
         case .network:
-            return ""
-        case .parsing:
             return ""
         case .request:
             return ""
@@ -514,6 +537,14 @@ public enum FSNMError: Error {
             } else {
                 return "FSNMError: Not a validation error"
             }
+        case .dataCorrupted(let context):
+            return "decode " + context.debugDescription
+        case .keyNotFound(let key, let context):
+            return "Key '\(key)' not found: \(context.debugDescription) codingPath:  \(context.codingPath)"
+        case .typeMismatch(let value, let context):
+            return "Value '\(value)' not found \(context.debugDescription) codingPath: \(context.codingPath)"
+        case .valueNotFound(let type, let context):
+            return "Type '\(type)' mismatch: \(context.debugDescription) codingPath:  \(context.codingPath)"
         }
     }
 }
