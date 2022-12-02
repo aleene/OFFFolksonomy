@@ -16,7 +16,8 @@ class FSNMDecodingArrayTest: XCTestCase {
         expectation = expectation(description: "Expectation")
     }
 
-    func testSuccessfulDecoding() throws {
+    // Test when the input and output are the same
+    func testDecodingSuccess() throws {
         let productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
         let productsStats1 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
         let array = [productStats0, productsStats1]
@@ -30,21 +31,22 @@ class FSNMDecodingArrayTest: XCTestCase {
                     if array == decodedProductStats {
                         self.expectation?.fulfill()
                     } else {
-                        XCTFail("FSNMDecodingArrayTest:successfulDecodingTest:Not equal.")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingSuccess:Not equal arrays.")
                     }
                 case .failure(let error):
-                        XCTFail("FSNMDecodingArrayTest:successfulDecodingTest:Error: \(error)")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingSuccess:Error: \(error)")
                 }
             }
         } catch {
-            XCTFail("FSNMDecodingArrayTest:testDecodeOneQuestions:No valid data.")
+            XCTFail("FSNMDecodingArrayTest:testDecodingSuccess:No valid data.")
         }
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testDecodingArrayLenghtsDifferent() throws {
+    // Test when the input and output array have different sizes
+    func testDecodingDifferentSizes() throws {
            
-        var productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
+        let productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
         let productsStats1 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
         let array = [productStats0, productsStats1]
         let array2 = [productStats0]
@@ -54,27 +56,67 @@ class FSNMDecodingArrayTest: XCTestCase {
                 switch result {
                 case .success(let decodedProductStats):
                     if array2 == decodedProductStats {
-                        XCTFail("FSNMDecodingArrayTest:successfulDecodingTest: equal length array.")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentSizes:same array.")
                     } else {
                         self.expectation?.fulfill()
                     }
                 case .failure(let error):
                     switch error {
                     case .valueNotFound(_, _):
-                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:valueNotFound:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentSizes:valueNotFound:")
                     case .typeMismatch(_, _):
-                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:typeMismatch:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentSizes:typeMismatch:")
                     case .keyNotFound(_, _):
-                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:keyNotFound:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentSizes:keyNotFound:")
                     case .dataCorrupted(_):
-                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:dataCorrupted:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentSizes:dataCorrupted:")
                     @unknown default:
-                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:Error:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentSizes:Error:")
                     }
                 }
             }
         } catch {
-            XCTFail("FSNMStatsTest:testDecodeOneQuestions:No valid data.")
+            XCTFail("FSNMStatsTest:testDecodingDifferentSizes:No valid data.")
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    // Test when the input and output array have different elements
+    func testDecodingDifferentElements() throws {
+           
+        let productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
+        var productsStats1 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
+        let array = [productStats0, productsStats1]
+        productsStats1.product = "an other value"
+        let array2 = [productStats0, productsStats1]
+        do {
+            let data = try JSONEncoder().encode(array)
+            Decoding.decodeArray(data: data, type: FSNM.Stats.self) { (result) in
+                switch result {
+                case .success(let decodedProductStats):
+                    if array2 == decodedProductStats {
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentElements:same array.")
+                    } else {
+                        self.expectation?.fulfill()
+                    }
+                case .failure(let error):
+                    switch error {
+                    case .valueNotFound(_, _):
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentElements:valueNotFound:")
+                    case .typeMismatch(_, _):
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentElements:typeMismatch:")
+                    case .keyNotFound(_, _):
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentElements:keyNotFound:")
+                    case .dataCorrupted(_):
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentElements:dataCorrupted:")
+                    @unknown default:
+                        XCTFail("FSNMDecodingArrayTest:testDecodingDifferentElements:Error:")
+                    }
+                }
+            }
+        } catch {
+            XCTFail("FSNMStatsTest:testDecodingDifferentElements:No valid data.")
         }
 
         wait(for: [expectation], timeout: 1.0)
@@ -91,7 +133,7 @@ class FSNMDecodingArrayTest: XCTestCase {
         do {
             let data = try JSONEncoder().encode(array)
         
-            Decoding.decodeArray(data: data, type:FSNM.Stats.self) { (result) in
+            Decoding.decodeArray(data: data, type: FSNM.Stats.self) { (result) in
             switch result {
             case .success(_):
                 XCTFail("FSNMPingTest:testWrongJsonDecoding:No success expected.")
