@@ -13,7 +13,7 @@ import Foundation
 extension FSNM {
 /** the datastructure retrieved for a 200-reponse. FSNM.Ping has only one variable ping (String), which will contain a timestamp put by the folksonomy server.
 */
-    public struct Ping: Codable {
+    public struct Ping: Codable, Equatable {
         var ping: String?
     }
     

@@ -8,7 +8,7 @@
 import XCTest
 @testable import OFFFolksonomy
 
-class FSNMStatsTest: XCTestCase {
+class FSNMDecodingArrayTest: XCTestCase {
 
     var expectation: XCTestExpectation!
 
@@ -30,49 +30,46 @@ class FSNMStatsTest: XCTestCase {
                     if array == decodedProductStats {
                         self.expectation?.fulfill()
                     } else {
-                        XCTFail("FSNMStatsTest:successfulDecodingTest:Not equal.")
+                        XCTFail("FSNMDecodingArrayTest:successfulDecodingTest:Not equal.")
                     }
                 case .failure(let error):
-                        XCTFail("FSNMStatsTest:successfulDecodingTest:Error: \(error)")
+                        XCTFail("FSNMDecodingArrayTest:successfulDecodingTest:Error: \(error)")
                 }
             }
         } catch {
-            XCTFail("FSNMStatsTest:testDecodeOneQuestions:No valid data.")
+            XCTFail("FSNMDecodingArrayTest:testDecodeOneQuestions:No valid data.")
         }
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testValueChangedDecoding() throws {
+    func testDecodingArrayLenghtsDifferent() throws {
            
         var productStats0 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:21.65963", editors: 1)
         let productsStats1 = FSNM.Stats(product: "0011110805805", keys: 1, last_edit: "2022-10-11T18:01:50.208173", editors: 1)
-        var array = [productStats0, productsStats1]
-        productStats0.product = "changed code"
-        array = [productStats0, productsStats1]
-
+        let array = [productStats0, productsStats1]
+        let array2 = [productStats0]
         do {
             let data = try JSONEncoder().encode(array)
             Decoding.decodeArray(data: data, type:FSNM.Stats.self) { (result) in
                 switch result {
                 case .success(let decodedProductStats):
-                    if array == decodedProductStats {
-                        self.expectation?.fulfill()
-
+                    if array2 == decodedProductStats {
+                        XCTFail("FSNMDecodingArrayTest:successfulDecodingTest: equal length array.")
                     } else {
-                        XCTFail("FSNMStatsTest:successfulDecodingTest:Not equal.")
+                        self.expectation?.fulfill()
                     }
                 case .failure(let error):
                     switch error {
                     case .valueNotFound(_, _):
-                        XCTFail("FSNMStatsTest:testDecodeTypeMismatch:valueNotFound:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:valueNotFound:")
                     case .typeMismatch(_, _):
-                        self.expectation?.fulfill()
+                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:typeMismatch:")
                     case .keyNotFound(_, _):
-                        XCTFail("FSNMStatsTest:testDecodeTypeMismatch:keyNotFound:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:keyNotFound:")
                     case .dataCorrupted(_):
-                        XCTFail("FSNMStatsTest:testDecodeTypeMismatch:dataCorrupted:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:dataCorrupted:")
                     @unknown default:
-                        XCTFail("FSNMStatsTest:testDecodeTypeMismatch:Error:")
+                        XCTFail("FSNMDecodingArrayTest:testDecodeTypeMismatch:Error:")
                     }
                 }
             }
@@ -83,7 +80,8 @@ class FSNMStatsTest: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testkeysChangedDecoding() throws {
+    // Provide Ints instead of String
+    func testDecodingArrayTypeMismatch() throws {
            
         // Setup an arbitrary array as check
         let dict1 = ["product8": 6, "keys": 1, "last_edit": 2, "editors": 1]

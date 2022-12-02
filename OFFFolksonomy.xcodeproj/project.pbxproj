@@ -60,8 +60,8 @@
 		ABE510352900560F00706F7D /* FSNMProductTagVersionAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510342900560F00706F7D /* FSNMProductTagVersionAPITest.swift */; };
 		ABE5103929005F4700706F7D /* FSNMProductTagVersionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */; };
 		ABE5103B2900676F00706F7D /* FSNMProductTagsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103A2900676F00706F7D /* FSNMProductTagsAPITest.swift */; };
-		ABE510402901298F00706F7D /* FSNMPingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103F2901298F00706F7D /* FSNMPingTest.swift */; };
-		ABE510422901326800706F7D /* FSNMStatsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510412901326800706F7D /* FSNMStatsTest.swift */; };
+		ABE510402901298F00706F7D /* FSNMDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5103F2901298F00706F7D /* FSNMDecodingTests.swift */; };
+		ABE510422901326800706F7D /* FSNMDecodingArrayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510412901326800706F7D /* FSNMDecodingArrayTest.swift */; };
 		ABE5104429013D2400706F7D /* FSNMKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE5101A29003FBF00706F7D /* FSNMKeys.swift */; };
 		ABE510472901675F00706F7D /* FSNMStatsKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE510462901675F00706F7D /* FSNMStatsKeyView.swift */; };
 		ABE51049290169C800706F7D /* FSNMStatsKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE51048290169C800706F7D /* FSNMStatsKeyValueView.swift */; };
@@ -142,8 +142,8 @@
 		ABE510342900560F00706F7D /* FSNMProductTagVersionAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionAPITest.swift; sourceTree = "<group>"; };
 		ABE5103829005F4700706F7D /* FSNMProductTagVersionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagVersionsView.swift; sourceTree = "<group>"; };
 		ABE5103A2900676F00706F7D /* FSNMProductTagsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMProductTagsAPITest.swift; sourceTree = "<group>"; };
-		ABE5103F2901298F00706F7D /* FSNMPingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMPingTest.swift; sourceTree = "<group>"; };
-		ABE510412901326800706F7D /* FSNMStatsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsTest.swift; sourceTree = "<group>"; };
+		ABE5103F2901298F00706F7D /* FSNMDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDecodingTests.swift; sourceTree = "<group>"; };
+		ABE510412901326800706F7D /* FSNMDecodingArrayTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMDecodingArrayTest.swift; sourceTree = "<group>"; };
 		ABE510462901675F00706F7D /* FSNMStatsKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsKeyView.swift; sourceTree = "<group>"; };
 		ABE51048290169C800706F7D /* FSNMStatsKeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMStatsKeyValueView.swift; sourceTree = "<group>"; };
 		ABE5104B29017A0E00706F7D /* FSNMKeysOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSNMKeysOverView.swift; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 		ABE5103E290128E700706F7D /* Decoding */ = {
 			isa = PBXGroup;
 			children = (
-				ABE5103F2901298F00706F7D /* FSNMPingTest.swift */,
-				ABE510412901326800706F7D /* FSNMStatsTest.swift */,
+				ABE5103F2901298F00706F7D /* FSNMDecodingTests.swift */,
+				ABE510412901326800706F7D /* FSNMDecodingArrayTest.swift */,
 			);
 			path = Decoding;
 			sourceTree = "<group>";
@@ -496,14 +496,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABE510422901326800706F7D /* FSNMStatsTest.swift in Sources */,
+				ABE510422901326800706F7D /* FSNMDecodingArrayTest.swift in Sources */,
 				ABE50AA52900058800049C02 /* FSNMStatsAPITest.swift in Sources */,
 				ABF847BE2906E18700A20CF7 /* FSNMAuthURLTests.swift in Sources */,
 				ABE380982917B5F7005C75ED /* FSNMDeleteURLTTests.swift in Sources */,
 				ABE50AAB29003C4900049C02 /* FSNMProductsAPITest.swift in Sources */,
 				ABE380A22917FF52005C75ED /* FSNMPutURLTests.swift in Sources */,
 				ABE3809A2917C913005C75ED /* FSNMPostURLTests.swift in Sources */,
-				ABE510402901298F00706F7D /* FSNMPingTest.swift in Sources */,
+				ABE510402901298F00706F7D /* FSNMDecodingTests.swift in Sources */,
 				AB620E7428FD5D5C00D144A7 /* FSNMProductTagsURLTests.swift in Sources */,
 				ABE510352900560F00706F7D /* FSNMProductTagVersionAPITest.swift in Sources */,
 				AB620E7028FD58A900D144A7 /* FSNMProductsURLTests.swift in Sources */,

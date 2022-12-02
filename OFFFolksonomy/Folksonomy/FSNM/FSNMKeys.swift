@@ -13,7 +13,7 @@ import Foundation
 extension FSNM {
         
     /// the datastructure retreived for a succesfull reponse 200
-    public struct Key: Codable, Identifiable {
+    public struct Key: Codable, Identifiable, Equatable {
         public var k: String?
         public var count: Int?
         public var values: Int?
