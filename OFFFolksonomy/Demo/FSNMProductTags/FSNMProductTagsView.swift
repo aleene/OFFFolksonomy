@@ -53,17 +53,10 @@ struct FSNMProductTagsView: View {
 
         if isFetching {
             VStack {
-                if let products = model.productTags {
-                    
-                    if !products.isEmpty {
-                        ListView(text: "The tags for the product with barcode \(model.barcode.barcode)", dictArray: model.productTagsDictArray)
-                    } else {
-                        Text("No tags for \(model.barcode.barcode) available")
-                    }
-                } else if model.errorMessage != nil {
-                    Text(model.errorMessage!)
+                if !model.productTags.isEmpty {
+                    ListView(text: "The tags for the product with barcode \(model.barcode.barcode)", dictArray: model.productTagsDictArray)
                 } else {
-                    Text("Search in progress for tags of \(model.barcode.barcode)")
+                    Text("No tags for \(model.barcode.barcode) available")
                 }
             }
             .navigationTitle("Products")

@@ -13,9 +13,6 @@
 		AB1D12DC2903FAA5003C7E3B /* DictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D12DB2903FAA5003C7E3B /* DictView.swift */; };
 		AB1D133C29042AED003C7E3B /* DictElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D133B29042AED003C7E3B /* DictElementView.swift */; };
 		AB1D133E29042ED1003C7E3B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D133D29042ED1003C7E3B /* InputView.swift */; };
-		AB1D134329057541003C7E3B /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = AB1D134229057541003C7E3B /* Collections */; };
-		AB1D134529057541003C7E3B /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = AB1D134429057541003C7E3B /* DequeModule */; };
-		AB1D134729057541003C7E3B /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = AB1D134629057541003C7E3B /* OrderedCollections */; };
 		AB620E6A28FD483500D144A7 /* FSNMPingURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E5B28FD478B00D144A7 /* FSNMPingURLTests.swift */; };
 		AB620E6C28FD570600D144A7 /* FSNMStatsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6B28FD570600D144A7 /* FSNMStatsURLTests.swift */; };
 		AB620E7028FD58A900D144A7 /* FSNMProductsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E6F28FD58A900D144A7 /* FSNMProductsURLTests.swift */; };
@@ -24,6 +21,12 @@
 		AB620E7628FD5EBC00D144A7 /* FSNMKeysURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7528FD5EBC00D144A7 /* FSNMKeysURLTests.swift */; };
 		AB620E7828FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB620E7728FD631B00D144A7 /* FSNMProductTagVersionsURLTests.swift */; };
 		AB6EB412290BC89500ED4322 /* FSNMPostTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6EB411290BC89500ED4322 /* FSNMPostTagView.swift */; };
+		AB7286082ADD97D10021B7D3 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = AB7286072ADD97D10021B7D3 /* Collections */; };
+		AB72860A2ADD97D10021B7D3 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = AB7286092ADD97D10021B7D3 /* DequeModule */; };
+		AB72860C2ADD97D10021B7D3 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = AB72860B2ADD97D10021B7D3 /* OrderedCollections */; };
+		AB72860E2ADD988F0021B7D3 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = AB72860D2ADD988F0021B7D3 /* Collections */; };
+		AB7286102ADD988F0021B7D3 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = AB72860F2ADD988F0021B7D3 /* DequeModule */; };
+		AB7286122ADD988F0021B7D3 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = AB7286112ADD988F0021B7D3 /* OrderedCollections */; };
 		AB92329C2909762900B2BF15 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329B2909762900B2BF15 /* AuthController.swift */; };
 		AB92329E290A8B5000B2BF15 /* FSNMStatsOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329D290A8B5000B2BF15 /* FSNMStatsOwnerView.swift */; };
 		AB9232A0290AE78D00B2BF15 /* FSNMPostTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB92329F290AE78D00B2BF15 /* FSNMPostTag.swift */; };
@@ -162,6 +165,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB72860E2ADD988F0021B7D3 /* Collections in Frameworks */,
+				AB7286102ADD988F0021B7D3 /* DequeModule in Frameworks */,
+				AB7286122ADD988F0021B7D3 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,9 +175,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB1D134329057541003C7E3B /* Collections in Frameworks */,
-				AB1D134529057541003C7E3B /* DequeModule in Frameworks */,
-				AB1D134729057541003C7E3B /* OrderedCollections in Frameworks */,
+				AB7286082ADD97D10021B7D3 /* Collections in Frameworks */,
+				AB72860A2ADD97D10021B7D3 /* DequeModule in Frameworks */,
+				AB72860C2ADD97D10021B7D3 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +411,11 @@
 				AB620E6628FD482E00D144A7 /* PBXTargetDependency */,
 			);
 			name = OFFFolksonomyTests;
+			packageProductDependencies = (
+				AB72860D2ADD988F0021B7D3 /* Collections */,
+				AB72860F2ADD988F0021B7D3 /* DequeModule */,
+				AB7286112ADD988F0021B7D3 /* OrderedCollections */,
+			);
 			productName = OFFFolksonomyTests;
 			productReference = AB620E6128FD482E00D144A7 /* OFFFolksonomyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -423,9 +434,9 @@
 			);
 			name = OFFFolksonomy;
 			packageProductDependencies = (
-				AB1D134229057541003C7E3B /* Collections */,
-				AB1D134429057541003C7E3B /* DequeModule */,
-				AB1D134629057541003C7E3B /* OrderedCollections */,
+				AB7286072ADD97D10021B7D3 /* Collections */,
+				AB7286092ADD97D10021B7D3 /* DequeModule */,
+				AB72860B2ADD97D10021B7D3 /* OrderedCollections */,
 			);
 			productName = OFFFolksonomy;
 			productReference = AB93C67228F85D1D00336E71 /* OFFFolksonomy.app */;
@@ -835,17 +846,32 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AB1D134229057541003C7E3B /* Collections */ = {
+		AB7286072ADD97D10021B7D3 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AB1D134129057541003C7E3B /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
 		};
-		AB1D134429057541003C7E3B /* DequeModule */ = {
+		AB7286092ADD97D10021B7D3 /* DequeModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AB1D134129057541003C7E3B /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = DequeModule;
 		};
-		AB1D134629057541003C7E3B /* OrderedCollections */ = {
+		AB72860B2ADD97D10021B7D3 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB1D134129057541003C7E3B /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		AB72860D2ADD988F0021B7D3 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB1D134129057541003C7E3B /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		AB72860F2ADD988F0021B7D3 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB1D134129057541003C7E3B /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		AB7286112ADD988F0021B7D3 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AB1D134129057541003C7E3B /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;

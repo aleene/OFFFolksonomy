@@ -74,9 +74,9 @@ class FSNMKeysAPITest: XCTestCase {
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
+                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse422: success was not expected")
+                case .failure(_):
                     self.expectation?.fulfill()
-                case .failure(let error):
-                    XCTFail("FSNMKeysAPITest:testSuccessfulResponse: error was not expected:\(error)")
                 }
             }
         }
